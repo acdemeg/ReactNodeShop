@@ -1,0 +1,29 @@
+.notification {
+  position:absolute;
+  background-color: black;
+  font-size: 11pt;
+  color: white;
+  width: 300px;
+  height: 100px;
+  opacity: 0.5;
+  margin: 1% 1% 50% 84%;
+  z-index: 300;
+}
+
+.delete:hover {
+  background-color: red;
+}
+
+.alert-enter {
+  opacity: 0;
+}
+
+.alert-enter-active {
+  transition: opacity 1300ms ease;
+  opacity: 0.5;
+}
+
+.alert-exit-active {
+  transition: opacity 200ms ease;
+  opacity: 0;
+}
