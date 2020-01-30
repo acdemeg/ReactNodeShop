@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon --use-strict --watch src ./src/app.js",
+    "start": "DEBUG=app,app:* nodemon --use-strict --watch src ./src/app.js",
     "debug": "nodemon --use-strict --watch src --inspect ./src/app.js",
     "test": "jest",
     "style:check": "eslint --color --quiet ./src",
