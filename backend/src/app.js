@@ -16,5 +16,5 @@ app.use(router.allowedMethods());
 app.use(async ctx => await send(ctx, 'index.html', { root: staticDir }));
 
 app.listen(3000, () => {
-  debug('Server listen on localhost:80');
+  console.log('Server listen on localhost:80');
 });

@@ -14,9 +14,7 @@ function NavigationForLogInUsers({ userName }) {
           </NavLink>
         </li>
         <NavLinkComponent path={'/productPage'} title={'Products'} />
-        <NavLinkComponent path={'/deliveryPage'} title={'Delivery'} />
         <NavLinkComponent path={'/ordersPage'} title={'Orders'} />
-        <NavLinkComponent path={'/requestsPage'} title={'Requests'} />
       </ul>
       <ul style={style.cartAndProfileStyle}>
         <NavLinkComponent path={'/profilePage'} title={userName} />

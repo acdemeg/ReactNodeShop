@@ -1,7 +1,5 @@
 const debug = require('debug')('app:users');
 
-debug(`in users`);
-
 const users = {
   getAll: async () => {
     return 'Users';

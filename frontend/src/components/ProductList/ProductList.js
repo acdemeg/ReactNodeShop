@@ -2,12 +2,13 @@ import React, { useEffect, Component } from 'react';
 import InfoCardProduct from '../InfoCardProduct';
 import Container from './styleProducts';
 import { connect } from 'react-redux';
-import goodStoreService from '../../services/goods-store-service';
 import { fetchGoods, GOODS_ADDED_TO_CART, SHOW_ALERT } from '../../store/actions';
 import Spinner from '../Spinner';
 import ErrorIndicator from '../Error-boundry/Error-indicator';
 import { scenesEnum } from '../../constants';
 import ShowNotification from '../ShowNotification';
+import appServiceData from '../../App/appServiceData';
+
 
 const ProductsList = ({ goods, onAddedToCart, notifications }) => {
   return (
@@ -78,7 +79,7 @@ const mapStateToProps = ({ goodsList: { goods, loading, error }, notifications }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchGoods: fetchGoods(goodStoreService, dispatch),
+    fetchGoods: fetchGoods(appServiceData, dispatch),
     onAddedToCart: (id, nameProduct) => {
       dispatch(GOODS_ADDED_TO_CART(id));
       dispatch(SHOW_ALERT(scenesEnum.PRODUCT_LIST, nameProduct));

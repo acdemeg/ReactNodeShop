@@ -1,7 +1,5 @@
 const debug = require('debug')('app:orders');
 
-debug(`in orders`);
-
 const orders = {
   getOrdersOfUser: async () => {
     return 'getOrdersOfUser';

@@ -93,10 +93,10 @@ const LOG_OUT = () => {
   };
 };
 
-const fetchGoods = (goodStoreService, dispatch) => () => {
+const fetchGoods = (appServiceData, dispatch) => () => {
   dispatch(GOODS_REQUESTED());
-  goodStoreService
-    .getGoods()
+  appServiceData
+    .getProducts()
     .then(data => dispatch(GOODS_LOADED(data)))
     .catch(err => dispatch(GOODS_ERROR(err)));
 };

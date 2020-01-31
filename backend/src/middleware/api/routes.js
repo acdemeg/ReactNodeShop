@@ -9,8 +9,6 @@ const users = require('../../models/users');
 const router = new Router();
 const koaBody = convert(KoaBody());
 
-debug(`in router`);
-
 router
   //**users endpoints */
   .get('/api/users', async ctx => {

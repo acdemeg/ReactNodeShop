@@ -1,11 +1,9 @@
 const debug = require('debug')('app:products');
-
-debug(`in products`);
-
+const db = require('../database');
 
 const products = {
   getAll: async () => {
-    return 'Products';
+    return db.Products;
   },
   addProduct: async () => {
     return 'addProduct';
