@@ -52,3 +52,5 @@ const User = db.sequelize.define('user', {
 });
 
 module.exports = users;
+
+

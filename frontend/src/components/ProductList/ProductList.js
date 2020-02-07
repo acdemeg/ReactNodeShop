@@ -46,6 +46,7 @@ class ProductsListContainer extends Component {
     }
 
     if (error) {
+      console.log(error);
       return <ErrorIndicator />;
     }
     return (

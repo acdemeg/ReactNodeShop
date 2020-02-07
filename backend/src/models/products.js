@@ -4,10 +4,10 @@ const db = require('../database');
 
 const products = {
   getAll: async () => {
-    return db.Products;
+    return await Product.findAll({ raw: true });
   },
   addProduct: async () => {
-    return 'addProduct';
+    return "await Product.bulkCreate([Array])";
   },
   getProductInfo: async id => {
     return 'getProductInfo';
@@ -27,8 +27,12 @@ const Product = db.sequelize.define('product', {
     primaryKey: true,
     allowNull: false,
   },
-  title: {
+  nameProduct: {
     type: Sequelize.STRING,
+    allowNull: false,
+  },
+  count: {
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
   description: {
@@ -45,4 +49,7 @@ const Product = db.sequelize.define('product', {
   },
 });
 
+
 module.exports = products;
+
+

@@ -3,8 +3,10 @@ const debug = require('debug')('app:db');
 
 const sequelize = new Sequelize('lntsunday', 'postgres', 'lineate4@Sun', {
   dialect: 'postgres',
-  host: 'localhost',
+  host: '172.17.0.1',
   port: '5432',
+  define: { timestamps: false },
+  logging: console.log,
 });
 
 sequelize
@@ -16,12 +18,15 @@ sequelize
     debug(`Unable to connect to the database:,  ${err}`);
   });
 
-sequelize
-  .sync({force: true})
-  .then(result => {
-    console.log(result);
-  })
-  .catch(err => console.log(err));
+
+/*  FOR CREATE TABLES    */
+
+// sequelize
+//   .sync({force: true})
+//   .then(result => {
+//     console.log(result);
+//   })
+//   .catch(err => console.log(err));
 
 const Products = [
   {
@@ -243,3 +248,7 @@ module.exports = {
   Products,
   sequelize,
 };
+
+
+
+

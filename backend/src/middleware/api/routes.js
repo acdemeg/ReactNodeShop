@@ -10,6 +10,22 @@ const router = new Router();
 const koaBody = convert(KoaBody());
 
 router
+  //**products endpoints */
+  .get('/api/products', async ctx => {
+    ctx.body = await products.getAll();
+  })  
+  .post('/api/products', async ctx => {
+    ctx.body = await products.addProduct();
+  })
+ .get('/api/products/id', async ctx => {
+    ctx.body = await products.getProductInfo();
+  })
+  .put('/api/products/id', async ctx => {
+    ctx.body = await products.updateProduct();
+  })
+  .delete('/api/products/id', async ctx => {
+    ctx.body = await products.deleteProduct();
+  })
   //**users endpoints */
   .get('/api/users', async ctx => {
     ctx.body = await users.getAll();
@@ -29,22 +45,6 @@ router
   .put('/api/users/id', async ctx => {
     ctx.body = await users.updateProfileOfUser();
   })
-  //**products endpoints */
-  .post('/api/products', async ctx => {
-    ctx.body = await products.addProduct();
-  })
-  .get('/api/products', async ctx => {
-    ctx.body = await products.getAll();
-  })
-  .get('/api/products/id', async ctx => {
-    ctx.body = await products.getProductInfo();
-  })
-  .put('/api/products/id', async ctx => {
-    ctx.body = await products.updateProduct();
-  })
-  .delete('/api/products/id', async ctx => {
-    ctx.body = await products.deleteProduct();
-  })
   //**orders endpoints */
   .post('/api/orders', async ctx => {
     ctx.body = await orders.createOrder();
@@ -60,3 +60,5 @@ router
   });
 
 module.exports = router;
+
+

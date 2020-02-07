@@ -8,11 +8,13 @@ class AppServiceData {
   };
 
   async getProducts() {
-    return await this.getResourse('http://localhost/api/products');
+    let res =  await this.getResourse('http://localhost/api/products');
+    return res;
   };
 };
 
 const appServiceData = new AppServiceData();
 
 export default appServiceData;
+
 

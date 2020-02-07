@@ -13,7 +13,7 @@ const orders = {
     return 'getOrder';
   },
   createOrder: async id => {
-    return 'createOrder';
+    return  "createOrder";
   },
 };
 
@@ -24,7 +24,7 @@ const Order = db.sequelize.define('orders', {
     primaryKey: true,
     allowNull: false,
   },
-  title: {
+  nameProduct: {
     type: Sequelize.STRING,
     allowNull: false,
   },
@@ -32,7 +32,7 @@ const Order = db.sequelize.define('orders', {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  totalPrice: {
+  total: {
     type: Sequelize.FLOAT,
     allowNull: false,
   },
@@ -43,3 +43,4 @@ const Order = db.sequelize.define('orders', {
 });
 
 module.exports = orders;
+
