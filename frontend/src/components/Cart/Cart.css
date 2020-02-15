@@ -1,8 +1,10 @@
 .cart {
     background-color: #EDEDED;
     width: 720px;
-    position: absolute;
-    margin: 5% 0 5% 30%;
+    margin-top: 5%; 
+    margin-bottom: 5%;
+    margin-left: auto;
+    margin-right: auto;
     z-index: 100;
     border-radius: 10px;
     border-color: black;

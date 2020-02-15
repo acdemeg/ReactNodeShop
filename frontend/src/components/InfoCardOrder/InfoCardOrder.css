@@ -1,13 +1,16 @@
 
 .info-order-form {
-  background-color: Gainsboro;
+  background-color: whitesmoke;
   height: 190px;
-  width: 540px;
-  border-radius: 15px 15px 15px 15px ;
-  margin: 2% 2% 2% 35% ;
+   width: 100%; 
+  margin-top: 2%; 
+  margin-bottom: 2%;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 15pt;
   font-family: 'Times New Roman', Times, serif;
-  border: 3px double black;
+  border-top: 1px inset black;
+  border-bottom: 1px inset black;
 }
 
 .image-place-order {
@@ -30,11 +33,5 @@
 
 .order-place {
   width: 540px;
-}
-
-.action-button {
-  background-color: darkgray;
-  height: 30px;
-  width: 120px;
 }
 

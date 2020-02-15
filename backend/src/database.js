@@ -6,7 +6,6 @@ const sequelize = new Sequelize('lntsunday', 'postgres', 'lineate4@Sun', {
   host: '172.17.0.1',
   port: '5432',
   define: { timestamps: false },
-  logging: console.log,
 });
 
 sequelize
@@ -18,17 +17,105 @@ sequelize
     debug(`Unable to connect to the database:,  ${err}`);
   });
 
-
 /*  FOR CREATE TABLES    */
-
 // sequelize
-//   .sync({force: true})
+//   .sync()
 //   .then(result => {
-//     console.log(result);
+//     debug(result);
 //   })
-//   .catch(err => console.log(err));
+//   .catch(err => debug(err));
 
-const Products = [
+const Product = sequelize.define('product', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+    allowNull: false,
+  },
+  nameProduct: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  count: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+  description: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  price: {
+    type: Sequelize.FLOAT,
+    allowNull: false,
+  },
+  pathImage: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+});
+
+const User = sequelize.define('user', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+    allowNull: false,
+  },
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  phone: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  balance: {
+    type: Sequelize.FLOAT,
+    allowNull: true,
+  },
+});
+
+const Order = sequelize.define('orders', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+    allowNull: false,
+  },
+  userId: {
+    type: Sequelize.INTEGER,
+  },
+  count: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+  total: {
+    type: Sequelize.FLOAT,
+    allowNull: false,
+  },
+});
+
+User.hasOne(Order, {
+  foreignKey: {
+    allowNull: false,
+  },
+});
+
+const ProductsInOrder = sequelize.define('products_into_order', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+    allowNull: false,
+  },
+});
+Order.belongsToMany(Product, { through: ProductsInOrder });
+
+const ProductsList = [
   {
     id: 1,
     nameProduct: 'Ryzen Threadripper 3970X',
@@ -245,10 +332,8 @@ const Products = [
 ];
 
 module.exports = {
-  Products,
-  sequelize,
+  Product,
+  Order,
+  User,
+  ProductsInOrder,
 };
-
-
-
-

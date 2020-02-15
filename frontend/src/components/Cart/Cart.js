@@ -15,8 +15,6 @@ import CartHeader from './CartHeader';
 import CartFooter from './CartFooter';
 import ShowNotification from '../ShowNotification';
 
-// Why this component placed in shared components? Is it used more than in one place?
-// --mrurenko 2020-01-14
 function Cart({ items, orderTotal, onIncrease, onDecrease, onDelete, makeOrder, notifications }) {
   console.log('in CART');
   console.log(items);

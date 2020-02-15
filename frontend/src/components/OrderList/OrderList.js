@@ -1,37 +1,52 @@
-import React from 'react';
-import InfoCardOrder from '../InfoCardOrder';
-import Container from '../ProductList/styleProducts';
+import React, { useEffect } from 'react';
+import Order from './Order';
 import { connect } from 'react-redux';
 import Spinner from '../Spinner';
+import { fetchOrders } from '../../store/actions';
+import appServiceData from '../../App/appServiceData';
 import './OrderList.css';
 
 const OrderList = ({ orders }) => {
   return (
     <div>
       <div className="order-status-title">current orders</div>
-      <Container>
-        {orders.map(item => (
-          <InfoCardOrder key={item.id} item={item} />
+        {orders.map(order => (
+          <Order key={order.id} order={order} />
         ))}
-      </Container>
       <div className="order-status-title">orders history</div>
     </div>
   );
 };
 
-const OrderListContainer = ({ orders, loading }) => {
+const OrderListContainer = ({ orders, loading, error, fetchOrders }) => {
+  useEffect(() => {
+    fetchOrders();
+  }, []);
+
+  console.log('In Order List');
+  console.log(orders);
   if (loading) {
     return <Spinner />;
+  }
+
+  if (error) {
+    return <ErrorIndicator />;
   }
 
   return <OrderList orders={orders} />;
 };
 
-const mapStateToProps = ({ orderList: { orders, loading } }) => {
-  return { orders, loading };
+const mapStateToProps = ({ orderList: { orders, loading, error } }) => {
+  return { orders, loading, error };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchOrders: fetchOrders(appServiceData, dispatch),
+  };
 };
 
 export default connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 )(OrderListContainer);

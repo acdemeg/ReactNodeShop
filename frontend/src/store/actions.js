@@ -20,6 +20,26 @@ const GOODS_ERROR = error => {
   };
 };
 
+const ORDERS_LOADED = newOrders => {
+  return {
+    type: actionsEnum.ORDERS_LOADED,
+    payload: newOrders,
+  };
+};
+
+const ORDERS_REQUESTED = () => {
+  return {
+    type: actionsEnum.ORDERS_REQUESTED,
+  };
+};
+
+const ORDERS_ERROR = error => {
+  return {
+    type: actionsEnum.ORDERS_ERROR,
+    payload: error,
+  };
+};
+
 const GOODS_ADDED_TO_CART = goodsId => {
   return {
     type: actionsEnum.GOODS_ADDED_TO_CART,
@@ -101,8 +121,17 @@ const fetchGoods = (appServiceData, dispatch) => () => {
     .catch(err => dispatch(GOODS_ERROR(err)));
 };
 
+const fetchOrders = (appServiceData, dispatch) => () => {
+  dispatch(ORDERS_REQUESTED());
+  appServiceData
+    .getOrdersOfUser()
+    .then(data => dispatch(ORDERS_LOADED(data)))
+    .catch(err => dispatch(ORDERS_ERROR(err)));
+};
+
 export {
   fetchGoods,
+  fetchOrders,
   GOODS_ADDED_TO_CART,
   GOODS_REMOVED_FROM_CART,
   ALL_GOODS_REMOVED_FROM_CART,

@@ -8,9 +8,9 @@ function NavigationForUnLogInUsers() {
   return (
     <Fragment>
       <ul>
-        <li style={{ font: 'bold italic 110% serif' }}>
+        <li style={{ font: 'bold italic 120% serif' }}>
           <NavLink className="nav-link navbar-item" to="/">
-            Delivery
+            DIGITAL MARKET
           </NavLink>
         </li>
         <NavLinkComponent path={'/productPage'} title={'Products'} />

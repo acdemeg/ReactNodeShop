@@ -1,4 +1,4 @@
-import React, { useEffect, Component } from 'react';
+import React, { useEffect } from 'react';
 import InfoCardProduct from '../InfoCardProduct';
 import Container from './styleProducts';
 import { connect } from 'react-redux';
@@ -8,7 +8,6 @@ import ErrorIndicator from '../Error-boundry/Error-indicator';
 import { scenesEnum } from '../../constants';
 import ShowNotification from '../ShowNotification';
 import appServiceData from '../../App/appServiceData';
-
 
 const ProductsList = ({ goods, onAddedToCart, notifications }) => {
   return (
@@ -29,38 +28,17 @@ const ProductsList = ({ goods, onAddedToCart, notifications }) => {
   );
 };
 
-// 1. Why you have used classComponent? Why not functional?
-// 2. Please remove all not shared components from ./component folder. Place them where they are needed.
-// --mrurenko 2020-01-14
-
-class ProductsListContainer extends Component {
-  componentDidMount() {
-    this.props.fetchGoods();
-  }
-
-  render() {
-    const { goods, loading, error, notifications, onAddedToCart } = this.props;
-
-    if (loading) {
-      return <Spinner />;
-    }
-
-    if (error) {
-      console.log(error);
-      return <ErrorIndicator />;
-    }
-    return (
-      <ProductsList goods={goods} onAddedToCart={onAddedToCart} notifications={notifications} />
-    );
-  }
-}
-
-//******  Not Working! */
-/********* */
-/* const ProductsListContainer = ({ goods, loading, error, notifications, onAddedToCart, fetchGoods }) => {
+const ProductsListContainer = ({
+  goods,
+  loading,
+  error,
+  notifications,
+  onAddedToCart,
+  fetchGoods,
+}) => {
   useEffect(() => {
     fetchGoods();
-  });
+  }, []);
 
   if (loading) {
     return <Spinner />;
@@ -69,10 +47,8 @@ class ProductsListContainer extends Component {
   if (error) {
     return <ErrorIndicator />;
   }
-  return (
-    <ProductsList goods={goods} onAddedToCart={onAddedToCart} notifications={notifications} />
-  );
-} */
+  return <ProductsList goods={goods} onAddedToCart={onAddedToCart} notifications={notifications} />;
+};
 
 const mapStateToProps = ({ goodsList: { goods, loading, error }, notifications }) => {
   return { goods, loading, error, notifications };

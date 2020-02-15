@@ -26,21 +26,14 @@ function InfoCardOrder({ item }) {
         </div>
 
         <div style={{ marginBottom: '6px' }}>
-          <p style={{ float: 'left' }}>Courier &emsp; </p>
-          <div className="info-order-form-field">name &nbsp; +7 XXX XXX XX-XX</div>
+          <p style={{ float: 'left' }}>Nastya&emsp; </p>
+          <div className="info-order-form-field"> +7 XXX XXX XX-XX</div>
         </div>
 
         <div>
           <p style={{ float: 'left' }}>Status &emsp; </p>
           <div className="info-order-form-field" style={{ float: 'left' }}>
             &nbsp; delivered &emsp;
-          </div>
-          <div>
-            <p>
-              <button className="button is-rounded is-small action-button" type="submit">
-                <p style={{ fontSize: '11pt' }}>action</p>
-              </button>
-            </p>
           </div>
         </div>
       </div>
