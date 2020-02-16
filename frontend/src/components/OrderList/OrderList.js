@@ -10,9 +10,9 @@ const OrderList = ({ orders }) => {
   return (
     <div>
       <div className="order-status-title">current orders</div>
-        {orders.map(order => (
-          <Order key={order.id} order={order} />
-        ))}
+      {orders.map(order => (
+        <Order key={order.id} order={order} />
+      ))}
       <div className="order-status-title">orders history</div>
     </div>
   );

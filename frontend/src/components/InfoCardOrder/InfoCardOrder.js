@@ -2,7 +2,7 @@ import React from 'react';
 import './InfoCardOrder.css';
 
 function InfoCardOrder({ item }) {
-  const { nameProduct, count, total, pathImage } = item;
+  const { nameProduct, count, price, pathImage } = item;
 
   return (
     <div className="info-order-form">
@@ -22,7 +22,7 @@ function InfoCardOrder({ item }) {
 
         <div style={{ marginBottom: '6px' }}>
           <p style={{ float: 'left' }}>Total &emsp; </p>
-          <div className="info-order-form-field"> &nbsp;&nbsp;&nbsp; {`${total}$`} </div>
+          <div className="info-order-form-field"> &nbsp;&nbsp;&nbsp; {`${price * count}$`} </div>
         </div>
 
         <div style={{ marginBottom: '6px' }}>

@@ -19,7 +19,7 @@ sequelize
 
 /*  FOR CREATE TABLES    */
 // sequelize
-//   .sync()
+//   .sync({ force: true })
 //   .then(result => {
 //     debug(result);
 //   })

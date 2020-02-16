@@ -5,14 +5,15 @@ const orders = {
   getOrdersOfUser: async id => {
     // for each order need get good list
     return await DB.Order.findAll({
-       include: [{ model: DB.Product,}], 
-       where: { userId: id } })
+      include: [{ model: DB.Product }],
+      where: { userId: id },
+    });
   },
   updateOrderStatus: async () => {
     return 'updateOrderStatus';
   },
   getOrder: async orderId => {
-     return await DB.Order.findOne({ where: { id: orderId }, raw: true });
+    return await DB.Order.findOne({ where: { id: orderId }, raw: true });
   },
   createOrder: async () => {
     return await DB.Order.create({
