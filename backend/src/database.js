@@ -17,9 +17,9 @@ sequelize
     debug(`Unable to connect to the database:,  ${err}`);
   });
 
-/*  FOR CREATE TABLES    */
+// /*  FOR CREATE TABLES    */
 // sequelize
-//   .sync({ force: true })
+//   .sync()
 //   .then(result => {
 //     debug(result);
 //   })
@@ -89,10 +89,6 @@ const Order = sequelize.define('orders', {
   userId: {
     type: Sequelize.INTEGER,
   },
-  count: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
   total: {
     type: Sequelize.FLOAT,
     allowNull: false,
@@ -110,6 +106,10 @@ const ProductsInOrder = sequelize.define('products_into_order', {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     primaryKey: true,
+    allowNull: false,
+  },
+  count: {
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
 });

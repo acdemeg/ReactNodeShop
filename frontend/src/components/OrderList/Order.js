@@ -11,7 +11,7 @@ const Order = ({ order }) => {
       <OrderHeader />
       <Container>
         {order.products.map(item => (
-          <InfoCardOrder key={item.id} item={item} />
+          <InfoCardOrder key={item.id} item={item}/>
         ))}
       </Container>
       <OrderFooter orderTotal={order.total} />
