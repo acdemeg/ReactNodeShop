@@ -55,8 +55,8 @@ const mapDispatchToProps = dispatch => {
     onIncrease: goodsId => dispatch(GOODS_ADDED_TO_CART(goodsId)),
     onDecrease: goodsId => dispatch(GOODS_REMOVED_FROM_CART(goodsId)),
     onDelete: goodsId => dispatch(ALL_GOODS_REMOVED_FROM_CART(goodsId)),
-    makeOrder: (items, alertText) => {
-      dispatch(MAKE_ORDER(items));
+    makeOrder: (orderTotal, items, alertText) => {
+      dispatch(MAKE_ORDER(orderTotal, items, dispatch));
       dispatch(SHOW_ALERT(scenesEnum.CART, alertText));
     },
   };

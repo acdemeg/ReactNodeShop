@@ -93,6 +93,11 @@ const Order = sequelize.define('orders', {
     type: Sequelize.FLOAT,
     allowNull: false,
   },
+  status: {
+    type: Sequelize.DataTypes.ENUM('Delivering', 'Done'),
+    defaultValue: 'Delivering',
+    allowNull: false,
+  },
 });
 
 User.hasOne(Order, {

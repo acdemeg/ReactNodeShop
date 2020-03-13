@@ -1,7 +1,6 @@
-# Lineate Sunday School project template
+# Sibadi 2020 Valery Krylov
 
-This repo contains the template of the project for Thumbtack(Lineate) Sunday School.
-If you are a student of the school - please replace the content of this file with your project info.
+This repo contains  project for VKR.
 
 ## Requirements:
 1. Node v12.x (you could try v10)
@@ -46,26 +45,3 @@ Run all commands project root folder
 # Useful commands
 ## Clean all docker containers info
 `docker-compose stop && docker-compose down --rmi local --volumes --remove-orphans`
-
-## Styling
-(You should pick one of these)
-1. CSS
-2. SASS
-3. CSS-in-JS
-
-## CSS frameworks
-(You should pick one of these)
-1. Bulma (https://bulma.io/)
-2. Bootstrap
-3. My own styles
-4. Rebass
-
-# Frontend
-## Project structure
-### components 
-Contains all base (global) components of the app. Like 'button', 'table', 'form'
-### scenes 
-Contains big container components with a lot of logic in them.
-Usually each of Route component will be a scene.
-
-Each scene could include its own 'components' folder and even its own 'scenes' folder.

@@ -1,13 +1,12 @@
 const Router = require('koa-router');
 const debug = require('debug')('app:router');
-const convert = require('koa-convert');
-const KoaBody = require('koa-body');
+const koaBody = require('koa-body');
 const products = require('../../controllers/products');
 const orders = require('../../controllers/orders');
 const users = require('../../controllers/users');
 
 const router = new Router();
-const koaBody = convert(KoaBody());
+
 
 router
   //**products endpoints */
@@ -46,8 +45,9 @@ router
     ctx.body = await users.updateProfileOfUser();
   })
   //**orders endpoints */
-  .post('/api/orders', async ctx => {
-    ctx.body = await orders.createOrder();
+  .post('/api/orders', koaBody(),
+    async ctx => {
+    ctx.body = await orders.createOrder(ctx.request.body);
   })
   .get('/api/orders/:id', async ctx => {
     ctx.body = await orders.getOrder();

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import qs from 'qs';
 
 let _apiBase = `http://localhost/api/`;
 
@@ -13,9 +14,17 @@ class AppServiceData {
     return res;
   }
 
-  async getOrdersOfUser(id = 1) {
-    let res = await this.getResourse(`${_apiBase}users/${id}/orders`);
+  async getOrdersOfUser(id) {
+    let res = await this.getResourse(`${_apiBase}users/${3}/orders`);
     return res;
+  }
+
+  async createOrder(order) {
+    let res = await axios.post(`${_apiBase}orders`, qs.stringify(order));
+
+    console.log('createOrder');
+    console.log(res);
+    //console.log(order.products)
   }
 }
 

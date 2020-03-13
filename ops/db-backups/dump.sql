@@ -27,7 +27,6 @@ SET default_with_oids = false;
 CREATE TABLE public.orders (
     id integer NOT NULL,
     "userId" integer NOT NULL,
-    count integer NOT NULL,
     total double precision NOT NULL
 );
 
@@ -199,10 +198,11 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.orders (id, "userId", count, total) FROM stdin;
-4	2	1	50
-3	1	2	950
-2	1	1	6000
+COPY public.orders (id, "userId", total) FROM stdin;
+3	1	950
+2	1	6000
+5	3	500
+29	3	700
 \.
 
 
@@ -225,6 +225,8 @@ COPY public.products_into_orders (id, count, "orderId", "productId") FROM stdin;
 1	2	2	1
 2	1	3	2
 3	1	3	3
+4	2	5	3
+9	1	29	2
 \.
 
 
@@ -235,6 +237,7 @@ COPY public.products_into_orders (id, count, "orderId", "productId") FROM stdin;
 COPY public.users (id, name, phone, email, balance) FROM stdin;
 1	user	44564654	sfsdfsdf	500
 2	user2	568778	sfs	100
+3	user3	+79993565656	micha@mail.ru	1000
 \.
 
 
@@ -242,7 +245,7 @@ COPY public.users (id, name, phone, email, balance) FROM stdin;
 -- Name: orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.orders_id_seq', 4, true);
+SELECT pg_catalog.setval('public.orders_id_seq', 29, true);
 
 
 --
@@ -256,14 +259,14 @@ SELECT pg_catalog.setval('public.products_id_seq', 1, false);
 -- Name: products_into_orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.products_into_orders_id_seq', 3, true);
+SELECT pg_catalog.setval('public.products_into_orders_id_seq', 9, true);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 2, true);
+SELECT pg_catalog.setval('public.users_id_seq', 3, true);
 
 
 --

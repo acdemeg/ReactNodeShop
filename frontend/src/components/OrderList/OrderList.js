@@ -19,6 +19,8 @@ const OrderList = ({ orders }) => {
 };
 
 const OrderListContainer = ({ orders, loading, error, fetchOrders }) => {
+  console.log('In Order List');
+  console.log(orders);
   useEffect(() => {
     fetchOrders();
   }, []);

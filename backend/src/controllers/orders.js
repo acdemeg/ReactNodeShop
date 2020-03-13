@@ -15,20 +15,21 @@ const orders = {
   getOrder: async orderId => {
     return await DB.Order.findOne({ where: { id: orderId }, raw: true });
   },
-  createOrder: async () => {
+  createOrder: async (order) => {
     return await DB.Order.create({
-      userId: 1,
-      count: 1,
-      total: 100,
+      userId: order.userId,
+      total: order.total,
     })
-      .then(order => {
-        DB.ProductsInOrder.create({
-          productId: 1,
-          orderId: order.id,
-        });
+    .then(orderRecord => {
+      order.products.forEach(element => {
+        element.orderId = orderRecord.id;
+      });
+
+      DB.ProductsInOrder.bulkCreate(order.products)
       })
-      .then(() => 'succsess');
-  },
+    .then(() => 'succses')
+
+    },
 };
 
 module.exports = orders;

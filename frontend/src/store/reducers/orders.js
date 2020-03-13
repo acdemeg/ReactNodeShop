@@ -35,12 +35,12 @@ const updateOrdersList = (state, action) => {
         error: action.payload,
       };
 
-    case actionsEnum.MAKE_ORDER:
-      return {
-        loading: false,
-        orders: updateOrders(state.orderList.orders, action.payload),
-        error: null,
-      };
+    // case actionsEnum.MAKE_ORDER:
+    //   return {
+    //     loading: false,
+    //     orders: updateOrders(state.orderList.orders, action.payload),
+    //     error: null,
+    //   };
 
     default:
       return state.orderList;

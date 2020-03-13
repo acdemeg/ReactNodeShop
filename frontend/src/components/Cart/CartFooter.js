@@ -12,7 +12,7 @@ const CartFooter = ({ orderTotal, makeOrder, items }) => {
         </span>
       </div>
       <div className="right">
-        <MakeOrderButton makeOrder={makeOrder} items={items} />
+        <MakeOrderButton makeOrder={makeOrder} items={items} orderTotal={orderTotal} />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import Actions from './ActionsButton';
+import ActionsButton from './ActionsButton';
 import './Order.css';
 
 const OrderFooter = ({ orderTotal, actions }) => {
@@ -12,7 +12,7 @@ const OrderFooter = ({ orderTotal, actions }) => {
         </span>
       </div>
       <div className="right">
-        <Actions makeOrder={actions} />
+        <ActionsButton actions={actions} />
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { actionsEnum } from '../constants';
+import appServiceData from '../App/appServiceData';
 
 const GOODS_LOADED = newGoods => {
   return {
@@ -94,13 +95,6 @@ const SUBMIT_MODAL_WINDOW = data => {
   };
 };
 
-const MAKE_ORDER = items => {
-  return {
-    type: actionsEnum.MAKE_ORDER,
-    payload: items,
-  };
-};
-
 const LOG_IN = () => {
   return {
     type: actionsEnum.LOG_IN,
@@ -127,6 +121,27 @@ const fetchOrders = (appServiceData, dispatch) => () => {
     .getOrdersOfUser()
     .then(data => dispatch(ORDERS_LOADED(data)))
     .catch(err => dispatch(ORDERS_ERROR(err)));
+};
+
+const MAKE_ORDER = (orderTotal, items, dispatch) => {
+  const order = {
+    userId: 3,
+    total: orderTotal,
+    products: items.map(item => {
+      return {
+        productId: item.id,
+        orderId: undefined,
+        count: item.count,
+      };
+    }),
+  };
+
+  appServiceData.createOrder(order).then(() => {});
+
+  return {
+    type: actionsEnum.MAKE_ORDER,
+    payload: fetchOrders(appServiceData, dispatch),
+  };
 };
 
 export {
