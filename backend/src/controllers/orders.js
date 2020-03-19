@@ -9,27 +9,29 @@ const orders = {
       where: { userId: id },
     });
   },
-  updateOrderStatus: async () => {
-    return 'updateOrderStatus';
+  updateOrderStatus: async (id, obj) => {
+    let order = await orders.getOrder(id);
+    order.status = (obj.status === 'Cancel') ? 'Canceled' : 'Done';
+    await order.save();
+    return 'succses updateOrderStatus';
   },
   getOrder: async orderId => {
-    return await DB.Order.findOne({ where: { id: orderId }, raw: true });
+    return await DB.Order.findOne({ where: { id: orderId }});
   },
-  createOrder: async (order) => {
+  createOrder: async order => {
     return await DB.Order.create({
       userId: order.userId,
       total: order.total,
     })
-    .then(orderRecord => {
-      order.products.forEach(element => {
-        element.orderId = orderRecord.id;
-      });
+      .then(orderRecord => {
+        order.products.forEach(element => {
+          element.orderId = orderRecord.id;
+        });
 
-      DB.ProductsInOrder.bulkCreate(order.products)
+        DB.ProductsInOrder.bulkCreate(order.products);
       })
-    .then(() => 'succses')
-
-    },
+      .then(() => 'succses createOrder');
+  },
 };
 
 module.exports = orders;

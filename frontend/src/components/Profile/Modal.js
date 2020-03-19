@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { typeModalEnum } from '../../constants';
+import { typeModalEnum, messages } from '../../constants';
 import InputForm from './InputForm';
-import { messages } from '../../constants';
+
 import './Modal.css';
 
 const Modal = ({ title, typeModal, isOpenModal, onCancel, onSubmit }) => {

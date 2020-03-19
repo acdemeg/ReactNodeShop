@@ -7,7 +7,6 @@ const users = require('../../controllers/users');
 
 const router = new Router();
 
-
 router
   //**products endpoints */
   .get('/api/products', async ctx => {
@@ -45,15 +44,14 @@ router
     ctx.body = await users.updateProfileOfUser();
   })
   //**orders endpoints */
-  .post('/api/orders', koaBody(),
-    async ctx => {
+  .post('/api/orders', koaBody(), async ctx => {
     ctx.body = await orders.createOrder(ctx.request.body);
   })
   .get('/api/orders/:id', async ctx => {
     ctx.body = await orders.getOrder();
   })
-  .put('/api/orders/:id', async ctx => {
-    ctx.body = await orders.updateOrderStatus();
+  .patch('/api/orders/:id', koaBody(), async ctx => {
+    ctx.body = await orders.updateOrderStatus(ctx.params.id, ctx.request.body);
   })
   .get('/api/users/:id/orders', async ctx => {
     ctx.body = await orders.getOrdersOfUser(ctx.params.id);

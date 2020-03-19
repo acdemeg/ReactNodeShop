@@ -3,7 +3,7 @@ import './Cart.css';
 import { messages } from '../../constants';
 
 const MakeOrderButton = ({ makeOrder, items, orderTotal }) => {
-  let getClassStyle = items => {
+  const getClassStyle = items => {
     if (items.length === 0) {
       return 'make-order m-o-disabled';
     }

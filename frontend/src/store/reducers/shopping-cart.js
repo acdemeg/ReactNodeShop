@@ -53,7 +53,7 @@ const updateOrder = (state, productId, quantity) => {
 
   return {
     cartItems: newCartItems,
-    orderTotal: orderTotal,
+    orderTotal,
   };
 };
 

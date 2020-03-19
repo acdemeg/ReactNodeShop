@@ -1,5 +1,3 @@
-const compose = (...func) => comp => {
-  return func.reduceRight((wrapped, f) => f(wrapped), comp);
-};
+const compose = (...func) => comp => func.reduceRight((wrapped, f) => f(wrapped), comp);
 
 export default compose;

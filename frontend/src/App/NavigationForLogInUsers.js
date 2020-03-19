@@ -6,22 +6,22 @@ import NavLinkComponent from './NavLinkComponent';
 
 function NavigationForLogInUsers({ userName }) {
   return (
-    <Fragment>
+    <>
       <ul>
         <li style={{ font: 'bold italic 110% serif' }}>
           <NavLink className="nav-link navbar-item" to="/">
             Digital Market
           </NavLink>
         </li>
-        <NavLinkComponent path={'/productPage'} title={'Products'} />
-        <NavLinkComponent path={'/ordersPage'} title={'Orders'} />
+        <NavLinkComponent path="/productPage" title="Products" />
+        <NavLinkComponent path="/ordersPage" title="Orders" />
       </ul>
       <ul style={style.cartAndProfileStyle}>
-        <NavLinkComponent path={'/profilePage'} title={userName} />
-        <NavLinkComponent path={'/authorizationPage'} title={'Log In'} />
+        <NavLinkComponent path="/profilePage" title={userName} />
+        <NavLinkComponent path="/authorizationPage" title="Log In" />
         <Basket />
       </ul>
-    </Fragment>
+    </>
   );
 }
 

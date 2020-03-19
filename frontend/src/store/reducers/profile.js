@@ -49,27 +49,23 @@ const updateProfile = (state, action) => {
     }
   };
 
-  const openNeedModal = (state, action) => {
-    return {
-      isOpenModal: true,
-      balance: state.profile.balance,
-      email: state.profile.email,
-      phone: state.profile.phone,
-      name: state.profile.name,
-      typeModal: action.payload.type,
-      titleModal: action.payload.title,
-    };
-  };
+  const openNeedModal = (state, action) => ({
+    isOpenModal: true,
+    balance: state.profile.balance,
+    email: state.profile.email,
+    phone: state.profile.phone,
+    name: state.profile.name,
+    typeModal: action.payload.type,
+    titleModal: action.payload.title,
+  });
 
-  const cancelModal = state => {
-    return {
-      email: state.profile.email,
-      phone: state.profile.phone,
-      name: state.profile.name,
-      balance: state.profile.balance,
-      isOpenModal: false,
-    };
-  };
+  const cancelModal = state => ({
+    email: state.profile.email,
+    phone: state.profile.phone,
+    name: state.profile.name,
+    balance: state.profile.balance,
+    isOpenModal: false,
+  });
 
   switch (action.type) {
     case actionsEnum.OPEN_MODAL_WINDOW:

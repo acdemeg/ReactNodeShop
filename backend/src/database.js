@@ -18,12 +18,12 @@ sequelize
   });
 
 // /*  FOR CREATE TABLES    */
-// sequelize
-//   .sync()
-//   .then(result => {
-//     debug(result);
-//   })
-//   .catch(err => debug(err));
+sequelize
+  .sync()
+  .then(result => {
+    debug(result);
+  })
+  .catch(err => debug(err));
 
 const Product = sequelize.define('product', {
   id: {
@@ -94,7 +94,7 @@ const Order = sequelize.define('orders', {
     allowNull: false,
   },
   status: {
-    type: Sequelize.DataTypes.ENUM('Delivering', 'Done'),
+    type: Sequelize.DataTypes.ENUM('Delivering', 'Done', 'Canceled'),
     defaultValue: 'Delivering',
     allowNull: false,
   },
@@ -118,7 +118,38 @@ const ProductsInOrder = sequelize.define('products_into_order', {
     allowNull: false,
   },
 });
+
 Order.belongsToMany(Product, { through: ProductsInOrder });
+
+Order.hasOne(ProductsInOrder, {
+  foreignKey: {
+    allowNull: false,
+  },
+});
+
+
+const EmailPasswordMap = sequelize.define('email_password_map', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+    allowNull: false,
+  },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+});
+
+// User.hasOne(EmailPasswordMap, {
+//   foreignKey: {
+//     allowNull: false,
+//   },
+// });
 
 const ProductsList = [
   {
@@ -341,4 +372,5 @@ module.exports = {
   Order,
   User,
   ProductsInOrder,
+  EmailPasswordMap
 };

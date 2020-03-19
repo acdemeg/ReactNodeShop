@@ -11,8 +11,20 @@ const users = {
   loginUser: async id => {
     return 'loginUser';
   },
-  registerUser: async id => {
-    return 'registerUser';
+  registerUser: async user => {
+    return await DB.User.create({
+      name: user.name,
+      phone: user.phone,
+      email: user.email,
+      balance: 0
+    })
+      .then(userRecord => {
+        DB.EmailPasswordMap.create({
+          email: user.email,
+          password: user.password
+        });
+      })
+      .then(() => 'succses registration');
   },
   getProfileOfUser: async id => {
     return 'getProfileOfUser';

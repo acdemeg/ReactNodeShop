@@ -15,6 +15,8 @@ import {
   faWallet,
 } from '@fortawesome/free-solid-svg-icons';
 
+import compose from './compose';
+
 // To make icons project-wide accessed
 function initFontAwesomeLibrary() {
   library.add(
@@ -33,7 +35,5 @@ function initFontAwesomeLibrary() {
     faWallet,
   );
 }
-
-import compose from './compose';
 
 export { compose, initFontAwesomeLibrary };

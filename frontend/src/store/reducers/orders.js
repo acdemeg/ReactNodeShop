@@ -1,8 +1,6 @@
 import { actionsEnum } from '../../constants';
 
-const updateOrders = (currentOrders, newOrders) => {
-  return [...currentOrders, ...newOrders];
-};
+const updateOrders = (currentOrders, newOrders) => [...currentOrders, ...newOrders];
 
 const updateOrdersList = (state, action) => {
   if (state === undefined) {
@@ -34,14 +32,7 @@ const updateOrdersList = (state, action) => {
         loading: false,
         error: action.payload,
       };
-
-    // case actionsEnum.MAKE_ORDER:
-    //   return {
-    //     loading: false,
-    //     orders: updateOrders(state.orderList.orders, action.payload),
-    //     error: null,
-    //   };
-
+    
     default:
       return state.orderList;
   }

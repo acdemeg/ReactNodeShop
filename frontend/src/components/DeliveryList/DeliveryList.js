@@ -1,23 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import InfoCardDelivery from '../InfoCardDelivery';
 import Container from '../ProductList/styleProducts';
-import { connect } from 'react-redux';
 import Spinner from '../Spinner';
 import './DeliveryList.css';
 
-const DeliveryList = ({ orders }) => {
-  return (
-    <div>
-      <div className="delivery-status-title">current orders</div>
-      <Container>
-        {orders.map(item => (
-          <InfoCardDelivery key={item.id} item={item} />
-        ))}
-      </Container>
-      <div className="delivery-status-title">orders history</div>
-    </div>
-  );
-};
+const DeliveryList = ({ orders }) => (
+  <div>
+    <div className="delivery-status-title">current orders</div>
+    <Container>
+      {orders.map(item => (
+        <InfoCardDelivery key={item.id} item={item} />
+      ))}
+    </Container>
+    <div className="delivery-status-title">orders history</div>
+  </div>
+);
 
 const DeliveryListContainer = ({ orders, loading }) => {
   if (loading) {
@@ -27,9 +25,7 @@ const DeliveryListContainer = ({ orders, loading }) => {
   return <DeliveryList orders={orders} />;
 };
 
-const mapStateToProps = ({ orderList: { orders, loading } }) => {
-  return { orders, loading };
-};
+const mapStateToProps = ({ orderList: { orders, loading } }) => ({ orders, loading });
 
 export default connect(
   mapStateToProps,

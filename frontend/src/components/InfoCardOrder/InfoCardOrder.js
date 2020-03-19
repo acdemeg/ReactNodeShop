@@ -35,7 +35,8 @@ function InfoCardOrder({ item, status }) {
           <p style={{ float: 'left' }}>Status &emsp; </p>
           <div
             className="info-order-form-field"
-            style={{ float: 'left', color: status == 'Done' ? 'MediumSeaGreen' : 'Crimson' }}
+            style={{ float: 'left', color: status == 'Done' ? 'MediumSeaGreen' 
+                    : status == 'Canceled' ? 'Crimson' : 'Deepskyblue'}}
           >
             &nbsp; {status} &emsp;
           </div>

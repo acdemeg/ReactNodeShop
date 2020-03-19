@@ -9,32 +9,32 @@ import './css/util.css';
 
 function LogIn({ isLoggedIn, onLogin, notifications }) {
   return (
-    <Fragment>
+    <>
       <div className="limiter">
         <div className="container-login100">
           <div className="wrap-login100">
             <div className="login100-form validate-form">
               <span className="login100-form-title p-b-26">Welcome</span>
               <span className="login100-form-title p-b-48">
-                <i className="zmdi zmdi-font"></i>
+                <i className="zmdi zmdi-font" />
               </span>
 
               <div className="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
                 <input className="input100" type="text" name="email" />
-                <span className="focus-input100" data-placeholder="Email"></span>
+                <span className="focus-input100" data-placeholder="Email" />
               </div>
 
               <div className="wrap-input100 validate-input" data-validate="Enter password">
                 <span className="btn-show-pass">
-                  <i className="zmdi zmdi-eye"></i>
+                  <i className="zmdi zmdi-eye" />
                 </span>
                 <input className="input100" type="password" name="pass" autoComplete="on" />
-                <span className="focus-input100" data-placeholder="Password"></span>
+                <span className="focus-input100" data-placeholder="Password" />
               </div>
 
               <div className="container-login100-form-btn">
                 <div className="wrap-login100-form-btn">
-                  <div className="login100-form-bgbtn"></div>
+                  <div className="login100-form-bgbtn" />
                   <button type="submit" className="login100-form-btn" onClick={onLogin}>
                     Login
                   </button>
@@ -54,23 +54,22 @@ function LogIn({ isLoggedIn, onLogin, notifications }) {
       </div>
       <ShowNotification notifications={notifications} currentScene={scenesEnum.LOG_IN} />
 
-      <div id="dropDownSelect1"></div>
-    </Fragment>
+      <div id="dropDownSelect1" />
+    </>
   );
 }
 
-const mapStateToProps = ({ authorization: { isLoggedIn }, notifications }) => {
-  return { isLoggedIn, notifications };
-};
+const mapStateToProps = ({ authorization: { isLoggedIn }, notifications }) => ({
+  isLoggedIn,
+  notifications,
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onLogin: () => {
-      dispatch(LOG_IN());
-      dispatch(SHOW_ALERT(scenesEnum.LOG_IN, messages.LOG_IN));
-    },
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  onLogin: () => {
+    dispatch(LOG_IN());
+    dispatch(SHOW_ALERT(scenesEnum.LOG_IN, messages.LOG_IN));
+  },
+});
 
 export default connect(
   mapStateToProps,

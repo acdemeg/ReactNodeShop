@@ -1,8 +1,6 @@
 import React from 'react';
 import './Alert.css';
 
-const Button = ({ onAlert }) => {
-  return <button onClick={onAlert} className="delete" />;
-};
+const Button = ({ onAlert }) => <button onClick={onAlert} className="delete" />;
 
 export default Button;

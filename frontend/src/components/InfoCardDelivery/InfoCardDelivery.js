@@ -19,10 +19,10 @@ function InfoCardDelivery({ item }) {
         <p style={style.price.product}>{`${total}$`}</p>
       </div>
       <div style={style.client}>
-        <p style={style.client.view}>{`Client:`}</p>
+        <p style={style.client.view}>Client:</p>
       </div>
       <div style={style.number}>
-        <p style={style.number.view}>{`+7 XXX XXX  XX-XX`}</p>
+        <p style={style.number.view}>+7 XXX XXX XX-XX</p>
       </div>
       <div style={style.deliverButton}>
         <button

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import qs from 'qs';
 
-let _apiBase = `http://localhost/api/`;
+const _apiBase = 'http://localhost/api/';
 
 class AppServiceData {
   async getResourse(url) {
@@ -10,21 +10,28 @@ class AppServiceData {
   }
 
   async getProducts() {
-    let res = await this.getResourse(`${_apiBase}products`);
+    const res = await this.getResourse(`${_apiBase}products`);
     return res;
   }
 
   async getOrdersOfUser(id) {
-    let res = await this.getResourse(`${_apiBase}users/${3}/orders`);
+    const res = await this.getResourse(`${_apiBase}users/${3}/orders`);
     return res;
   }
 
   async createOrder(order) {
-    let res = await axios.post(`${_apiBase}orders`, qs.stringify(order));
+    const res = await axios.post(`${_apiBase}orders`, qs.stringify(order));
 
     console.log('createOrder');
     console.log(res);
-    //console.log(order.products)
+  }
+
+  async updateOrder(id, newStatus) {
+    const res = await axios.patch(`${_apiBase}orders/${id}`, qs.stringify({ status: newStatus}));
+
+    console.log('updateOrder ' + id);
+    console.log(newStatus);
+    console.log(res);
   }
 }
 

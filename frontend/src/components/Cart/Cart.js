@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-import ProductInCart from './ProductInCart';
 import { connect } from 'react-redux';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import ProductInCart from './ProductInCart';
 import './Cart.css';
 import {
   GOODS_ADDED_TO_CART,
@@ -19,7 +19,7 @@ function Cart({ items, orderTotal, onIncrease, onDecrease, onDelete, makeOrder, 
   console.log('in CART');
   console.log(items);
   return (
-    <Fragment>
+    <>
       <TransitionGroup component="div" className="cart">
         <CartHeader />
 
@@ -38,29 +38,25 @@ function Cart({ items, orderTotal, onIncrease, onDecrease, onDelete, makeOrder, 
       </TransitionGroup>
 
       <ShowNotification notifications={notifications} currentScene={scenesEnum.CART} />
-    </Fragment>
+    </>
   );
 }
 
-const mapStateToProps = ({ shoppingCart: { cartItems, orderTotal }, notifications }) => {
-  return {
-    items: cartItems,
-    orderTotal: orderTotal,
-    notifications,
-  };
-};
+const mapStateToProps = ({ shoppingCart: { cartItems, orderTotal }, notifications }) => ({
+  items: cartItems,
+  orderTotal,
+  notifications,
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onIncrease: goodsId => dispatch(GOODS_ADDED_TO_CART(goodsId)),
-    onDecrease: goodsId => dispatch(GOODS_REMOVED_FROM_CART(goodsId)),
-    onDelete: goodsId => dispatch(ALL_GOODS_REMOVED_FROM_CART(goodsId)),
-    makeOrder: (orderTotal, items, alertText) => {
-      dispatch(MAKE_ORDER(orderTotal, items, dispatch));
-      dispatch(SHOW_ALERT(scenesEnum.CART, alertText));
-    },
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  onIncrease: goodsId => dispatch(GOODS_ADDED_TO_CART(goodsId)),
+  onDecrease: goodsId => dispatch(GOODS_REMOVED_FROM_CART(goodsId)),
+  onDelete: goodsId => dispatch(ALL_GOODS_REMOVED_FROM_CART(goodsId)),
+  makeOrder: (orderTotal, items, alertText) => {
+    dispatch(MAKE_ORDER(orderTotal, items, dispatch));
+    dispatch(SHOW_ALERT(scenesEnum.CART, alertText));
+  },
+});
 
 export default connect(
   mapStateToProps,

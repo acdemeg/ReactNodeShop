@@ -33,7 +33,7 @@ function Profile({
   console.log(`Profile: isLoggedIn = ${isLoggedIn}`);
   if (isLoggedIn) {
     return (
-      <Fragment>
+      <>
         <div className="profile">
           <div className="profile-header">
             <b>My profile</b>
@@ -58,7 +58,7 @@ function Profile({
         />
 
         <ShowNotification notifications={notifications} currentScene={scenesEnum.PROFILE} />
-      </Fragment>
+      </>
     );
   }
 
@@ -69,30 +69,26 @@ const mapStateToProps = ({
   profile: { isOpenModal, balance, email, phone, name, titleModal, typeModal },
   authorization: { isLoggedIn },
   notifications,
-}) => {
-  return {
-    isOpenModal,
-    balance,
-    email,
-    phone,
-    name,
-    titleModal,
-    typeModal,
-    isLoggedIn,
-    notifications,
-  };
-};
+}) => ({
+  isOpenModal,
+  balance,
+  email,
+  phone,
+  name,
+  titleModal,
+  typeModal,
+  isLoggedIn,
+  notifications,
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    openModal: ({ type, title }) => dispatch(OPEN_MODAL_WINDOW(type, title)),
-    handleCancel: () => dispatch(CANCEL_MODAL_WINDOW()),
-    handleSubmit: (data, alertText) => {
-      dispatch(SUBMIT_MODAL_WINDOW(data));
-      dispatch(SHOW_ALERT(scenesEnum.PROFILE, alertText));
-    },
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  openModal: ({ type, title }) => dispatch(OPEN_MODAL_WINDOW(type, title)),
+  handleCancel: () => dispatch(CANCEL_MODAL_WINDOW()),
+  handleSubmit: (data, alertText) => {
+    dispatch(SUBMIT_MODAL_WINDOW(data));
+    dispatch(SHOW_ALERT(scenesEnum.PROFILE, alertText));
+  },
+});
 
 export default connect(
   mapStateToProps,
