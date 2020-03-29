@@ -1,7 +1,8 @@
 import React, { useState }from 'react';
+import { connect } from 'react-redux';
 import './Order.css';
 
-const ActionsButton = ({ orderId, updateOrder }) => {
+const ActionsButton = ({ orderId, updateOrder, userId }) => {
 
   if(updateOrder === "disable")
     return null;
@@ -24,13 +25,13 @@ const ActionsButton = ({ orderId, updateOrder }) => {
           style={{ textAlign: 'left', paddingTop: 0, minWidth: '170px' }}
         >
           <div className="dropdown-content">
-            <a href="#" className="dropdown-item" onClick={() => updateOrder(orderId, 'Cancel')}>
+            <a href="#" className="dropdown-item" onClick={() => updateOrder(orderId, 'Cancel', userId)}>
               Cancel
             </a>
             <a
               href="#"
               className="dropdown-item"
-              onClick={() => updateOrder(orderId, 'Accomplish')}
+              onClick={() => updateOrder(orderId, 'Accomplish', userId)}
             >
               Accomplish
             </a>
@@ -41,4 +42,11 @@ const ActionsButton = ({ orderId, updateOrder }) => {
   );
 };
 
-export default ActionsButton;
+const mapStateToProps = ({
+  authorization: { userId }, 
+}) => ({ userId });
+
+export default connect(
+  mapStateToProps,
+  null,
+)(ActionsButton);

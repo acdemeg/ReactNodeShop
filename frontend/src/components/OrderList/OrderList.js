@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Order from './Order';
 import Spinner from '../Spinner';
+import ErrorIndicator from '../Error-boundry/Error-indicator'
 import { fetchOrders, UPDATE_ORDER } from '../../store/actions';
 import appServiceData from '../../App/appServiceData';
 import './OrderList.css';
@@ -19,13 +20,27 @@ const OrderList = ({ orders, updateOrder }) => (
   </div>
 );
 
-const OrderListContainer = ({ orders, loading, error, fetchOrders, updateOrder }) => {
+const OrderListContainer = ({ 
+  orders, 
+  loading, 
+  error, 
+  isLoggedIn, 
+  userId, 
+  fetchOrders, 
+  updateOrder
+ }) => {
   useEffect(() => {
-    fetchOrders();
+    fetchOrders(userId);
   }, []);
 
   console.log('In Order List');
   console.log(orders);
+  console.log(isLoggedIn);
+  console.log(userId);
+
+  if(!isLoggedIn){
+    return null;
+  }
 
   if (loading) {
     return <Spinner />;
@@ -38,12 +53,15 @@ const OrderListContainer = ({ orders, loading, error, fetchOrders, updateOrder }
   return <OrderList orders={orders} updateOrder={updateOrder}/>;
 };
 
-const mapStateToProps = ({ orderList: { orders, loading, error } }) => ({ orders, loading, error });
+const mapStateToProps = ({ 
+  orderList: { orders, loading, error }, 
+  authorization: { isLoggedIn, userId } 
+}) => ({ orders, loading, error, isLoggedIn, userId });
 
 const mapDispatchToProps = dispatch => ({
-  fetchOrders: fetchOrders(appServiceData, dispatch),
-  updateOrder: (id, newStatus) => {
-    UPDATE_ORDER(id, newStatus, dispatch)
+  fetchOrders: (userId) => fetchOrders(appServiceData, dispatch, userId),
+  updateOrder: (id, newStatus, userId) => {
+    UPDATE_ORDER(id, newStatus, dispatch, userId)
   }
 });
 

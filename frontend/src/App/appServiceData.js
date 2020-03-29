@@ -15,7 +15,12 @@ class AppServiceData {
   }
 
   async getOrdersOfUser(id) {
-    const res = await this.getResourse(`${_apiBase}users/${1}/orders`);
+    if(!id)
+      return [];
+
+    const res = await this.getResourse(`${_apiBase}users/${id}/orders`);
+    console.log("getOrdersOfUser", id)
+    console.log(res)
     return res;
   }
 

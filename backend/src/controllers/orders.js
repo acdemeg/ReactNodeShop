@@ -3,6 +3,9 @@ const DB = require('../database');
 
 const orders = {
   getOrdersOfUser: async id => {
+    if(!id)
+      return JSON.stringify([]);
+      
     // for each order need get good list
     return await DB.Order.findAll({
       include: [{ model: DB.Product }],

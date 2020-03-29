@@ -4,6 +4,7 @@ const checkUserAuthorization = (state, action) => {
   if (state === undefined) {
     return {
       isLoggedIn: false,
+      userId: undefined
     };
   }
 
@@ -11,11 +12,13 @@ const checkUserAuthorization = (state, action) => {
     case actionsEnum.LOG_IN:
       return {
         isLoggedIn: true,
+        userId: action.payload
       };
 
     case actionsEnum.LOG_OUT:
       return {
         isLoggedIn: false,
+        userId: undefined
       };
 
     default:

@@ -15,9 +15,23 @@ import CartHeader from './CartHeader';
 import CartFooter from './CartFooter';
 import ShowNotification from '../ShowNotification';
 
-function Cart({ items, orderTotal, onIncrease, onDecrease, onDelete, makeOrder, notifications }) {
+function Cart({ 
+  items, 
+  orderTotal, 
+  onIncrease, 
+  onDecrease, 
+  onDelete, 
+  makeOrder,
+  isLoggedIn, 
+  notifications
+ }) {
   console.log('in CART');
   console.log(items);
+
+  if(!isLoggedIn){
+    return null;
+  }
+
   return (
     <>
       <TransitionGroup component="div" className="cart">
@@ -42,9 +56,14 @@ function Cart({ items, orderTotal, onIncrease, onDecrease, onDelete, makeOrder, 
   );
 }
 
-const mapStateToProps = ({ shoppingCart: { cartItems, orderTotal }, notifications }) => ({
+const mapStateToProps = ({
+  shoppingCart: { cartItems, orderTotal },
+  authorization: { isLoggedIn }, 
+  notifications 
+}) => ({
   items: cartItems,
   orderTotal,
+  isLoggedIn,
   notifications,
 });
 
@@ -52,8 +71,8 @@ const mapDispatchToProps = dispatch => ({
   onIncrease: goodsId => dispatch(GOODS_ADDED_TO_CART(goodsId)),
   onDecrease: goodsId => dispatch(GOODS_REMOVED_FROM_CART(goodsId)),
   onDelete: goodsId => dispatch(ALL_GOODS_REMOVED_FROM_CART(goodsId)),
-  makeOrder: (orderTotal, items, alertText) => {
-    dispatch(MAKE_ORDER(orderTotal, items, dispatch));
+  makeOrder: (orderTotal, items, alertText, userId) => {
+    dispatch(MAKE_ORDER(orderTotal, items, userId));
     dispatch(SHOW_ALERT(scenesEnum.CART, alertText));
   },
 });

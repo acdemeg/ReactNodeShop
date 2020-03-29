@@ -67,8 +67,9 @@ const SUBMIT_MODAL_WINDOW = data => ({
   payload: data,
 });
 
-const LOG_IN = () => ({
+const LOG_IN = (userId) => ({
   type: actionsEnum.LOG_IN,
+  payload: userId
 });
 
 const LOG_OUT = () => ({
@@ -87,7 +88,7 @@ const LOGIN = (event, dispatch) => {
     console.log("LOGIN ACTION", res);
     if(res){
       dispatch(SHOW_ALERT(scenesEnum.LOG_IN, messages.LOG_IN));
-      dispatch(LOG_IN()); 
+      dispatch(LOG_IN(res)); 
     }
     else {
       dispatch(SHOW_ALERT(scenesEnum.LOG_IN, 'NO  NO NO'));
@@ -126,17 +127,18 @@ const fetchGoods = (appServiceData, dispatch) => () => {
     .catch(err => dispatch(GOODS_ERROR(err)));
 };
 
-const fetchOrders = (appServiceData, dispatch) => () => {
+const fetchOrders = (appServiceData, dispatch, userId) => {
   dispatch(ORDERS_REQUESTED());
+  console.log('fetchOrders', userId);
   appServiceData
-    .getOrdersOfUser()
+    .getOrdersOfUser(userId)
     .then(data => dispatch(ORDERS_LOADED(data)))
     .catch(err => dispatch(ORDERS_ERROR(err)));
 };
 
-const MAKE_ORDER = (orderTotal, items) => {
+const MAKE_ORDER = (orderTotal, items, userId) => {
   const order = {
-    userId: 3,
+    userId: userId,
     total: orderTotal,
     products: items.map(item => ({
       productId: item.id,
@@ -152,11 +154,11 @@ const MAKE_ORDER = (orderTotal, items) => {
   };
 };
 
-const UPDATE_ORDER = (id, newStatus, dispatch) => {
+const UPDATE_ORDER = (id, newStatus, dispatch, userId) => {
   appServiceData.updateOrder(id, newStatus).then(() => {
     dispatch(ORDERS_REQUESTED());
     appServiceData
-    .getOrdersOfUser()
+    .getOrdersOfUser(userId)
     .then(data => dispatch(ORDERS_LOADED(data)))
     .catch(err => dispatch(ORDERS_ERROR(err)));
   });
