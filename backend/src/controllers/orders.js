@@ -30,7 +30,8 @@ const orders = {
 
         DB.ProductsInOrder.bulkCreate(order.products);
       })
-      .then(() => 'succses createOrder');
+      .then(() => 'succses createOrder')
+      .catch(() => 'createOrder error');
   },
 };
 

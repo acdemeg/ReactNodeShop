@@ -1,15 +1,14 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { LOG_IN, SHOW_ALERT } from '../../store/actions';
-import { scenesEnum, messages } from '../../constants';
+import { REGISTER } from '../../store/actions';
+import { scenesEnum } from '../../constants';
 import ShowNotification from '../ShowNotification';
-import appServiceData from '../../App/appServiceData';
 import '../LogIn/css/main.css';
 import '../LogIn/css/util.css';
 
-function RegForm({ onLogin, notifications }) {
+function RegForm({ onReg, notifications }) {
   return (
-    <>
+    <form id="RegForm" onSubmit = {onReg}>
       <div className="limiter">
         <div className="container-login100">
           <div className="wrap-login100">
@@ -38,7 +37,7 @@ function RegForm({ onLogin, notifications }) {
                 <span className="btn-show-pass">
                   <i className="zmdi zmdi-eye" />
                 </span>
-                <input className="input100" type="password" name="pass" autoComplete="on" />
+                <input className="input100" type="password" name="password" autoComplete="on" />
                 <span className="focus-input100" data-placeholder="Password" />
               </div>
 
@@ -46,14 +45,14 @@ function RegForm({ onLogin, notifications }) {
                 <span className="btn-show-pass">
                   <i className="zmdi zmdi-eye" />
                 </span>
-                <input className="input100" type="password" name="pass" autoComplete="on" />
+                <input className="input100" type="password" name="confirm password" autoComplete="on" />
                 <span className="focus-input100" data-placeholder="Confirm Password" />
               </div>
 
               <div className="container-login100-form-btn">
                 <div className="wrap-login100-form-btn">
                   <div className="login100-form-bgbtn" />
-                  <button type="submit" className="login100-form-btn" onClick={onLogin}>
+                  <button type="submit" className="login100-form-btn">
                     Sign up
                   </button>
                 </div>
@@ -62,10 +61,10 @@ function RegForm({ onLogin, notifications }) {
           </div>
         </div>
       </div>
-      <ShowNotification notifications={notifications} currentScene={scenesEnum.LOG_IN} />
+      <ShowNotification notifications={notifications} currentScene={scenesEnum.REG} />
 
       <div id="dropDownSelect1" />
-    </>
+    </form>
   );
 }
 
@@ -74,9 +73,8 @@ const mapStateToProps = ({ notifications }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onLogin: () => {
-    dispatch(LOG_IN());
-    dispatch(SHOW_ALERT(scenesEnum.LOG_IN, messages.LOG_IN));
+  onReg: (event) => {
+    REGISTER(event, dispatch)
   },
 });
 

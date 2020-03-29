@@ -25,6 +25,7 @@ const scenesEnum = Object.freeze({
   PRODUCT_LIST: 'ProductList',
   CART: 'Cart',
   LOG_IN: 'Log-In',
+  REG: 'Reg'
 });
 
 const typeModalEnum = Object.freeze({
@@ -41,6 +42,7 @@ const messages = Object.freeze({
   PHONE_UPDATE: 'Your phone updated',
   NAME_UPDATE: 'Your name updated',
   LOG_IN: 'You logged your account',
+  REG: 'You succses registered',
 });
 
 export { actionsEnum, scenesEnum, typeModalEnum, messages };

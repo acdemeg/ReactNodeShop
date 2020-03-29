@@ -18,12 +18,12 @@ sequelize
   });
 
 // /*  FOR CREATE TABLES    */
-sequelize
-  .sync()
-  .then(result => {
-    debug(result);
-  })
-  .catch(err => debug(err));
+// sequelize
+//   .sync()
+//   .then(result => {
+//     debug(result);
+//   })
+//   .catch(err => debug(err));
 
 const Product = sequelize.define('product', {
   id: {
@@ -75,7 +75,7 @@ const User = sequelize.define('user', {
   },
   balance: {
     type: Sequelize.FLOAT,
-    allowNull: true,
+    allowNull: false,
   },
 });
 
@@ -88,6 +88,7 @@ const Order = sequelize.define('orders', {
   },
   userId: {
     type: Sequelize.INTEGER,
+    allowNull: false
   },
   total: {
     type: Sequelize.FLOAT,
@@ -144,12 +145,11 @@ const EmailPasswordMap = sequelize.define('email_password_map', {
     allowNull: false,
   },
 });
-
-// User.hasOne(EmailPasswordMap, {
-//   foreignKey: {
-//     allowNull: false,
-//   },
-// });
+User.hasOne(EmailPasswordMap, {
+  foreignKey: {
+    allowNull: false,
+  },
+});
 
 const ProductsList = [
   {

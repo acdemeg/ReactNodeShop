@@ -9,11 +9,11 @@ const send = require('koa-send');
 const staticDir = path.resolve(__dirname, '..', '..', 'public');
 const app = new Koa();
 
-//app.use(err);
 app.use(serve(staticDir));
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.use(async ctx => await send(ctx, 'index.html', { root: staticDir }));
+app.use(err);
 
 app.listen(3000, () => {
   debug('Server listen on localhost:80');

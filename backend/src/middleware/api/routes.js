@@ -12,13 +12,13 @@ router
   .get('/api/products', async ctx => {
     ctx.body = await products.getAll();
   })
-  .post('/api/products', async ctx => {
+  .post('/api/products', koaBody(), async ctx => {
     ctx.body = await products.addProduct();
   })
   .get('/api/products/:id', async ctx => {
     ctx.body = await products.getProductInfo();
   })
-  .put('/api/products/:id', async ctx => {
+  .put('/api/products/:id', koaBody(), async ctx => {
     ctx.body = await products.updateProduct();
   })
   .delete('/api/products/:id', async ctx => {
@@ -31,16 +31,16 @@ router
   .get('/api/users/profile', async ctx => {
     ctx.body = await users.getProfile();
   })
-  .post('/api/users/login', async ctx => {
-    ctx.body = await users.loginUser();
+  .post('/api/users/login', koaBody(), async ctx => {
+    ctx.body = await users.loginUser(ctx.request.body);
   })
-  .post('/api/users/register', async ctx => {
-    ctx.body = await users.registerUser();
+  .post('/api/users/register', koaBody(), async ctx => {
+    ctx.body = await users.registerUser(ctx.request.body);
   })
   .get('/api/users/:id', async ctx => {
     ctx.body = await users.getProfileOfUser();
   })
-  .put('/api/users/:id', async ctx => {
+  .put('/api/users/:id', koaBody(), async ctx => {
     ctx.body = await users.updateProfileOfUser();
   })
   //**orders endpoints */

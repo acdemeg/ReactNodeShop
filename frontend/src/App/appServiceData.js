@@ -15,7 +15,7 @@ class AppServiceData {
   }
 
   async getOrdersOfUser(id) {
-    const res = await this.getResourse(`${_apiBase}users/${3}/orders`);
+    const res = await this.getResourse(`${_apiBase}users/${1}/orders`);
     return res;
   }
 
@@ -33,6 +33,21 @@ class AppServiceData {
     console.log(newStatus);
     console.log(res);
   }
+
+  async regUser(user) {
+    const res = await axios.post(`${_apiBase}users/register`, qs.stringify(user));
+    console.log('regUser');
+    console.log(res);
+    return (res.data === "succses registration") ? true : false;
+  }
+
+  async logInUser(user) {
+    const res = await axios.post(`${_apiBase}users/login`, qs.stringify(user));
+    console.log('logInUser');
+    console.log(res);
+    return (res.status === 200) ? res.data.userId : false;
+  }
+
 }
 
 const appServiceData = new AppServiceData();

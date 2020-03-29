@@ -1,4 +1,4 @@
-import { actionsEnum } from '../constants';
+import { actionsEnum, scenesEnum, messages } from '../constants';
 import appServiceData from '../App/appServiceData';
 
 const GOODS_LOADED = newGoods => ({
@@ -75,6 +75,49 @@ const LOG_OUT = () => ({
   type: actionsEnum.LOG_OUT,
 });
 
+const LOGIN = (event, dispatch) => {
+  event.preventDefault();
+  const formDate = new FormData(LogInForm);
+  const user = {
+    email: formDate.get("email"),
+    password: formDate.get("password")
+  }
+
+  appServiceData.logInUser(user).then((res) => {
+    console.log("LOGIN ACTION", res);
+    if(res){
+      dispatch(SHOW_ALERT(scenesEnum.LOG_IN, messages.LOG_IN));
+      dispatch(LOG_IN()); 
+    }
+    else {
+      dispatch(SHOW_ALERT(scenesEnum.LOG_IN, 'NO  NO NO'));
+    }
+   
+  });
+};
+
+const REGISTER = (event, dispatch) => {
+  event.preventDefault();
+  const formDate = new FormData(RegForm);
+  const user = {
+    name: formDate.get("name"),
+    phone: formDate.get("phone"),
+    email: formDate.get("email"),
+    password: formDate.get("password")
+  }
+  appServiceData.regUser(user).then((res) => {
+    console.log("REGISTER ACTION");
+    console.log(res);
+
+    if(res){
+      dispatch(SHOW_ALERT(scenesEnum.REG, messages.REG));
+    }
+    else dispatch(SHOW_ALERT(scenesEnum.REG, 'NO  NO NO'));
+
+  });
+};
+
+
 const fetchGoods = (appServiceData, dispatch) => () => {
   dispatch(GOODS_REQUESTED());
   appServiceData
@@ -134,4 +177,6 @@ export {
   UPDATE_ORDER,
   LOG_IN,
   LOG_OUT,
+  REGISTER,
+  LOGIN
 };

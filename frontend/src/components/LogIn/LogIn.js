@@ -1,15 +1,15 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { LOG_IN, SHOW_ALERT } from '../../store/actions';
-import { scenesEnum, messages } from '../../constants';
+import { LOGIN } from '../../store/actions';
+import { scenesEnum } from '../../constants';
 import ShowNotification from '../ShowNotification';
 import './css/main.css';
 import './css/util.css';
 
 function LogIn({ isLoggedIn, onLogin, notifications }) {
   return (
-    <>
+    <form id="LogInForm" onSubmit = {onLogin}>
       <div className="limiter">
         <div className="container-login100">
           <div className="wrap-login100">
@@ -28,14 +28,14 @@ function LogIn({ isLoggedIn, onLogin, notifications }) {
                 <span className="btn-show-pass">
                   <i className="zmdi zmdi-eye" />
                 </span>
-                <input className="input100" type="password" name="pass" autoComplete="on" />
+                <input className="input100" type="password" name="password" autoComplete="on" />
                 <span className="focus-input100" data-placeholder="Password" />
               </div>
 
               <div className="container-login100-form-btn">
                 <div className="wrap-login100-form-btn">
                   <div className="login100-form-bgbtn" />
-                  <button type="submit" className="login100-form-btn" onClick={onLogin}>
+                  <button type="submit" className="login100-form-btn">
                     Login
                   </button>
                 </div>
@@ -55,7 +55,7 @@ function LogIn({ isLoggedIn, onLogin, notifications }) {
       <ShowNotification notifications={notifications} currentScene={scenesEnum.LOG_IN} />
 
       <div id="dropDownSelect1" />
-    </>
+    </form>
   );
 }
 
@@ -65,9 +65,8 @@ const mapStateToProps = ({ authorization: { isLoggedIn }, notifications }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onLogin: () => {
-    dispatch(LOG_IN());
-    dispatch(SHOW_ALERT(scenesEnum.LOG_IN, messages.LOG_IN));
+  onLogin: (event) => {
+    LOGIN(event, dispatch)
   },
 });
 

@@ -8,8 +8,13 @@ const users = {
   getProfile: async () => {
     return 'getUserProfile';
   },
-  loginUser: async id => {
-    return 'loginUser';
+  loginUser: async user => {
+    return await DB.EmailPasswordMap.findOne({
+      where: { 
+        email: user.email,
+        password: user.password 
+      }
+    });
   },
   registerUser: async user => {
     return await DB.User.create({
@@ -20,11 +25,13 @@ const users = {
     })
       .then(userRecord => {
         DB.EmailPasswordMap.create({
-          email: user.email,
-          password: user.password
+          email: userRecord.email,
+          password: user.password,
+          userId: userRecord.id
         });
       })
-      .then(() => 'succses registration');
+      .then(() => 'succses registration')
+      .catch(() => 'reject registration')
   },
   getProfileOfUser: async id => {
     return 'getProfileOfUser';
