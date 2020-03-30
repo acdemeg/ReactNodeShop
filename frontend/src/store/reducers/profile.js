@@ -4,10 +4,10 @@ const updateProfile = (state, action) => {
   if (state === undefined) {
     return {
       isOpenModal: false,
-      balance: '500',
-      email: 'nastya@gmail.com',
-      phone: '+79954443369',
-      name: 'Nastya',
+      balance: '',
+      email: '',
+      phone: '',
+      name: 'My Profile',
       typeModal: undefined,
       titleModal: '',
     };
@@ -73,6 +73,23 @@ const updateProfile = (state, action) => {
 
     case actionsEnum.CANCEL_MODAL_WINDOW:
       return cancelModal(state);
+
+    case actionsEnum.SUBMIT_MODAL_WINDOW:
+      return updateInfo(state, action);
+
+    case actionsEnum.PROFILE_LOADED:
+      return {
+        ...state.profile,
+        balance: action.payload.balance,
+        email: action.payload.email,
+        phone: action.payload.phone,
+        name: action.payload.name,
+      };
+
+    case actionsEnum.PROFILE_ERROR:
+      return {
+        ...state.profile,
+      };
 
     case actionsEnum.SUBMIT_MODAL_WINDOW:
       return updateInfo(state, action);

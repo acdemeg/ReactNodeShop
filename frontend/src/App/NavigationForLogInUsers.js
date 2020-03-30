@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './styleNavBar';
 import { Basket } from '../components/Cart';
+import LogOut from '../components/LogIn/LogOut'
 import NavLinkComponent from './NavLinkComponent';
 
 function NavigationForLogInUsers({ userName }) {
@@ -17,8 +18,8 @@ function NavigationForLogInUsers({ userName }) {
         <NavLinkComponent path="/ordersPage" title="Orders" />
       </ul>
       <ul style={style.cartAndProfileStyle}>
-        <NavLinkComponent path="/profilePage" title={userName} />
-        <NavLinkComponent path="/authorizationPage" title="Log In" />
+        <NavLinkComponent path="/profilePage" title={userName}/>
+        <LogOut />
         <Basket />
       </ul>
     </>
@@ -26,3 +27,4 @@ function NavigationForLogInUsers({ userName }) {
 }
 
 export default NavigationForLogInUsers;
+

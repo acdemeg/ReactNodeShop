@@ -13,6 +13,7 @@ import {
   faPhoneSquareAlt,
   faEnvelope,
   faWallet,
+  faDoorOpen,
 } from '@fortawesome/free-solid-svg-icons';
 
 import compose from './compose';
@@ -33,6 +34,7 @@ function initFontAwesomeLibrary() {
     faPhoneSquareAlt,
     faEnvelope,
     faWallet,
+    faDoorOpen
   );
 }
 

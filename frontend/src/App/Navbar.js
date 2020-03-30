@@ -4,11 +4,15 @@ import style from './styleNavBar';
 import NavigationForLogInUsers from './NavigationForLogInUsers';
 import NavigationForUnLogInUsers from './NavigationForUnLogInUsers';
 
-function Navigation({ userName, isLoggedIn }) {
+function Navigation({ name, isLoggedIn }) {
   let navBar;
+  
+  console.log("Navigation");
+  console.log("name = ", name);
+  console.log("isLoggedIn = ", isLoggedIn);
 
   if (isLoggedIn) {
-    navBar = <NavigationForLogInUsers userName={userName} />;
+    navBar = <NavigationForLogInUsers userName={name}/>;
   } else navBar = <NavigationForUnLogInUsers />;
 
   return (
@@ -23,9 +27,9 @@ function Navigation({ userName, isLoggedIn }) {
   );
 }
 
-const mapStateToProps = ({ profile: { name }, authorization: { isLoggedIn } }) => ({
-  userName: name,
+const mapStateToProps = ({ authorization: { isLoggedIn }, profile: { name } }) => ({
   isLoggedIn,
+  name
 });
 
 export default connect(

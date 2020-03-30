@@ -29,7 +29,8 @@ function Profile({
   handleSubmit,
   notifications,
   isLoggedIn,
-}) {
+})
+ {
   console.log(`Profile: isLoggedIn = ${isLoggedIn}`);
   if (isLoggedIn) {
     return (
@@ -62,12 +63,12 @@ function Profile({
     );
   }
 
-  return <p>YOU SHOULD NOT SEE THIS!!! Click Log In</p>;
+  return null;
 }
 
 const mapStateToProps = ({
   profile: { isOpenModal, balance, email, phone, name, titleModal, typeModal },
-  authorization: { isLoggedIn },
+  authorization: { isLoggedIn, userId },
   notifications,
 }) => ({
   isOpenModal,
@@ -78,6 +79,7 @@ const mapStateToProps = ({
   titleModal,
   typeModal,
   isLoggedIn,
+  userId,
   notifications,
 });
 

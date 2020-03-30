@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './styleNavBar';
-import { Basket } from '../components/Cart';
 import NavLinkComponent from './NavLinkComponent';
 
 function NavigationForUnLogInUsers() {
@@ -17,7 +16,6 @@ function NavigationForUnLogInUsers() {
       </ul>
       <ul style={style.cartAndProfileStyle}>
         <NavLinkComponent path="/authorizationPage" title="Log In" />
-        <Basket />
       </ul>
     </>
   );

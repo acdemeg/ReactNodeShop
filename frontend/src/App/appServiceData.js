@@ -24,6 +24,21 @@ class AppServiceData {
     return res;
   }
 
+  async getProfileOfUser(id) {
+    if(!id)
+      return {};
+
+    // const res = await this.getResourse(`${_apiBase}users/${id}/orders`);
+    // console.log("getOrdersOfUser", id)
+    // console.log(res)
+    return {
+      balance: "100",
+      email: "myEmail@ok.yahoo",
+      phone: "+799955566633",
+      name: "acdemeg",
+    };
+  }
+
   async createOrder(order) {
     const res = await axios.post(`${_apiBase}orders`, qs.stringify(order));
 

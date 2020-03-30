@@ -10,7 +10,7 @@ function Basket() {
           <FontAwesomeIcon
             className="fas fa-shopping-basket fa-lg"
             css={{
-              color: 'black',
+              color: 'Crimson',
             }}
             icon="shopping-basket"
           />

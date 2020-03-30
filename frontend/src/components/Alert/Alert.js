@@ -17,7 +17,7 @@ const Alert = ({ visibleAlert, textAlert, scene, typeAlert, onAlert }) => (
     mountOnEnter
     unmountOnExit
   >
-    <div className="notification">
+    <div className={`notification ${typeAlert}-alert`}>
       <Button onAlert={onAlert} />
       <AlertText scene={scene} textAlert={textAlert} />
     </div>

@@ -7,7 +7,7 @@ import ShowNotification from '../ShowNotification';
 import './css/main.css';
 import './css/util.css';
 
-function LogIn({ isLoggedIn, onLogin, notifications }) {
+function LogIn({ onLogin, notifications }) {
   return (
     <form id="LogInForm" onSubmit = {onLogin}>
       <div className="limiter">
@@ -59,10 +59,7 @@ function LogIn({ isLoggedIn, onLogin, notifications }) {
   );
 }
 
-const mapStateToProps = ({ authorization: { isLoggedIn }, notifications }) => ({
-  isLoggedIn,
-  notifications,
-});
+const mapStateToProps = ({notifications }) => ({ notifications });
 
 const mapDispatchToProps = dispatch => ({
   onLogin: (event) => {

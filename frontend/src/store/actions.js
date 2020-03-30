@@ -20,6 +20,16 @@ const ORDERS_LOADED = newOrders => ({
   payload: newOrders,
 });
 
+const PROFILE_ERROR = error => ({
+  type: actionsEnum.PROFILE_ERROR,
+  payload: error,
+});
+
+const PROFILE_LOADED = profile => ({
+  type: actionsEnum.PROFILE_LOADED,
+  payload: profile,
+});
+
 const ORDERS_REQUESTED = () => ({
   type: actionsEnum.ORDERS_REQUESTED,
 });
@@ -88,10 +98,11 @@ const LOGIN = (event, dispatch) => {
     console.log("LOGIN ACTION", res);
     if(res){
       dispatch(SHOW_ALERT(scenesEnum.LOG_IN, messages.LOG_IN));
-      dispatch(LOG_IN(res)); 
+      dispatch(LOG_IN(res));
+      fetchProfile(appServiceData, dispatch, res);
     }
     else {
-      dispatch(SHOW_ALERT(scenesEnum.LOG_IN, 'NO  NO NO'));
+      dispatch(SHOW_ALERT(scenesEnum.LOG_IN, messages.LOG_IN_ERROR, "error"));
     }
    
   });
@@ -113,7 +124,7 @@ const REGISTER = (event, dispatch) => {
     if(res){
       dispatch(SHOW_ALERT(scenesEnum.REG, messages.REG));
     }
-    else dispatch(SHOW_ALERT(scenesEnum.REG, 'NO  NO NO'));
+    else dispatch(SHOW_ALERT(scenesEnum.REG, messages.REG_ERROR, "error"));
 
   });
 };
@@ -134,6 +145,14 @@ const fetchOrders = (appServiceData, dispatch, userId) => {
     .getOrdersOfUser(userId)
     .then(data => dispatch(ORDERS_LOADED(data)))
     .catch(err => dispatch(ORDERS_ERROR(err)));
+};
+
+const fetchProfile = (appServiceData, dispatch, userId) => {
+  console.log('fetchProfile', userId);
+  appServiceData
+    .getProfileOfUser(userId)
+    .then(data => dispatch(PROFILE_LOADED(data)))
+    .catch(err => dispatch(PROFILE_ERROR(err)));
 };
 
 const MAKE_ORDER = (orderTotal, items, userId) => {
@@ -167,6 +186,7 @@ const UPDATE_ORDER = (id, newStatus, dispatch, userId) => {
 export {
   fetchGoods,
   fetchOrders,
+  fetchProfile,
   GOODS_ADDED_TO_CART,
   GOODS_REMOVED_FROM_CART,
   ALL_GOODS_REMOVED_FROM_CART,
