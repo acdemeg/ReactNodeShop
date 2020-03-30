@@ -28,9 +28,6 @@ router
   .get('/api/users', async ctx => {
     ctx.body = await users.getAll();
   })
-  .get('/api/users/profile', async ctx => {
-    ctx.body = await users.getProfile();
-  })
   .post('/api/users/login', koaBody(), async ctx => {
     ctx.body = await users.loginUser(ctx.request.body);
   })
@@ -38,7 +35,7 @@ router
     ctx.body = await users.registerUser(ctx.request.body);
   })
   .get('/api/users/:id', async ctx => {
-    ctx.body = await users.getProfileOfUser();
+    ctx.body = await users.getProfileOfUser(ctx.params.id);
   })
   .put('/api/users/:id', koaBody(), async ctx => {
     ctx.body = await users.updateProfileOfUser();

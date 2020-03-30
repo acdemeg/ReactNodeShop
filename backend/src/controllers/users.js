@@ -5,9 +5,6 @@ const users = {
   getAll: async () => {
     return 'Users';
   },
-  getProfile: async () => {
-    return 'getUserProfile';
-  },
   loginUser: async user => {
     return await DB.EmailPasswordMap.findOne({
       where: { 
@@ -33,8 +30,8 @@ const users = {
       .then(() => 'succses registration')
       .catch(() => 'reject registration')
   },
-  getProfileOfUser: async id => {
-    return 'getProfileOfUser';
+  getProfileOfUser: async userId => {
+    return await DB.User.findOne({ where: { id: userId }});
   },
   updateProfileOfUser: async id => {
     return 'updateProfileOfUser';

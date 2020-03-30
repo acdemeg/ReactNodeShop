@@ -28,15 +28,10 @@ class AppServiceData {
     if(!id)
       return {};
 
-    // const res = await this.getResourse(`${_apiBase}users/${id}/orders`);
-    // console.log("getOrdersOfUser", id)
-    // console.log(res)
-    return {
-      balance: "100",
-      email: "myEmail@ok.yahoo",
-      phone: "+799955566633",
-      name: "acdemeg",
-    };
+    const res = await this.getResourse(`${_apiBase}users/${id}`);
+    console.log("getOrdersOfUser", id)
+    console.log(res)
+    return res;
   }
 
   async createOrder(order) {
