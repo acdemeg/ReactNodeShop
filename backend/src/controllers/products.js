@@ -89,6 +89,4 @@ const products = {
   },
 };
 
-products.addProduct();
-
 module.exports = products;

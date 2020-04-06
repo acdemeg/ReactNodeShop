@@ -1,7 +1,7 @@
 import axios from 'axios';
 import qs from 'qs';
 
-const _apiBase = 'http://localhost/api/';
+const _apiBase = 'http://localhost:4000/api/';
 
 class AppServiceData {
   async getResourse(url) {
