@@ -95,7 +95,6 @@ const LOGIN = (event, dispatch) => {
   }
 
   appServiceData.logInUser(user).then((res) => {
-    console.log("LOGIN ACTION", res);
     if(res){
       dispatch(SHOW_ALERT(scenesEnum.LOG_IN, messages.LOG_IN));
       dispatch(LOG_IN(res));
@@ -118,9 +117,6 @@ const REGISTER = (event, dispatch) => {
     password: formDate.get("password")
   }
   appServiceData.regUser(user).then((res) => {
-    console.log("REGISTER ACTION");
-    console.log(res);
-
     if(res){
       dispatch(SHOW_ALERT(scenesEnum.REG, messages.REG));
     }
@@ -140,7 +136,6 @@ const fetchGoods = (appServiceData, dispatch) => () => {
 
 const fetchOrders = (appServiceData, dispatch, userId) => {
   dispatch(ORDERS_REQUESTED());
-  console.log('fetchOrders', userId);
   appServiceData
     .getOrdersOfUser(userId)
     .then(data => dispatch(ORDERS_LOADED(data)))
@@ -148,7 +143,6 @@ const fetchOrders = (appServiceData, dispatch, userId) => {
 };
 
 const fetchProfile = (appServiceData, dispatch, userId) => {
-  console.log('fetchProfile', userId);
   appServiceData
     .getProfileOfUser(userId)
     .then(data => dispatch(PROFILE_LOADED(data)))

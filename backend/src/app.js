@@ -8,8 +8,6 @@ const send = require('koa-send');
 
 const staticDir = path.resolve(__dirname, '..', '..', 'public');
 const app = new Koa();
-console.log('__dirname ' + __dirname);
-console.log('staticDir ' + staticDir);
 
 app.use(serve(staticDir));
 app.use(router.routes());

@@ -33,11 +33,6 @@ const OrderListContainer = ({
     fetchOrders(userId);
   }, []);
 
-  console.log('In Order List');
-  console.log(orders);
-  console.log(isLoggedIn);
-  console.log(userId);
-
   if(!isLoggedIn){
     return null;
   }

@@ -6,8 +6,6 @@ import OrderFooter from './OrderFooter';
 import './Order.css';
 
 const Order = ({ order, updateOrder}) => {
-  console.log('In Order');
-  console.log(order.products);
 
   return (
     <div className="order">

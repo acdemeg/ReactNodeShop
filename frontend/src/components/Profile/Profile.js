@@ -31,7 +31,6 @@ function Profile({
   isLoggedIn,
 })
  {
-  console.log(`Profile: isLoggedIn = ${isLoggedIn}`);
   if (isLoggedIn) {
     return (
       <>

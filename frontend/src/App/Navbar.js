@@ -6,11 +6,6 @@ import NavigationForUnLogInUsers from './NavigationForUnLogInUsers';
 
 function Navigation({ name, isLoggedIn }) {
   let navBar;
-  
-  console.log("Navigation");
-  console.log("name = ", name);
-  console.log("isLoggedIn = ", isLoggedIn);
-
   if (isLoggedIn) {
     navBar = <NavigationForLogInUsers userName={name}/>;
   } else navBar = <NavigationForUnLogInUsers />;

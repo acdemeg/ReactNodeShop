@@ -25,9 +25,6 @@ function Cart({
   isLoggedIn, 
   notifications
  }) {
-  console.log('in CART');
-  console.log(items);
-
   if(!isLoggedIn){
     return null;
   }
