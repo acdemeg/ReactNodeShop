@@ -7,7 +7,7 @@ function InfoCardOrder({ item, status }) {
   return (
     <div className="info-order-form">
       <div className="image-place-order">
-        <img src={`/upload/${pathImage}`} width="160px" height="160px" />
+        <img src={`/upload/products/${pathImage}`} width="160px" height="160px" />
       </div>
 
       <div className="order-place">

@@ -8,7 +8,7 @@ function InfoCardProduct({ item, onAddedToCart }) {
   return (
     <div style={style.infoCardForm}>
       <div style={style.imagePlace}>
-        <img src={`/upload/${pathImage}`} width="180px" height="180px" />
+        <img src={`/upload/products/${pathImage}`} width="180px" height="180px" />
       </div>
       <div style={style.titleProduct}>
         <div style={{ marginLeft: '10px' }}>

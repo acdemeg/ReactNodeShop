@@ -13,16 +13,16 @@ router
     ctx.body = await products.getAll();
   })
   .post('/api/products', koaBody(), async ctx => {
-    ctx.body = await products.addProduct();
+    ctx.body = await products.addProduct(ctx.request.body);
   })
   .get('/api/products/:id', async ctx => {
-    ctx.body = await products.getProductInfo();
+    ctx.body = await products.getProductInfo(ctx.params.id);
   })
   .put('/api/products/:id', koaBody(), async ctx => {
-    ctx.body = await products.updateProduct();
+    ctx.body = await products.updateProduct(ctx.params.id, ctx.request.body);
   })
   .delete('/api/products/:id', async ctx => {
-    ctx.body = await products.deleteProduct();
+    ctx.body = await products.deleteProduct(ctx.params.id);
   })
   //**users endpoints */
   .get('/api/users', async ctx => {
@@ -37,21 +37,30 @@ router
   .get('/api/users/:id', async ctx => {
     ctx.body = await users.getProfileOfUser(ctx.params.id);
   })
+  .get('/api/users/:id/orders', async ctx => {
+    ctx.body = await users.getOrdersOfUser(ctx.params.id);
+  })
   .put('/api/users/:id', koaBody(), async ctx => {
-    ctx.body = await users.updateProfileOfUser();
+    ctx.body = await users.updateProfileOfUser(ctx.params.id, ctx.request.body);
+  })
+  .delete('/api/users/:id', async ctx => {
+    ctx.body = await users.deleteUser(ctx.params.id);
   })
   //**orders endpoints */
-  .post('/api/orders', koaBody(), async ctx => {
-    ctx.body = await orders.createOrder(ctx.request.body);
+  .get('/api/orders', async ctx => {
+    ctx.body = await orders.getAll();
   })
   .get('/api/orders/:id', async ctx => {
-    ctx.body = await orders.getOrder();
+    ctx.body = await orders.getOrder(ctx.params.id);
+  })
+  .post('/api/orders', koaBody(), async ctx => {
+    ctx.body = await orders.createOrder(ctx.request.body);
   })
   .patch('/api/orders/:id', koaBody(), async ctx => {
     ctx.body = await orders.updateOrderStatus(ctx.params.id, ctx.request.body);
   })
-  .get('/api/users/:id/orders', async ctx => {
-    ctx.body = await orders.getOrdersOfUser(ctx.params.id);
-  });
+  .delete('/api/orders/:id', async ctx => {
+    ctx.body = await orders.deleteOrder(ctx.params.id);
+  })
 
 module.exports = router;

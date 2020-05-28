@@ -16,7 +16,7 @@ function ProductInCart({ item, onIncrease, onDecrease, onDelete }) {
       <PlusButton onIncrease={onIncrease} />
 
       <div className="cart-goods-image">
-        <img src={`/upload/${pathImage}`} width="80px" height="80px" />
+        <img src={`/upload/products/${pathImage}`} width="80px" height="80px" />
       </div>
       <div className="cart-goods-title"> {nameProduct} </div>
       <div className="cart-goods-price"> {`${total}$`} </div>

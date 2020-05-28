@@ -5,7 +5,7 @@ function InfoCardRequest() {
   return (
     <div className="info-request-form">
       <div className="image-place-request">
-        <img src="/upload/phone.png" width="120px" height="120px" />
+        <img src="/upload/products/phone.png" width="120px" height="120px" />
       </div>
 
       <div style={{ marginBottom: '6px' }}>
