@@ -15,17 +15,23 @@ const users = {
       err => `user not found ${err}`,
     );
 
-    if (userDB.password === user.password) {
-      return {
-        id: userDB.id,
-        name: userDB.name,
-        phone: userDB.phone,
-        email: userDB.email,
-        balance: userDB.balance,
-        role: userDB.role,
-        imagePath: userDB.imagePath,
-      };
-    } else return 'wrong email or password';
+    if(userDB){
+      if (userDB.password === user.password) {
+        return {
+          id: userDB.id,
+          name: userDB.name,
+          phone: userDB.phone,
+          email: userDB.email,
+          balance: userDB.balance,
+          role: userDB.role,
+          imagePath: userDB.imagePath,
+        };
+      }
+      return 'wrong email or password'; 
+    }
+    
+    return 'wrong email or password';
+
   },
   registerUser: async user => {
     return await User.create({
@@ -80,7 +86,10 @@ const users = {
     return orders;
   },
   getProfileOfUser: async userId => {
-    return await User.findOne({ where: { id: userId } })
+    return await User.findOne({ 
+      where: { id: userId }, 
+      attributes: { exclude: ['password'] }
+    })
     .catch(
       err => `can't find user with id = ${userId} ${err}`,
     );
@@ -91,6 +100,7 @@ const users = {
         name: obj.name,
         email: obj.email,
         phone: obj.phone,
+        balance: obj.balance,
       },
       { where: { id: userId } },
     ).catch(err => `can't update profile with id = ${userId} ${err}`);

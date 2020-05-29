@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './Cart.css';
 import { messages } from '../../constants';
 
-const MakeOrderButton = ({ makeOrder, items, orderTotal, userId }) => {
+const MakeOrderButton = ({ makeOrder, items, orderTotal, userId, profile }) => {
   const getClassStyle = items => {
     if (items.length === 0) {
       return 'make-order m-o-disabled';
@@ -13,7 +13,7 @@ const MakeOrderButton = ({ makeOrder, items, orderTotal, userId }) => {
 
   return (
     <div
-      onClick={() => makeOrder(orderTotal, items, messages.MAKE_ORDER, userId)}
+      onClick={() => makeOrder(orderTotal, items, messages.MAKE_ORDER, userId, profile)}
       className={getClassStyle(items)}
     >
       MAKE ORDER
@@ -23,7 +23,8 @@ const MakeOrderButton = ({ makeOrder, items, orderTotal, userId }) => {
 
 const mapStateToProps = ({
   authorization: { userId }, 
-}) => ({ userId });
+  profile,
+}) => ({ userId, profile });
 
 export default connect(
   mapStateToProps,

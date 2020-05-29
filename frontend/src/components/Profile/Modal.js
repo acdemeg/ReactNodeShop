@@ -1,20 +1,44 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { typeModalEnum, messages } from '../../constants';
 import InputForm from './InputForm';
 
 import './Modal.css';
 
-const Modal = ({ title, typeModal, isOpenModal, onCancel, onSubmit }) => {
+const Modal = ({ title, typeModal, isOpenModal, onCancel, onSubmit, profile }) => {
   let inputValue = 'unknown';
   const getValueFromInput = value => {
     inputValue = value;
+  };
+
+  const getAlertText = () => {
+    if (typeModal === typeModalEnum.FILL_UP) {
+      return messages.FILL_UP;
+    }
+  
+    if (typeModal === typeModalEnum.EMAIL) {
+      return messages.EMAIL_UPDATE;
+    }
+  
+    if (typeModal === typeModalEnum.PHONE) {
+      return messages.PHONE_UPDATE;
+    }
+  
+    if (typeModal === typeModalEnum.NAME) {
+      return messages.NAME_UPDATE;
+    }
   };
 
   return (
     <>
       {isOpenModal && (
         <div className="modalOverlay">
+          <form
+            id="ProfileModalSubmit"
+            onSubmit={event => {
+              event.preventDefault();
+              onSubmit(inputValue, getAlertText(), typeModal, profile);
+            }}
+          >
           <div className="modalWindow">
             <div className="modalHeader">
               <div className="modalTitle">{title}</div>
@@ -23,12 +47,19 @@ const Modal = ({ title, typeModal, isOpenModal, onCancel, onSubmit }) => {
               <InputForm typeModal={typeModal} getValueFromInput={getValueFromInput} />
             </div>
             <div className="modalFooter">
-              <button onClick={onCancel} className="button is-rounded is-small cancel">
-                {' '}
-                Cancel{' '}
+              <button 
+                type="submit"
+                onClick={() => {
+                  event.preventDefault()
+                  onCancel()
+                }} 
+                  className="button is-rounded is-small cancel"
+                >
+                  {' '}
+                  Cancel{' '}
               </button>
               <button
-                onClick={() => onSubmit(inputValue, getAlertText(typeModal))}
+                type="submit"
                 className="button is-rounded is-small submit"
               >
                 {' '}
@@ -36,44 +67,11 @@ const Modal = ({ title, typeModal, isOpenModal, onCancel, onSubmit }) => {
               </button>
             </div>
           </div>
+          </form>
         </div>
       )}
     </>
   );
-};
-
-const getAlertText = typeModal => {
-  if (typeModal === typeModalEnum.FILL_UP) {
-    return messages.FILL_UP;
-  }
-
-  if (typeModal === typeModalEnum.EMAIL) {
-    return messages.EMAIL_UPDATE;
-  }
-
-  if (typeModal === typeModalEnum.PHONE) {
-    return messages.PHONE_UPDATE;
-  }
-
-  if (typeModal === typeModalEnum.NAME) {
-    return messages.NAME_UPDATE;
-  }
-};
-
-Modal.propTypes = {
-  title: PropTypes.string,
-  isOpen: PropTypes.bool,
-  onCancel: PropTypes.func,
-  onSubmit: PropTypes.func,
-  children: PropTypes.node,
-};
-
-Modal.defaultProps = {
-  title: 'Modal title',
-  isOpen: false,
-  onCancel: () => {},
-  onSubmit: () => {},
-  children: null,
 };
 
 export default Modal;

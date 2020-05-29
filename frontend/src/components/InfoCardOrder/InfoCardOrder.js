@@ -1,8 +1,8 @@
 import React from 'react';
 import './InfoCardOrder.css';
 
-function InfoCardOrder({ item, status }) {
-  const { nameProduct, products_into_order, price, pathImage } = item;
+function InfoCardOrder({ item, status, count }) {
+  const { nameProduct, price, pathImage } = item;
 
   return (
     <div className="info-order-form">
@@ -19,7 +19,7 @@ function InfoCardOrder({ item, status }) {
           <p style={{ float: 'left' }}>Count &emsp; </p>
           <div className="info-order-form-field">
             {' '}
-            &nbsp;&nbsp;&nbsp; {products_into_order.count}{' '}
+            &nbsp;&nbsp;&nbsp; {count}{' '}
           </div>
         </div>
 
@@ -27,7 +27,7 @@ function InfoCardOrder({ item, status }) {
           <p style={{ float: 'left' }}>Total &emsp; </p>
           <div className="info-order-form-field">
             {' '}
-            &nbsp;&nbsp;&nbsp; {`${price * products_into_order.count}$`}{' '}
+            &nbsp;&nbsp;&nbsp; {`${price * count}`}{' '}
           </div>
         </div>
 

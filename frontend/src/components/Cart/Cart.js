@@ -56,7 +56,7 @@ function Cart({
 const mapStateToProps = ({
   shoppingCart: { cartItems, orderTotal },
   authorization: { isLoggedIn }, 
-  notifications 
+  notifications, 
 }) => ({
   items: cartItems,
   orderTotal,
@@ -68,10 +68,8 @@ const mapDispatchToProps = dispatch => ({
   onIncrease: goodsId => dispatch(GOODS_ADDED_TO_CART(goodsId)),
   onDecrease: goodsId => dispatch(GOODS_REMOVED_FROM_CART(goodsId)),
   onDelete: goodsId => dispatch(ALL_GOODS_REMOVED_FROM_CART(goodsId)),
-  makeOrder: (orderTotal, items, alertText, userId) => {
-    dispatch(MAKE_ORDER(orderTotal, items, userId));
-    dispatch(SHOW_ALERT(scenesEnum.CART, alertText));
-  },
+  makeOrder: (orderTotal, items, alertText, userId, profile) => 
+    MAKE_ORDER(orderTotal, items, alertText, userId, profile, dispatch)
 });
 
 export default connect(

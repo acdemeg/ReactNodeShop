@@ -1,15 +1,18 @@
-import { actionsEnum, typeModalEnum } from '../../constants';
+import { actionsEnum, usersRoleEnum, typeModalEnum } from '../../constants';
 
 const updateProfile = (state, action) => {
   if (state === undefined) {
     return {
+      id: null,
       isOpenModal: false,
-      balance: '',
+      balance: 0,
       email: '',
       phone: '',
-      name: 'My Profile',
-      typeModal: undefined,
+      name: '',
       titleModal: '',
+      typeModal: undefined,
+      role: usersRoleEnum.USER,
+      imagePath: null,
     };
   }
 
@@ -51,23 +54,35 @@ const updateProfile = (state, action) => {
 
   const openNeedModal = (state, action) => ({
     isOpenModal: true,
+    id: state.profile.id,
+    role: state.profile.role,
     balance: state.profile.balance,
     email: state.profile.email,
     phone: state.profile.phone,
     name: state.profile.name,
+    imagePath: state.profile.imagePath,
     typeModal: action.payload.type,
     titleModal: action.payload.title,
   });
 
   const cancelModal = state => ({
+    id: state.profile.id,
+    role: state.profile.role,
     email: state.profile.email,
     phone: state.profile.phone,
     name: state.profile.name,
     balance: state.profile.balance,
+    imagePath: state.profile.imagePath,
     isOpenModal: false,
   });
 
   switch (action.type) {
+    case actionsEnum.DEBIT_BALANCE:
+      return {
+        ...state.profile,
+        balance: action.payload,
+      };
+
     case actionsEnum.OPEN_MODAL_WINDOW:
       return openNeedModal(state, action);
 
@@ -80,10 +95,13 @@ const updateProfile = (state, action) => {
     case actionsEnum.PROFILE_LOADED:
       return {
         ...state.profile,
+        id: action.payload.id,
+        role: action.payload.role,
         balance: action.payload.balance,
         email: action.payload.email,
         phone: action.payload.phone,
         name: action.payload.name,
+        imagePath: action.payload.imagePath,
       };
 
     case actionsEnum.PROFILE_ERROR:

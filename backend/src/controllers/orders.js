@@ -37,13 +37,13 @@ const orders = {
       return orders;
   },
   updateOrderStatus: async (orderId, obj) => {
-    const res = await Order.update({ status: obj.status }, 
+    const [res] = await Order.update({ status: obj.status }, 
       { where: { id: orderId } })
     .catch(
       err => `can't update order status ${err}`,
     );
-    if (res.length) {
-      return 'success';
+    if (res) {
+      return 'succses';
     }
     return 'error';
   },
@@ -90,8 +90,8 @@ const orders = {
 
         ProductInOrder.bulkCreate(order.products);
       })
-      .then(() => 'succses createOrder')
-      .catch(() => 'createOrder error');
+      .then(() => 'succses')
+      .catch(() => 'error');
   },
   deleteOrder: async orderId => {
     const res = await Order.destroy({

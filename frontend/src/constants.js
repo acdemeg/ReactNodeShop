@@ -15,6 +15,7 @@ const actionsEnum = Object.freeze({
   OPEN_MODAL_WINDOW: 'OPEN_MODAL_WINDOW',
   CANCEL_MODAL_WINDOW: 'CANCEL_MODAL_WINDOW',
   SUBMIT_MODAL_WINDOW: 'SUBMIT_MODAL_WINDOW',
+  UPDATE_BALANCE: 'UPDATE_BALANCE',
   FILL_UP_BALANCE: 'FILL_UP_BALANCE',
   MAKE_ORDER: 'MAKE_ORDER',
   UPDATE_ORDER: 'UPDATE_ORDER',
@@ -25,9 +26,20 @@ const actionsEnum = Object.freeze({
 const scenesEnum = Object.freeze({
   PROFILE: 'Profile',
   PRODUCT_LIST: 'ProductList',
+  ORDER_LIST: 'OrdersList',
   CART: 'Cart',
   LOG_IN: 'Log-In',
   REG: 'Reg'
+});
+
+const usersRoleEnum = Object.freeze({
+  ADMIN: 'ADMIN',
+  USER: 'USER',
+});
+
+const orderStatusEnum = Object.freeze({
+  DONE: 'Done',
+  CANCELED: 'Canceled',
 });
 
 const typeModalEnum = Object.freeze({
@@ -37,17 +49,28 @@ const typeModalEnum = Object.freeze({
   FILL_UP: 'fill_up',
 });
 
+
 const messages = Object.freeze({
   MAKE_ORDER: 'Your order has accepted',
-  FILL_UP: 'Your balance replenished',
+  FILL_UP: 'Your balance updated',
   EMAIL_UPDATE: 'Your email updated',
+  ORDER_UPDATE: 'Status your orders was updated',
   PHONE_UPDATE: 'Your phone updated',
   NAME_UPDATE: 'Your name updated',
   LOG_IN: 'You logged your account',
   LOG_OUT: 'You logout your account',
   LOG_IN_ERROR: 'Incorrect email or password',
+  ORDER_UPDATE_ERROR: 'Status your orders was not updated',
   REG: 'You succses registered',
   REG_ERROR: 'Registraton failed',
+  MAKE_ORDER_ERROR: 'Not enough funds in your account',
+  MAKE_ORDER_FAILED: 'Impossible create order',
 });
 
-export { actionsEnum, scenesEnum, typeModalEnum, messages };
+export { 
+  actionsEnum, 
+  scenesEnum, 
+  typeModalEnum, 
+  usersRoleEnum,
+  orderStatusEnum, 
+  messages };

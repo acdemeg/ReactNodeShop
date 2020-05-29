@@ -43,7 +43,7 @@ module.exports = {
         nameProduct: 'NVIDIA Quadro',
         count: 5,
         description: 'GP100 16Gb',
-        price: 22250,
+        price: 12500,
         pathImage: 'nvidia_quadro_gp100_16gb_1015275_1.jpg',
       },
       {
@@ -75,7 +75,7 @@ module.exports = {
         nameProduct: 'WESTERN DIGITAL 3.5',
         count: 20,
         description: '12Tb SATA III, 256Mb, 7200rpm',
-        price: 333.33,
+        price: 335,
         pathImage:
           'western_digital_zhestkiy_disk_3.5_12.0tb_sata_iii_256_mb_7200_rpm_wd_red_pro_wd121kfbx_1206754_1.jpg',
       },
@@ -84,7 +84,7 @@ module.exports = {
         nameProduct: 'Arctic MX-2',
         count: 100,
         description: 'Thermal Compound 65-gramm 2019 Edition ACTCP00006B',
-        price: 7.5,
+        price: 8,
         pathImage:
           'termopasta_arctic_mx_2_thermal_compound_65_gramm_2019_edition_actcp00006b_1101104_1.jpg',
       },

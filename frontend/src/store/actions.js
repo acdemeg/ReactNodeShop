@@ -1,4 +1,4 @@
-import { actionsEnum, scenesEnum, messages } from '../constants';
+import { actionsEnum, scenesEnum, typeModalEnum, messages, orderStatusEnum } from '../constants';
 import appServiceData from '../App/appServiceData';
 
 const GOODS_LOADED = newGoods => ({
@@ -93,12 +93,11 @@ const LOGIN = (event, dispatch) => {
     email: formDate.get("email"),
     password: formDate.get("password")
   }
-
   appServiceData.logInUser(user).then((res) => {
     if(res){
       dispatch(SHOW_ALERT(scenesEnum.LOG_IN, messages.LOG_IN));
-      dispatch(LOG_IN(res));
-      fetchProfile(appServiceData, dispatch, res);
+      dispatch(PROFILE_LOADED(res))
+      dispatch(LOG_IN(res.id))
     }
     else {
       dispatch(SHOW_ALERT(scenesEnum.LOG_IN, messages.LOG_IN_ERROR, "error"));
@@ -142,14 +141,81 @@ const fetchOrders = (appServiceData, dispatch, userId) => {
     .catch(err => dispatch(ORDERS_ERROR(err)));
 };
 
-const fetchProfile = (appServiceData, dispatch, userId) => {
+const fetchProfile = (userId, dispatch) => {
   appServiceData
     .getProfileOfUser(userId)
     .then(data => dispatch(PROFILE_LOADED(data)))
     .catch(err => dispatch(PROFILE_ERROR(err)));
 };
 
-const MAKE_ORDER = (orderTotal, items, userId) => {
+const UPDATE_PROFILE = (data, alertText, typeModal, profile, dispatch) => {
+  let newData;
+
+  if(typeModal === typeModalEnum.FILL_UP){
+    dispatch(SUBMIT_MODAL_WINDOW((Boolean(Number(data))) 
+    ? Number(data) + profile.balance : profile.balance
+    ));
+  } else dispatch(SUBMIT_MODAL_WINDOW(data))
+
+
+  switch (typeModal) {
+    case typeModalEnum.NAME:
+      newData = { 
+        name: data, 
+        email: profile.email, 
+        phone: profile.phone, 
+        balance: profile.balance
+       };
+       break;
+
+    case typeModalEnum.PHONE:
+      newData = { 
+        name: profile.name, 
+        email: profile.email, 
+        phone: data, 
+        balance: profile.balance
+        };
+        break;
+
+    case typeModalEnum.EMAIL:
+      newData = { 
+        name: profile.name, 
+        email: data, 
+        phone: profile.phone, 
+        balance: profile.balance
+        };
+        break;
+
+    case typeModalEnum.FILL_UP:
+      newData = { 
+        name: profile.name, 
+        email: profile.email, 
+        phone: profile.phone, 
+        balance: (Boolean(Number(data))) 
+          ? Number(data) + profile.balance : profile.balance
+        };
+        break;
+
+    default:
+       newData = profile;
+  }
+
+  appServiceData.updateProfileById(profile.id, newData).then(res => {
+    if (res) {
+      dispatch(SHOW_ALERT(scenesEnum.PROFILE, alertText));
+    } else dispatch(SHOW_ALERT(scenesEnum.PROFILE, `${alertText} failed`, "error"));
+  });
+};
+
+const UPDATE_BALANCE = newBalance => ({
+  type: actionsEnum.UPDATE_BALANCE,
+  payload: newBalance,
+});
+
+const MAKE_ORDER = (orderTotal, items, alertText, userId, profile, dispatch) => {
+  if(orderTotal > profile.balance){
+    return dispatch(SHOW_ALERT(scenesEnum.CART, messages.MAKE_ORDER_ERROR, "error"));
+  }
   const order = {
     userId: userId,
     total: orderTotal,
@@ -159,21 +225,62 @@ const MAKE_ORDER = (orderTotal, items, userId) => {
       count: item.count,
     })),
   };
+  
+  const newBalance = profile.balance - orderTotal;
+  const newData = {
+    name: profile.name,
+    email: profile.email,
+    phone: profile.phone,
+    balance: newBalance,
+  }
 
-  appServiceData.createOrder(order).then(() => {});
+  appServiceData.updateProfileById(profile.id, newData).then(res => {
+    if (res){
+      dispatch(UPDATE_BALANCE(newBalance)) 
+      appServiceData.createOrder(order).then((res) => {
+        if(res){
+          dispatch({ type: actionsEnum.MAKE_ORDER, })
+          dispatch(SHOW_ALERT(scenesEnum.CART, alertText));
+        }
+        else {
+          dispatch(SHOW_ALERT(scenesEnum.CART, messages.MAKE_ORDER_FAILED, "error"));
+          appServiceData.updateProfileById(profile.id, {...newData, balance: profile.balance})
+            .then(() => dispatch(UPDATE_BALANCE(profile.balance)))
+        }
 
-  return {
-    type: actionsEnum.MAKE_ORDER,
-  };
+      });
+    } 
+    else dispatch(SHOW_ALERT(scenesEnum.CART, messages.MAKE_ORDER_FAILED, "error"));
+  });
+
 };
 
-const UPDATE_ORDER = (id, newStatus, dispatch, userId) => {
-  appServiceData.updateOrder(id, newStatus).then(() => {
-    dispatch(ORDERS_REQUESTED());
-    appServiceData
-    .getOrdersOfUser(userId)
-    .then(data => dispatch(ORDERS_LOADED(data)))
-    .catch(err => dispatch(ORDERS_ERROR(err)));
+const UPDATE_ORDER = (id, newStatus, userId, profile, orderTotal, dispatch) => {
+  appServiceData.updateOrder(id, newStatus).then((res) => {
+    if(res){
+      dispatch(ORDERS_REQUESTED());
+      appServiceData
+      .getOrdersOfUser(userId)
+      .then(data => dispatch(ORDERS_LOADED(data)))
+      .catch(err => dispatch(ORDERS_ERROR(err))); 
+      dispatch(SHOW_ALERT(scenesEnum.ORDER_LIST, messages.ORDER_UPDATE));
+      //refund money
+      if(newStatus === orderStatusEnum.CANCELED){
+        const newBalance = profile.balance + orderTotal;
+        const newData = {
+          name: profile.name,
+          email: profile.email,
+          phone: profile.phone,
+          balance: newBalance,
+        }
+        appServiceData.updateProfileById(profile.id, newData).then(res => {
+          if(res){
+            dispatch(UPDATE_BALANCE(newBalance)) 
+          }
+        })
+      }
+    }
+    else dispatch(SHOW_ALERT(scenesEnum.ORDER_LIST, messages.ORDER_UPDATE_ERROR, "error"));
   });
 };
 
@@ -194,5 +301,6 @@ export {
   LOG_IN,
   LOG_OUT,
   REGISTER,
-  LOGIN
+  LOGIN,
+  UPDATE_PROFILE
 };

@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { useEffect } from 'react';
 import './Profile.css';
 import { connect } from 'react-redux';
 import {
   OPEN_MODAL_WINDOW,
   CANCEL_MODAL_WINDOW,
-  SUBMIT_MODAL_WINDOW,
-  SHOW_ALERT,
+  UPDATE_PROFILE,
+  fetchProfile
 } from '../../store/actions';
 import Modal from './Modal';
 import Name from './profileFields/Name';
@@ -25,12 +25,20 @@ function Profile({
   titleModal,
   typeModal,
   openModal,
+  imagePath,
   handleCancel,
-  handleSubmit,
+  updateProfile,
+  fetchProfileUser,
   notifications,
   isLoggedIn,
+  profile
 })
  {
+
+  useEffect(() => {
+    fetchProfileUser(profile.id);
+  }, []);
+
   if (isLoggedIn) {
     return (
       <>
@@ -54,7 +62,8 @@ function Profile({
           typeModal={typeModal}
           isOpenModal={isOpenModal}
           onCancel={handleCancel}
-          onSubmit={handleSubmit}
+          onSubmit={updateProfile}
+          profile={profile}
         />
 
         <ShowNotification notifications={notifications} currentScene={scenesEnum.PROFILE} />
@@ -66,11 +75,13 @@ function Profile({
 }
 
 const mapStateToProps = ({
-  profile: { isOpenModal, balance, email, phone, name, titleModal, typeModal },
+  profile: { isOpenModal, balance, email, phone, name, imagePath, titleModal, typeModal },
   authorization: { isLoggedIn, userId },
   notifications,
+  profile
 }) => ({
   isOpenModal,
+  imagePath,
   balance,
   email,
   phone,
@@ -80,15 +91,15 @@ const mapStateToProps = ({
   isLoggedIn,
   userId,
   notifications,
+  profile
 });
 
 const mapDispatchToProps = dispatch => ({
   openModal: ({ type, title }) => dispatch(OPEN_MODAL_WINDOW(type, title)),
   handleCancel: () => dispatch(CANCEL_MODAL_WINDOW()),
-  handleSubmit: (data, alertText) => {
-    dispatch(SUBMIT_MODAL_WINDOW(data));
-    dispatch(SHOW_ALERT(scenesEnum.PROFILE, alertText));
-  },
+  updateProfile: (data, alertText, typeModal, profile) =>
+    UPDATE_PROFILE(data, alertText, typeModal, profile, dispatch),
+  fetchProfileUser: (userId) => fetchProfile(userId, dispatch)
 });
 
 export default connect(

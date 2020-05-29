@@ -1,16 +1,15 @@
 import axios from 'axios';
 import qs from 'qs';
 
-const _apiBase = 'http://localhost:4000/api/';
-
 class AppServiceData {
   async getResourse(url) {
-    const res = await axios.get(url);
+    const res = await axios.get(url)
+      .catch(err => `${err}`);
     return res.data;
   }
 
   async getProducts() {
-    const res = await this.getResourse(`${_apiBase}products`);
+    const res = await this.getResourse(`/api/products`);
     return res;
   }
 
@@ -18,34 +17,46 @@ class AppServiceData {
     if(!id)
       return [];
 
-    const res = await this.getResourse(`${_apiBase}users/${id}/orders`);
+    const res = await this.getResourse(`/api/users/${id}/orders`);
     return res;
   }
 
   async getProfileOfUser(id) {
     if(!id)
       return {};
-
-    const res = await this.getResourse(`${_apiBase}users/${id}`);
+    const res = await this.getResourse(`/api/users/${id}`)
     return res;
   }
 
+  async updateProfileById(id, data) {
+    if (!id) return {};
+    const res = await axios.put(`/api/users/${id}`, data);
+    return res.data;
+  }
+
   async createOrder(order) {
-    const res = await axios.post(`${_apiBase}orders`, qs.stringify(order));
+    const res = await axios.post(`/api/orders`, order)
+      .catch(err => `${err}`);
+    return res.data === 'succses';
   }
 
   async updateOrder(id, newStatus) {
-    const res = await axios.patch(`${_apiBase}orders/${id}`, qs.stringify({ status: newStatus}));
+    const res = await axios.patch(`/api/orders/${id}`, { status: newStatus })
+      .catch(err => `${err}`);
+    return res.data === 'succses';
   }
 
   async regUser(user) {
-    const res = await axios.post(`${_apiBase}users/register`, qs.stringify(user));
-    return (res.data === "succses registration") ? true : false;
+    const res = await axios.post(`/api/users/register`, user)
+      .catch(err => `${err}`);
+    return res.data === 'succses registration';
   }
 
   async logInUser(user) {
-    const res = await axios.post(`${_apiBase}users/login`, qs.stringify(user));
-    return (res.status === 200) ? res.data.userId : false;
+    const res = await axios.post(`/api/users/login`, user).catch(err => {
+      return `${err}`;
+    });
+    return res.data === 'wrong email or password' ? false : res.data;
   }
 
 }

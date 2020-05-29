@@ -2,7 +2,7 @@ import React from 'react';
 import ActionsButton from './ActionsButton';
 import './Order.css';
 
-const OrderFooter = ({ orderTotal, orderId, updateOrder }) => (
+const OrderFooter = ({ orderTotal, orderId, updateOrder, profile }) => (
   <div className="order-footer">
     <div className="left">
       <span style={{ fontSize: '15pt' }}>
@@ -11,7 +11,12 @@ const OrderFooter = ({ orderTotal, orderId, updateOrder }) => (
       </span>
     </div>
     <div className="right">
-      <ActionsButton orderId={orderId} updateOrder={updateOrder}/>
+      <ActionsButton 
+        orderId={orderId} 
+        orderTotal={orderTotal} 
+        updateOrder={updateOrder}
+        profile={profile}
+        />
     </div>
   </div>
 );
