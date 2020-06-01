@@ -4,8 +4,9 @@ import style from './styleNavBar';
 import { Basket } from '../components/Cart';
 import LogOut from '../components/LogIn/LogOut'
 import NavLinkComponent from './NavLinkComponent';
+import { usersRoleEnum } from '../constants';
 
-function NavigationForLogInUsers({ userName }) {
+function NavigationForLogInUsers({ userName, role }) {
   return (
     <>
       <ul>
@@ -16,6 +17,9 @@ function NavigationForLogInUsers({ userName }) {
         </li>
         <NavLinkComponent path="/productPage" title="Products" />
         <NavLinkComponent path="/ordersPage" title="Orders" />
+        {(role === usersRoleEnum.ADMIN) 
+          ? <NavLinkComponent path="/adminPanel" title="Admin Panel" />
+          : null}
       </ul>
       <ul style={style.cartAndProfileStyle}>
         <NavLinkComponent path="/profilePage" title={userName}/>

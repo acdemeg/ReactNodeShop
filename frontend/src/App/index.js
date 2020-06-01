@@ -6,6 +6,7 @@ import Products from '../scenes/Products';
 import Orders from '../scenes/Orders';
 import ProfilePage from '../scenes/Profile';
 import CartGoods from '../scenes/CartGoods';
+import AdminPanelUsersInfo from '../scenes/AdminPanelUsersInfo';
 import Navigation from './Navbar';
 import './App.scss';
 
@@ -19,6 +20,10 @@ const App = () => (
       <Route path="/ordersPage" component={Orders} />
       <Route path="/profilePage" component={ProfilePage} />
       <Route path="/cartPage" component={CartGoods} />
+      <Route
+          path="/adminPanel"
+          component={AdminPanelUsersInfo}
+        />
     </Switch>
   </Fragment>
 );

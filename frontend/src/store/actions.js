@@ -20,6 +20,20 @@ const ORDERS_LOADED = newOrders => ({
   payload: newOrders,
 });
 
+const USERS_REQUESTED = () => ({
+  type: actionsEnum.USERS_REQUESTED,
+});
+
+const USERS_LOADED = users => ({
+  type: actionsEnum.USERS_LOADED,
+  payload: users,
+});
+
+const USERS_ERROR = error => ({
+  type: actionsEnum.USERS_ERROR,
+  payload: error,
+});
+
 const PROFILE_ERROR = error => ({
   type: actionsEnum.PROFILE_ERROR,
   payload: error,
@@ -141,6 +155,28 @@ const fetchOrders = (appServiceData, dispatch, userId) => {
     .catch(err => dispatch(ORDERS_ERROR(err)));
 };
 
+const fetchUsers = dispatch => {
+  dispatch(USERS_REQUESTED());
+  appServiceData
+    .getUsers()
+    .then(data => dispatch(USERS_LOADED(data)))
+    .catch(err => dispatch(USERS_ERROR(err)));
+};
+
+const fetchOrdersforAll = dispatch => {
+  dispatch(ORDERS_REQUESTED());
+  appServiceData
+    .getOrdersAll()
+    .then(data => dispatch(ORDERS_LOADED(data)))
+    .catch(err => dispatch(ORDERS_ERROR(err)));
+};
+
+const fetchFullInfo = (dispatch) => {
+  fetchUsers(dispatch);
+  fetchOrdersforAll(dispatch);
+};
+
+
 const fetchProfile = (userId, dispatch) => {
   appServiceData
     .getProfileOfUser(userId)
@@ -255,7 +291,7 @@ const MAKE_ORDER = (orderTotal, items, alertText, userId, profile, dispatch) => 
 
 };
 
-const UPDATE_ORDER = (id, newStatus, userId, profile, orderTotal, dispatch) => {
+const UPDATE_ORDER = (id, newStatus, userId, profile, orderTotal, scene, dispatch) => {
   appServiceData.updateOrder(id, newStatus).then((res) => {
     if(res){
       dispatch(ORDERS_REQUESTED());
@@ -263,7 +299,7 @@ const UPDATE_ORDER = (id, newStatus, userId, profile, orderTotal, dispatch) => {
       .getOrdersOfUser(userId)
       .then(data => dispatch(ORDERS_LOADED(data)))
       .catch(err => dispatch(ORDERS_ERROR(err))); 
-      dispatch(SHOW_ALERT(scenesEnum.ORDER_LIST, messages.ORDER_UPDATE));
+      dispatch(SHOW_ALERT(scene, messages.ORDER_UPDATE));
       //refund money
       if(newStatus === orderStatusEnum.CANCELED){
         const newBalance = profile.balance + orderTotal;
@@ -280,11 +316,12 @@ const UPDATE_ORDER = (id, newStatus, userId, profile, orderTotal, dispatch) => {
         })
       }
     }
-    else dispatch(SHOW_ALERT(scenesEnum.ORDER_LIST, messages.ORDER_UPDATE_ERROR, "error"));
+    else dispatch(SHOW_ALERT(scene, messages.ORDER_UPDATE_ERROR, "error"));
   });
 };
 
 export {
+  fetchFullInfo,
   fetchGoods,
   fetchOrders,
   fetchProfile,

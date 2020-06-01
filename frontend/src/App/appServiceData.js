@@ -13,6 +13,17 @@ class AppServiceData {
     return res;
   }
 
+  async getUsers() {
+    const res = await this.getResourse(`/api/Users`);
+    return res;
+  }
+
+  async getOrdersAll() {
+    const res = await this.getResourse(`/api/orders`);
+    return res;
+  }
+
+
   async getOrdersOfUser(id) {
     if(!id)
       return [];

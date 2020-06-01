@@ -1,6 +1,6 @@
 import React, { useState }from 'react';
 import { connect } from 'react-redux';
-import { orderStatusEnum } from '../../constants'
+import { orderStatusEnum, scenesEnum } from '../../constants'
 import './Order.css';
 
 const ActionsButton = ({ orderId, updateOrder, userId, profile, orderTotal }) => {
@@ -29,13 +29,27 @@ const ActionsButton = ({ orderId, updateOrder, userId, profile, orderTotal }) =>
             <a 
               href="#" 
               className="dropdown-item" 
-              onClick={() => updateOrder(orderId, orderStatusEnum.CANCELED, userId, profile, orderTotal)}>
+              onClick={() => updateOrder(
+                orderId, 
+                orderStatusEnum.CANCELED, 
+                userId, 
+                profile, 
+                orderTotal,
+                scenesEnum.ORDER_LIST
+                )}>
               Cancel
             </a>
             <a
               href="#"
               className="dropdown-item"
-              onClick={() => updateOrder(orderId, orderStatusEnum.DONE, userId)}
+              onClick={() => updateOrder(
+                orderId, 
+                orderStatusEnum.DONE, 
+                userId, 
+                profile, 
+                orderTotal,
+                scenesEnum.ORDER_LIST
+                )}
             >
               Accomplish
             </a>

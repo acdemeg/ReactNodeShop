@@ -27,7 +27,7 @@ function InfoCardOrder({ item, status, count }) {
           <p style={{ float: 'left' }}>Total &emsp; </p>
           <div className="info-order-form-field">
             {' '}
-            &nbsp;&nbsp;&nbsp; {`${price * count}`}{' '}
+            &nbsp;&nbsp;&nbsp; {`${price * count}$`}{' '}
           </div>
         </div>
 

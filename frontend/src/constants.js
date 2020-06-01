@@ -21,6 +21,9 @@ const actionsEnum = Object.freeze({
   UPDATE_ORDER: 'UPDATE_ORDER',
   LOG_IN: 'LOG_IN',
   LOG_OUT: 'LOG_OUT',
+  USERS_REQUESTED: 'USERS_REQUESTED',
+  USERS_LOADED: 'USERS_LOADED',
+  USERS_ERROR: 'USERS_ERROR'
 });
 
 const scenesEnum = Object.freeze({
@@ -29,7 +32,8 @@ const scenesEnum = Object.freeze({
   ORDER_LIST: 'OrdersList',
   CART: 'Cart',
   LOG_IN: 'Log-In',
-  REG: 'Reg'
+  REG: 'Reg',
+  ADMIN_USERS_INFO: 'ADMIN_USERS_INFO'
 });
 
 const usersRoleEnum = Object.freeze({

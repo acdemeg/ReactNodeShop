@@ -6,7 +6,7 @@ const OrderFooter = ({ orderTotal, orderId, updateOrder, profile }) => (
   <div className="order-footer">
     <div className="left">
       <span style={{ fontSize: '15pt' }}>
-        &emsp;TOTAL &emsp; {`${orderTotal}$`}
+        &emsp;SUMMARY TOTAL &emsp; {`${orderTotal}$`}
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;
       </span>
     </div>

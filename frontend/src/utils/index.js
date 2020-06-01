@@ -14,6 +14,7 @@ import {
   faEnvelope,
   faWallet,
   faDoorOpen,
+  faSearch
 } from '@fortawesome/free-solid-svg-icons';
 
 import compose from './compose';
@@ -34,8 +35,17 @@ function initFontAwesomeLibrary() {
     faPhoneSquareAlt,
     faEnvelope,
     faWallet,
-    faDoorOpen
+    faDoorOpen,
+    faSearch,
   );
 }
 
-export { compose, initFontAwesomeLibrary };
+const getNewIdGenerator = () => {
+  let id = 0;
+  return () => {
+    id += 1;
+    return id;
+  };
+};
+
+export { compose, initFontAwesomeLibrary, getNewIdGenerator };
