@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import Order from './Order';
 import Spinner from '../Spinner';
 import ErrorIndicator from '../Error-boundry/Error-indicator'
@@ -39,7 +40,7 @@ const OrderListContainer = ({
   }, []);
 
   if(!isLoggedIn){
-    return null;
+    return <Redirect to="/authorizationPage" />;
   }
 
   if (loading) {
@@ -66,8 +67,8 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = dispatch => ({
   fetchOrders: (userId) => fetchOrders(appServiceData, dispatch, userId),
-  updateOrder: (id, newStatus, userId, profile, orderTotal) => {
-    UPDATE_ORDER(id, newStatus, userId, profile, orderTotal, dispatch)
+  updateOrder: (id, newStatus, userId, profile, orderTotal, scene) => {
+    UPDATE_ORDER(id, newStatus, userId, profile, orderTotal, scene, dispatch)
   }
 });
 

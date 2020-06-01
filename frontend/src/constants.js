@@ -3,6 +3,7 @@ const actionsEnum = Object.freeze({
   GOODS_REQUESTED: 'FETCH_GOODS_REQUESTED',
   GOODS_ERROR: 'FETCH_GOODS_FAILURE',
   GOODS_ADDED_TO_CART: 'GOODS_ADDED_TO_CART',
+  CLEAR_CART: 'CLEAR_CART',
   GOODS_REMOVED_FROM_CART: 'GOODS_REMOVED_FROM_CART',
   PROFILE_LOADED: 'FETCH_PROFILE_SUCCESS',
   PROFILE_ERROR: 'FETCH_PROFILE_FAILURE',
@@ -67,6 +68,8 @@ const messages = Object.freeze({
   ORDER_UPDATE_ERROR: 'Status your orders was not updated',
   REG: 'You succses registered',
   REG_ERROR: 'Registraton failed',
+  REG_ERROR: 'Registraton failed',
+  PASSWORD_DISPARITY: 'Entered passwords have inconsistency',
   MAKE_ORDER_ERROR: 'Not enough funds in your account',
   MAKE_ORDER_FAILED: 'Impossible create order',
 });

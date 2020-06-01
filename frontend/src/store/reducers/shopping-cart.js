@@ -66,6 +66,12 @@ const updateShoppingCart = (state, action) => {
   }
 
   switch (action.type) {
+    case actionsEnum.CLEAR_CART:
+      return {
+        cartItems: [],
+        orderTotal: 0,
+      };
+
     case actionsEnum.GOODS_ADDED_TO_CART:
       return updateOrder(state, action.payload, 1);
 

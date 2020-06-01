@@ -1,4 +1,10 @@
-import { actionsEnum, scenesEnum, typeModalEnum, messages, orderStatusEnum } from '../constants';
+import { 
+  actionsEnum, 
+  scenesEnum, 
+  typeModalEnum, 
+  messages, 
+  orderStatusEnum 
+} from '../constants';
 import appServiceData from '../App/appServiceData';
 
 const GOODS_LOADED = newGoods => ({
@@ -51,6 +57,10 @@ const ORDERS_REQUESTED = () => ({
 const ORDERS_ERROR = error => ({
   type: actionsEnum.ORDERS_ERROR,
   payload: error,
+});
+
+const CLEAR_CART = () => ({
+  type: actionsEnum.CLEAR_CART
 });
 
 const GOODS_ADDED_TO_CART = goodsId => ({
@@ -127,14 +137,19 @@ const REGISTER = (event, dispatch) => {
     name: formDate.get("name"),
     phone: formDate.get("phone"),
     email: formDate.get("email"),
-    password: formDate.get("password")
+    password: formDate.get("password"),
+    repeatPassword: formDate.get("password_repeat")
   }
+
+  if(user.password !== user.repeatPassword){
+    return dispatch(SHOW_ALERT(scenesEnum.REG, messages.PASSWORD_DISPARITY, "error"));
+  }
+
   appServiceData.regUser(user).then((res) => {
     if(res){
       dispatch(SHOW_ALERT(scenesEnum.REG, messages.REG));
     }
     else dispatch(SHOW_ALERT(scenesEnum.REG, messages.REG_ERROR, "error"));
-
   });
 };
 
@@ -157,16 +172,14 @@ const fetchOrders = (appServiceData, dispatch, userId) => {
 
 const fetchUsers = dispatch => {
   dispatch(USERS_REQUESTED());
-  appServiceData
-    .getUsers()
+  appServiceData.getUsers()
     .then(data => dispatch(USERS_LOADED(data)))
     .catch(err => dispatch(USERS_ERROR(err)));
 };
 
 const fetchOrdersforAll = dispatch => {
   dispatch(ORDERS_REQUESTED());
-  appServiceData
-    .getOrdersAll()
+  appServiceData.getOrdersAll()
     .then(data => dispatch(ORDERS_LOADED(data)))
     .catch(err => dispatch(ORDERS_ERROR(err)));
 };
@@ -269,6 +282,8 @@ const MAKE_ORDER = (orderTotal, items, alertText, userId, profile, dispatch) => 
     phone: profile.phone,
     balance: newBalance,
   }
+
+  dispatch(CLEAR_CART());
 
   appServiceData.updateProfileById(profile.id, newData).then(res => {
     if (res){

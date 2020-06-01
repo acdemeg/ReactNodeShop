@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run css:build && webpack --mode development",
+    "build": "npm run css:build && webpack --mode production",
     "watch": "webpack --watch",
     "css:build": "node-sass --indented-syntax --omit-source-map-url src/App/App.scss public/dist/styles.css",
     "test": "jest",

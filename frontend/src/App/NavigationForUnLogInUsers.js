@@ -12,10 +12,10 @@ function NavigationForUnLogInUsers() {
             DIGITAL MARKET
           </NavLink>
         </li>
-        <NavLinkComponent path="/productPage" title="Products" />
       </ul>
       <ul style={style.cartAndProfileStyle}>
         <NavLinkComponent path="/authorizationPage" title="Log In" />
+        <NavLinkComponent path="/registration" title="Registration" />
       </ul>
     </>
   );

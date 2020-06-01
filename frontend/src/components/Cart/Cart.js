@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import ProductInCart from './ProductInCart';
@@ -8,7 +9,6 @@ import {
   GOODS_REMOVED_FROM_CART,
   ALL_GOODS_REMOVED_FROM_CART,
   MAKE_ORDER,
-  SHOW_ALERT,
 } from '../../store/actions';
 import { scenesEnum } from '../../constants';
 import CartHeader from './CartHeader';
@@ -26,7 +26,7 @@ function Cart({
   notifications
  }) {
   if(!isLoggedIn){
-    return null;
+    return <Redirect to="/authorizationPage" />;
   }
 
   return (

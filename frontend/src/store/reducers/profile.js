@@ -1,6 +1,7 @@
 import { actionsEnum, usersRoleEnum, typeModalEnum } from '../../constants';
 
 const updateProfile = (state, action) => {
+
   if (state === undefined) {
     return {
       id: null,

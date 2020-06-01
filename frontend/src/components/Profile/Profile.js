@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './Profile.css';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import {
   OPEN_MODAL_WINDOW,
   CANCEL_MODAL_WINDOW,
@@ -71,7 +72,7 @@ function Profile({
     );
   }
 
-  return null;
+  return <Redirect to="/authorizationPage" />;
 }
 
 const mapStateToProps = ({

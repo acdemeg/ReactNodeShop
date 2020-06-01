@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './styleNavBar';
 import { Basket } from '../components/Cart';
-import LogOut from '../components/LogIn/LogOut'
+import LogOut from './LogOut'
 import NavLinkComponent from './NavLinkComponent';
 import { usersRoleEnum } from '../constants';
 
@@ -15,11 +15,14 @@ function NavigationForLogInUsers({ userName, role }) {
             Digital Market
           </NavLink>
         </li>
-        <NavLinkComponent path="/productPage" title="Products" />
         <NavLinkComponent path="/ordersPage" title="Orders" />
-        {(role === usersRoleEnum.ADMIN) 
-          ? <NavLinkComponent path="/adminPanel" title="Admin Panel" />
-          : null}
+        {(role !== usersRoleEnum.ADMIN) 
+          ? null
+          : (<ul>
+              <NavLinkComponent path="/adminPanel" title="Admin Panel" />
+              <NavLinkComponent path="/addProduct" title="Add Goods" />
+            </ul>)
+        }
       </ul>
       <ul style={style.cartAndProfileStyle}>
         <NavLinkComponent path="/profilePage" title={userName}/>

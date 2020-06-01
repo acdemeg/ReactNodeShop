@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchFullInfo, UPDATE_ORDER } from '../../store/actions';
 import Spinner from '../../components/Spinner';
@@ -11,7 +12,7 @@ import { scenesEnum, usersRoleEnum } from '../../constants';
 import ShowNotification from '../../components/ShowNotification';
 
 const UsersInfo = ({
-  role,
+  profile,
   isLoggedIn, 
   users: { users }, 
   orderList: { orders, error, loading }, 
@@ -25,16 +26,11 @@ const UsersInfo = ({
   }, []);
 
   const usersShop = users.sort((a, b) => a.id - b.id);
-  const [user, setUser] = useState(usersShop[0]);
+  const [user, setUser] = useState(profile);
 
 
-  if(role !== usersRoleEnum.ADMIN){
-    return null;
-  }
-
-
-  if(!isLoggedIn){
-    return null;
+  if(!isLoggedIn || profile.role !== usersRoleEnum.ADMIN){
+    return <Redirect to="/authorizationPage" />
   }
 
   if (loading) {
@@ -64,13 +60,13 @@ const mapStateToProps = ({
   notifications,
   orderList,
   users,
-  profile: { role },
+  profile,
   authorization: { isLoggedIn }
 }) => ({
   notifications,
   orderList,
   users,
-  role,
+  profile,
   isLoggedIn
 });
 

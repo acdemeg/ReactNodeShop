@@ -1,8 +1,3 @@
-import React from 'react';
-import RegForm from '../../components/RegForm';
-
-function Registration() {
-  return <RegForm />;
-}
+import Registration from './Registration';
 
 export default Registration;

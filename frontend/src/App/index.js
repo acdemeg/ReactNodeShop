@@ -1,7 +1,7 @@
 import { React, Fragment } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Registration from '../scenes/Registration';
-import Authorization from '../scenes/Authorization';
+import SignIn from '../scenes/SignIn';
 import Products from '../scenes/Products';
 import Orders from '../scenes/Orders';
 import ProfilePage from '../scenes/Profile';
@@ -14,16 +14,15 @@ const App = () => (
   <Fragment>
     <Navigation />
     <Switch>
-      <Route path="/" exact component={Registration} />
-      <Route path="/authorizationPage" exact component={Authorization} />
-      <Route path="/productPage" component={Products} />
+      <Route path="/" exact component={Products} />
+      <Route path="/authorizationPage" exact component={SignIn} />
+      <Route path="/registration" component={Registration} />
       <Route path="/ordersPage" component={Orders} />
       <Route path="/profilePage" component={ProfilePage} />
       <Route path="/cartPage" component={CartGoods} />
-      <Route
-          path="/adminPanel"
-          component={AdminPanelUsersInfo}
-        />
+      <Route path="/adminPanel" component={AdminPanelUsersInfo}/>
+      <Route path="/addProduct" component={null}/>
+      <Redirect from="/" to="/" />
     </Switch>
   </Fragment>
 );

@@ -9,12 +9,16 @@ import {
   faTrashAlt,
   faPlusSquare,
   faMinusSquare,
-  faUser,
   faPhoneSquareAlt,
   faEnvelope,
   faWallet,
   faDoorOpen,
-  faSearch
+  faCheck,
+  faLock,
+  faExclamation,
+  faUser,
+  faSearch,
+  faPhone
 } from '@fortawesome/free-solid-svg-icons';
 
 import compose from './compose';
@@ -37,6 +41,10 @@ function initFontAwesomeLibrary() {
     faWallet,
     faDoorOpen,
     faSearch,
+    faCheck,
+    faLock,
+    faExclamation,
+    faPhone
   );
 }
 
