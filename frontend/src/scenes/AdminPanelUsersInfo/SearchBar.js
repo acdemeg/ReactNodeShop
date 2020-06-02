@@ -38,7 +38,7 @@ const SearchBar = ({ users, setUser }) => {
   return (
     <div className={style.searchBar}>
       <div className={style.searchInput}>
-        <SearchInput sortUserList={sortUserList} />
+        <SearchInput sortList={sortUserList} placeholder="Enter user name"/>
         <p style={{ paddingLeft: '10px' }}>Name</p>
       </div>
       <div className={style.userList}>{usersList}</div>

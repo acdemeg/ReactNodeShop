@@ -6,14 +6,14 @@ const navBarStyle = {
   borderRadius: '0px',
 };
 
-const cartAndProfileStyle = {
+const rightPartNavBar = {
   position: 'absolute',
   right: '1%',
 };
 
 const style = {
   navBarStyle,
-  cartAndProfileStyle,
+  rightPartNavBar,
 };
 
 export default style;

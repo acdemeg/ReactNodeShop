@@ -1,5 +1,6 @@
 const debug = require('debug')('app:orders');
 const { Order, ProductInOrder, Product } = require('../../models');
+const sequelize = require('../database');
 
 const orders = {
   getAll: async () => {
@@ -78,14 +79,28 @@ const orders = {
       } 
       return order;
   },
+  updateProductCount: async (productId, newCount) => {
+    const [res] = await Product.update({ 
+      count: sequelize.literal(`count - ${newCount}`) 
+    }, 
+    { where: { id: productId } })
+    .catch(
+      err => `can't update order count ${err}`,
+    );
+    if (res) {
+      return 'succses';
+    }
+    return 'error';
+  },
   createOrder: async order => {
     return await Order.create({
       userId: order.userId,
       total: order.total,
     })
       .then(orderRecord => {
-        order.products.forEach(element => {
-          element.orderId = orderRecord.id;
+        order.products.forEach(v => {
+          v.orderId = orderRecord.id;
+          orders.updateProductCount(v.productId, v.count);
         });
 
         ProductInOrder.bulkCreate(order.products);

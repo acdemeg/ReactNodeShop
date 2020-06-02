@@ -13,7 +13,7 @@ function NavigationForUnLogInUsers() {
           </NavLink>
         </li>
       </ul>
-      <ul style={style.cartAndProfileStyle}>
+      <ul style={style.rightPartNavBar}>
         <NavLinkComponent path="/authorizationPage" title="Log In" />
         <NavLinkComponent path="/registration" title="Registration" />
       </ul>

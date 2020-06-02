@@ -40,6 +40,8 @@ function Profile({
     fetchProfileUser(profile.id);
   }, []);
 
+  const image = profile.imagePath ? profile.imagePath : 'default_avatar.png';
+
   if (isLoggedIn) {
     return (
       <>
@@ -47,15 +49,18 @@ function Profile({
           <div className="profile-header">
             <b>My profile</b>
           </div>
-
-          <div style={{ float: 'left' }}>
-            <Name name={name} />
-            <Phone phone={phone} />
-            <Email email={email} />
-            <Balance balance={balance} />
+          <div className="profile-container">
+            <div className="image_container">
+              <img src={`/upload/users/${image}`} alt="avatar" width="350px" height="350px" />
+            </div>
+            <div style={{ float: 'left' }}>
+              <Name name={name} />
+              <Phone phone={phone} />
+              <Email email={email} />
+              <Balance balance={balance} />
+            </div>
+            <RedactFields openModal={openModal} />
           </div>
-
-          <RedactFields openModal={openModal} />
         </div>
 
         <Modal

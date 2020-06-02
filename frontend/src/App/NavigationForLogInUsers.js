@@ -5,8 +5,9 @@ import { Basket } from '../components/Cart';
 import LogOut from './LogOut'
 import NavLinkComponent from './NavLinkComponent';
 import { usersRoleEnum } from '../constants';
+import MiniAvatar from './MiniAvatar';
 
-function NavigationForLogInUsers({ userName, role }) {
+function NavigationForLogInUsers({ profile: { imagePath, name, role } }) {
   return (
     <>
       <ul>
@@ -24,8 +25,9 @@ function NavigationForLogInUsers({ userName, role }) {
             </ul>)
         }
       </ul>
-      <ul style={style.cartAndProfileStyle}>
-        <NavLinkComponent path="/profilePage" title={userName}/>
+      <ul style={style.rightPartNavBar}>
+        <MiniAvatar image={imagePath} />
+        <NavLinkComponent path="/profilePage" title={name}/>
         <LogOut />
         <Basket />
       </ul>

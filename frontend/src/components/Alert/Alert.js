@@ -6,23 +6,27 @@ import Button from './Button';
 import AlertText from './AlertText';
 import './Alert.css';
 
-const Alert = ({ visibleAlert, textAlert, scene, typeAlert, onAlert }) => (
-  <CSSTransition
-    in={visibleAlert}
-    timeout={{
-      enter: 1300,
-      exit: 200,
-    }}
-    classNames="alert"
-    mountOnEnter
-    unmountOnExit
-  >
-    <div className={`notification ${typeAlert}-alert`}>
-      <Button onAlert={onAlert} />
-      <AlertText scene={scene} textAlert={textAlert} />
-    </div>
-  </CSSTransition>
-);
+const Alert = ({ visibleAlert, textAlert, scene, typeAlert, onAlert }) => { 
+  setTimeout(() => onAlert(), 5000);
+
+  return (  
+    <CSSTransition
+      in={visibleAlert}
+      timeout={{
+        enter: 1300,
+        exit: 200,
+      }}
+      classNames="alert"
+      mountOnEnter
+      unmountOnExit
+    >
+      <div className={`notification ${typeAlert}-alert`}>
+        <Button onAlert={onAlert} />
+        <AlertText scene={scene} textAlert={textAlert} />
+      </div>
+    </CSSTransition>)
+  }
+;
 
 const mapDispatchToProps = dispatch => ({
   onAlert: () => dispatch(HIDE_ALERT()),

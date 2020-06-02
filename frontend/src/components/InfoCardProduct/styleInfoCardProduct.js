@@ -26,8 +26,9 @@ const titleProduct = {
   borderRadius: '0 25px 0 0',
   display: 'flex',
   alignItems: 'center',
-  name: { fontSize: '15pt' },
+  name: { fontSize: '13pt' },
   description: { fontSize: '10pt' },
+  paddingTop: "10px"
 };
 
 const price = {

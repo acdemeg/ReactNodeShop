@@ -28,3 +28,16 @@
   .redact:hover {
     cursor: pointer
   }
+
+  .profile-container {
+    margin: 0 auto;
+  }
+
+  .image_container {
+    width: 350px;
+    height: 350px;
+    background-color: antiquewhite;
+    margin-bottom: 5%;
+    border: solid;
+    border-color: burlywood;
+  }
