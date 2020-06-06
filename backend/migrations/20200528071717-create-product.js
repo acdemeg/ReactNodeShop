@@ -28,6 +28,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      category: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      detailInfo: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {

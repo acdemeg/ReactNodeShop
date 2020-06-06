@@ -7,17 +7,17 @@ import ErrorIndicator from '../Error-boundry/Error-indicator'
 import { fetchOrders, UPDATE_ORDER } from '../../store/actions';
 import appServiceData from '../../App/appServiceData';
 import './OrderList.css';
-import { scenesEnum } from '../../constants';
+import { scenesEnum, orderStatusEnum } from '../../constants';
 import ShowNotification from '../ShowNotification';
 
 const OrderList = ({ orders, updateOrder, notifications, profile }) => (
   <div>
-    <div className="order-status-title">текущие заказы</div>
-    {orders.map(order => (order.status === 'Delivering') ? (
+    <div className="order-status-title">Текущие заказы</div>
+    {orders.map(order => (order.status === orderStatusEnum.DELIVERING) ? (
       <Order key={order.id} order={order} updateOrder={updateOrder} profile={profile}/>
     ) : null )}
-    <div className="order-status-title">история заказов</div>
-    {orders.map(order => (order.status !== 'Delivering') ? (
+    <div className="order-status-title">История заказов</div>
+    {orders.map(order => (order.status !== orderStatusEnum.DELIVERING) ? (
       <Order key={order.id} order={order} updateOrder={"disable"} profile={profile}/>
     ) : null )}
     <ShowNotification notifications={notifications} currentScene={scenesEnum.ORDER_LIST} />

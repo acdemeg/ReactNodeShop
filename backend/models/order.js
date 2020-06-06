@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define('Order', {
     userId: DataTypes.STRING,
     total: DataTypes.FLOAT,
-    status: DataTypes.ENUM('Delivering', 'Done', 'Canceled'),
+    status: DataTypes.STRING,
   }, {});
   Order.associate = function(models) {
   };

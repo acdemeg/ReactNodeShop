@@ -6,7 +6,7 @@ const AlertText = ({ scene, textAlert }) => {
     return (
       <div>
         {' '}
-        Product <strong>{textAlert}</strong> added to Cart{' '}
+        Продукт <strong>{textAlert}</strong> добавлен в корзину{' '}
       </div>
     );
   }

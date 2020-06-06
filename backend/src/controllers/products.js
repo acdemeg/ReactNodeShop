@@ -12,7 +12,9 @@ const products = {
       description: product.description,
       count: product.count,
       price: product.price,
-      pathImage: product.pathImage 
+      pathImage: product.pathImage,
+      category: product.category,
+      detailInfo: product.detailInfo
     })  
     .then(() => 'succses create product')
     .catch(() => 'create product error');
@@ -29,6 +31,8 @@ const products = {
         count: obj.count,
         price: obj.price,
         pathImage: obj.pathImage,
+        category: product.category,
+        detailInfo: product.detailInfo
       },
       { where: { id: productId } },
     ).catch(err => `can't update product with id = ${productId} ${err}`);

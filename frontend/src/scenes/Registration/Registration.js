@@ -22,7 +22,7 @@ const Registration = ({ onReg, notifications }) => {
             minLength="1"
             iconLeft="user"
             iconRight="iconName"
-            inputTitle="Enter your name"
+            inputTitle="Введите ваше имя"
           />
           <InputField
             inputColor="colorPhone"
@@ -32,7 +32,7 @@ const Registration = ({ onReg, notifications }) => {
             minLength="4"
             iconLeft="phone"
             iconRight="iconPhone"
-            inputTitle="Enter your phone"
+            inputTitle="Введите ваш телефон"
           /> 
           <PassAndEmailInputs />
           <InputField
@@ -43,7 +43,7 @@ const Registration = ({ onReg, notifications }) => {
             minLength="6"
             iconLeft="lock"
             iconRight="iconPasswRepeat"
-            inputTitle="Repeat your password"
+            inputTitle="Повторите ваш пароль"
           />
         </div>
         <ButtonConfirm />

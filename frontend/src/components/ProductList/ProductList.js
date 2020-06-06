@@ -21,7 +21,7 @@ const ProductsList = ({ goods, onAddedToCart, notifications, isLoggedIn }) =>
         style={{     
           paddingLeft: "1%",
           paddingTop: "1%",
-          marginLeft: "15%" 
+          marginLeft: "17%" 
         }} 
         className={container}
       > {

@@ -29,7 +29,9 @@ import {
   faSave,
   faShieldAlt,
   faSatelliteDish,
-  faLaptop
+  faLaptop,
+  faGamepad,
+  faAtom
 } from '@fortawesome/free-solid-svg-icons';
 
 import compose from './compose';
@@ -66,7 +68,9 @@ function initFontAwesomeLibrary() {
     faSave,
     faShieldAlt,
     faSatelliteDish,
-    faLaptop
+    faLaptop,
+    faGamepad,
+    faAtom
   );
 }
 

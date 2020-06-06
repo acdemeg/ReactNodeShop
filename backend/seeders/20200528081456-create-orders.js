@@ -5,8 +5,8 @@ module.exports = {
     return queryInterface.bulkInsert('Orders', [
       {
         userId: 2,
-        total: 250,
-        status: 'Done'
+        total: 21100,
+        status: 'Выполнен'
       },
     ]);
   },

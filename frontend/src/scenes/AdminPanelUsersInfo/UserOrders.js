@@ -12,7 +12,7 @@ const UserOrders = ({ user, orders, updateOrder }) => {
   return (
     <div className={style.ordersUser}>
       <div className={style.listOrdersFont}>
-        List orders for user &nbsp;
+        <b>Список заказов пользователя</b> &nbsp;
         {`${user.name}`}
       </div>
       <div className={style.ordersWrapper}>

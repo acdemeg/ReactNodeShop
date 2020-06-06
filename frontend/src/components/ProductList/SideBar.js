@@ -3,7 +3,7 @@ import styles from './ProductList.scss';
 import SearchInput from '../../components/inputs/SearchInput';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Category = ({ title, iconName }) => {
+const Category = ({ title, iconName, setCategory }) => {
   return (
     <div>
       <FontAwesomeIcon
@@ -15,7 +15,12 @@ const Category = ({ title, iconName }) => {
         icon={iconName}
       />
     &emsp;
-      <b className={styles.titleCategory}>{title}</b>
+      <b 
+       onClick={() => setCategory(title)}
+       className={styles.titleCategory}
+       >
+         {title}
+       </b>
     </div>
   );
 }
@@ -28,23 +33,32 @@ const SideBar = ({ goods, setGoodsList }) => {
     return setGoodsList(filterGoods);
   };
 
+  const getGoodsByCategory = category => {
+    if(category === "Все товары")
+      return setGoodsList(goods);
+    const filterGoods = goods.filter(v => v.category === category);
+    return setGoodsList(filterGoods);
+  }
+
   return (
   <div className={styles.sideBar}>
     <div className={styles.searchGoods}>
       <SearchInput sortList={sortGoodsList} placeholder="Enter product title"/>
     </div>
     <div className={styles.categories}>
-      <Category title="Мониторы" iconName="desktop" />
-      <Category title="Ноутбуки" iconName="laptop" />
-      <Category title="Платы" iconName="server" />
-      <Category title="Охлаждение" iconName="fan" />
-      <Category title="Блоки питания" iconName="plug" />
-      <Category title="Процессоры" iconName="microchip" />
-      <Category title="Корпуса" iconName="box" />
-      <Category title="Оперативная память" iconName="memory" />
-      <Category title="Программное обеспечение" iconName="shield-alt" />
-      <Category title="Накопители" iconName="save" />
-      <Category title="Аксессурары" iconName="satellite-dish" />
+      <Category title="Все товары" iconName="atom" setCategory={getGoodsByCategory}/>
+      <Category title="Мониторы" iconName="desktop" setCategory={getGoodsByCategory}/>
+      <Category title="Ноутбуки" iconName="laptop" setCategory={getGoodsByCategory}/>
+      <Category title="Платы" iconName="server" setCategory={getGoodsByCategory}/>
+      <Category title="Видеокарты" iconName="gamepad" setCategory={getGoodsByCategory}/>
+      <Category title="Охлаждение" iconName="fan" setCategory={getGoodsByCategory}/>
+      <Category title="Блоки питания" iconName="plug" setCategory={getGoodsByCategory}/>
+      <Category title="Процессоры" iconName="microchip" setCategory={getGoodsByCategory}/>
+      <Category title="Корпуса" iconName="box" setCategory={getGoodsByCategory}/>
+      <Category title="Оперативная память" iconName="memory" setCategory={getGoodsByCategory}/>
+      <Category title="Программное обеспечение" iconName="shield-alt" setCategory={getGoodsByCategory}/>
+      <Category title="Накопители" iconName="save" setCategory={getGoodsByCategory}/>
+      <Category title="Аксессурары" iconName="satellite-dish" setCategory={getGoodsByCategory}/>
     </div>
   </div>
   );

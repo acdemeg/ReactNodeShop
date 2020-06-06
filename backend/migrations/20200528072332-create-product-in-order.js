@@ -23,8 +23,8 @@ module.exports = {
         allowNull: false,
       },
       status: {
-        type: Sequelize.DataTypes.ENUM('Delivering', 'Done', 'Canceled'),
-        defaultValue: 'Delivering',
+        type: Sequelize.STRING,
+        defaultValue: 'В обработке',
         allowNull: false,
       },
     });

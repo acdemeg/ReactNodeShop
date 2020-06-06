@@ -273,7 +273,7 @@ const UPDATE_PROFILE = (data, alertText, typeModal, profile, dispatch) => {
   appServiceData.updateProfileById(profile.id, newData).then(res => {
     if (res) {
       dispatch(SHOW_ALERT(scenesEnum.PROFILE, alertText));
-    } else dispatch(SHOW_ALERT(scenesEnum.PROFILE, `${alertText} failed`, "error"));
+    } else dispatch(SHOW_ALERT(scenesEnum.PROFILE, `${alertText} Ошибка!`, "error"));
   });
 };
 

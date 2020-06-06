@@ -1,8 +1,10 @@
 import React from 'react';
+import { orderStatusEnum } from '../../constants';
+import { NavLink } from 'react-router-dom';
 import './InfoCardOrder.css';
 
 function InfoCardOrder({ item, status, count }) {
-  const { nameProduct, price, pathImage } = item;
+  const { id, nameProduct, price, pathImage } = item;
 
   return (
     <div className="info-order-form">
@@ -12,14 +14,16 @@ function InfoCardOrder({ item, status, count }) {
 
       <div className="order-place">
         <div style={{ marginBottom: '6px' }}>
-          <p>{nameProduct}</p>
+          <NavLink to={`/productInfo/${id}`}>
+            <p>{nameProduct}</p>
+          </NavLink>
         </div>
 
         <div style={{ marginBottom: '6px' }}>
           <p style={{ float: 'left' }}>Количество &emsp; </p>
           <div className="info-order-form-field">
             {' '}
-            &nbsp;&nbsp;&nbsp; {count}{' '}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {count}{' '}
           </div>
         </div>
 
@@ -27,7 +31,7 @@ function InfoCardOrder({ item, status, count }) {
           <p style={{ float: 'left' }}>Стоимость &emsp; </p>
           <div className="info-order-form-field">
             {' '}
-            &nbsp;&nbsp;&nbsp; {`${price * count}`}&#8381;{' '}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {`${price * count}`}&#8381;{' '}
           </div>
         </div>
 
@@ -35,8 +39,8 @@ function InfoCardOrder({ item, status, count }) {
           <p style={{ float: 'left' }}>Статус заказа &emsp; </p>
           <div
             className="info-order-form-field"
-            style={{ float: 'left', color: status == 'Done' ? 'MediumSeaGreen' 
-                    : status == 'Canceled' ? 'Crimson' : 'Deepskyblue'}}
+            style={{ float: 'left', color: status == orderStatusEnum.DONE ? 'MediumSeaGreen' 
+                    : status == orderStatusEnum.CANCELED ? 'Crimson' : 'Deepskyblue'}}
           >
             &nbsp; {status} &emsp;
           </div>

@@ -6,7 +6,7 @@ import OrderHeader from './OrderHeader';
 import ProductsImages from './ProductsImages';
 
 const OrderSlot = ({ order,user, updateOrder, scene }) => {
-  const { id, total, status, products } = order;
+  const { id, total, status, products, productsInOrder } = order;
 
   return (
     <div className={style.orderSlotWrapper}>
@@ -22,9 +22,22 @@ const OrderSlot = ({ order,user, updateOrder, scene }) => {
             ))}
           </div>
           <div className={style.fieldSpace}>
+            {products.map(item => {
+              let product = productsInOrder.find(v => v.productId === item.id);
+              if(product){
+                return (
+                  <i key={product.id}>
+                    <b>{`${product.count}`}</b>
+                  </i>
+                );
+              }
+            }
+            )}
+          </div>  
+          <div className={style.fieldSpace}>
             {products.map(item => (
               <i key={item.id}>
-                <b>{`${item.price}$`}</b>
+                <b>{`${item.price}`}&#8381;</b>
               </i>
            ))}
           </div>  
@@ -46,18 +59,18 @@ const OrderSlot = ({ order,user, updateOrder, scene }) => {
             </i>
           </div>
           <div className={style.orderField}>
-            <i><b>{`${total}$`}</b></i>
+            <i><b>{`${total}`}&#8381;</b></i>
           </div>
           <div className={style.fieldSpace}>
             <ButtonRound 
-              title="cancel order" 
+              title="Отменить" 
               handler={() => updateOrder(
                 id, orderStatusEnum.CANCELED, user.id, user, total, scene
                 )} 
             />
             <ButtonRound 
               color="is-success"
-              title="accomplish order" 
+              title="Подтвердить" 
               handler={() => updateOrder(
                 id, orderStatusEnum.DONE, user.id, user, total, scene
                 )} 

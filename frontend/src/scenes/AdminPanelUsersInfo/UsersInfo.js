@@ -43,7 +43,7 @@ const UsersInfo = ({
 
   return (
     <div>
-      <div className={style.googleFont}>Users Info</div>
+      <div className={style.googleFont}><b>Информация о пользователях</b></div>
       <div className={style.wrapper}>
         <div className={style.wrapperUser}>
           <SearchBar users={usersShop} setUser={setUser} />

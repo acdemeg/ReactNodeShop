@@ -4,7 +4,7 @@ function ButtonConfirm() {
   return (
     <div>
       <button type="submit" className="button is-primary is-rounded">
-        Confirm
+        Подтвердить
       </button>
     </div>
   );

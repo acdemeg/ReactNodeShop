@@ -1,13 +1,12 @@
 import React from 'react';
 import style from './UsersInfo.scss';
-import { orderStatusEnum, scenesEnum } from '../../constants';
-import ButtonRound from '../../components/buttons/ButtonRound';
+import { orderStatusEnum } from '../../constants';
 
 const UserProfile = ({ user, orders }) => {
   if (!user) {
     return (
       <div className={style.profileUser}>
-        <div className={style.googleFont}>User Not Found</div>
+        <div className={style.googleFont}><b>Пользователь не найден</b></div>
       </div>
     );
   }
@@ -41,43 +40,43 @@ const UserProfile = ({ user, orders }) => {
       <div className={style.userInfo}>
         <div>
           <p>
-            User name:&emsp;
+            Имя пользователя:&emsp;
             <i style={{ color: 'blue' }}>{user.name}</i>
           </p>
         </div>
         <div>
           <p>
-            User email:&emsp;
+            Email пользователя:&emsp;
             <i style={{ color: 'blue' }}>{user.email}</i>
           </p>
         </div>
         <div>
           <p>
-            User phone:&emsp;
+            Телефон пользователя:&emsp;
             <i style={{ color: 'blue' }}>{user.phone}</i>
           </p>
         </div>
         <div>
           <p>
-            User balance:&emsp;
+            Баланс пользователя:&emsp;
             <i style={{ color: 'blue' }}>{user.balance}</i>
           </p>
         </div>
         <div>
           <p>
-            Created orders:&emsp;
+            Созданные заказы:&emsp;
             <i style={{ color: 'gray' }}>{createdOrders}</i>
           </p>
         </div>
         <div>
           <p>
-            Accepted orders:&emsp;
+            Подтвержденные заказы:&emsp;
             <i style={{ color: 'mediumspringgreen' }}>{acceptedOrders}</i>
           </p>
         </div>
         <div>
           <p>
-            Canceled orders:&emsp;
+            Отмененные заказы:&emsp;
             <i style={{ color: 'crimson' }}>{canceledOrdres}</i>
           </p>
         </div>

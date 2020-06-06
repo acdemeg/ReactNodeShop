@@ -3,11 +3,12 @@ import style from './UsersInfo.scss';
 
 const OrderHeader = () => (
   <div className={style.orderHeader}>
-    <div>Name Product</div>
-    <div>Price</div>
-    <div>Status</div>
-    <div>Total cost</div>
-    <div>Action</div>
+    <div>Название</div>
+    <div>Количество</div>
+    <div>Цена</div>
+    <div>Статус</div>
+    <div>Сумма заказа</div>
+    <div>Действия</div>
   </div>
 );
 

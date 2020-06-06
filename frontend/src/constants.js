@@ -47,8 +47,9 @@ const usersRoleEnum = Object.freeze({
 });
 
 const orderStatusEnum = Object.freeze({
-  DONE: 'Done',
-  CANCELED: 'Canceled',
+  DONE: 'Выполнен',
+  CANCELED: 'Отменен',
+  DELIVERING: 'В обработке',
 });
 
 const typeModalEnum = Object.freeze({
@@ -60,22 +61,21 @@ const typeModalEnum = Object.freeze({
 
 
 const messages = Object.freeze({
-  MAKE_ORDER: 'Your order has accepted',
-  FILL_UP: 'Your balance updated',
-  EMAIL_UPDATE: 'Your email updated',
-  ORDER_UPDATE: 'Status your orders was updated',
-  PHONE_UPDATE: 'Your phone updated',
-  NAME_UPDATE: 'Your name updated',
-  LOG_IN: 'You logged your account',
-  LOG_OUT: 'You logout your account',
-  LOG_IN_ERROR: 'Incorrect email or password',
-  ORDER_UPDATE_ERROR: 'Status your orders was not updated',
-  REG: 'You succses registered',
-  REG_ERROR: 'Registraton failed',
-  REG_ERROR: 'Registraton failed',
-  PASSWORD_DISPARITY: 'Entered passwords have inconsistency',
-  MAKE_ORDER_ERROR: 'Not enough funds in your account',
-  MAKE_ORDER_FAILED: 'Impossible create order',
+  MAKE_ORDER: 'Ваш заказ был подтвержден',
+  FILL_UP: 'Вы пополнили баланс',
+  EMAIL_UPDATE: 'Email обновлен',
+  ORDER_UPDATE: 'Статус вашего заказа был обновлен',
+  PHONE_UPDATE: 'Ваш телефон обновлен',
+  NAME_UPDATE: 'Ваше имя обновлено',
+  LOG_IN: 'Вы вошли в аккаунт',
+  LOG_OUT: 'Вы вышли из аккаунта',
+  LOG_IN_ERROR: 'Ошибка авторизации',
+  ORDER_UPDATE_ERROR: 'Ошибка обновления заказа',
+  REG: 'Вы успешно зарегистрировались',
+  REG_ERROR: 'Ошибка регистрации',
+  PASSWORD_DISPARITY: 'Введенные пароли не совпадают',
+  MAKE_ORDER_ERROR: 'Не достаточно средств для совершения заказа',
+  MAKE_ORDER_FAILED: 'Невозможно создать заказ',
 });
 
 export { 

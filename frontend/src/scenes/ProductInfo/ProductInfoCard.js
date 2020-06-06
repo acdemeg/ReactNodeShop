@@ -12,7 +12,7 @@ const ProductInfoCard = ({ product, onAddedToCart, isLoggedIn }) => {
   return (
     <div className={wrapperProductInfo}>
       <div className={photoWrapper}>
-      <img src={`/upload/products/${pathImage}`} alt="productPhoto" width="500px" height="500px"/>
+      <img src={`/upload/products/${pathImage}`} alt="productPhoto" width="400px" height="400px"/>
       </div>
       <div className={productInfo}>
         <div>

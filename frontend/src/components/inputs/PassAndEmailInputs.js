@@ -12,7 +12,7 @@ function PassAndEmailInputs() {
         minLength="3"
         iconLeft="envelope"
         iconRight="iconEmail"
-        inputTitle="Enter your email"
+        inputTitle="Введите ваш email"
       />
 
       <InputField
@@ -23,7 +23,7 @@ function PassAndEmailInputs() {
         minLength="6"
         iconLeft="lock"
         iconRight="iconPassw"
-        inputTitle="Enter your password"
+        inputTitle="Введите ваш пароль"
       />
     </>
   );
