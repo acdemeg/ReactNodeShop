@@ -7,6 +7,20 @@ import {
 } from '../constants';
 import appServiceData from '../App/appServiceData';
 
+const PRODUCT_LOADED = newProduct => ({
+  type: actionsEnum.PRODUCT_LOADED,
+  payload: newProduct,
+});
+
+const PRODUCT_REQUESTED = () => ({
+  type: actionsEnum.PRODUCT_REQUESTED,
+});
+
+const PRODUCT_ERROR = error => ({
+  type: actionsEnum.PRODUCT_ERROR,
+  payload: error,
+});
+
 const GOODS_LOADED = newGoods => ({
   type: actionsEnum.GOODS_LOADED,
   payload: newGoods,
@@ -153,8 +167,15 @@ const REGISTER = (event, dispatch) => {
   });
 };
 
+const fetchProductInfo = (id, dispatch) => {
+  dispatch(PRODUCT_REQUESTED());
+  appServiceData
+    .getProductById(id)
+    .then(data => dispatch(PRODUCT_LOADED(data)))
+    .catch(err => dispatch(PRODUCT_ERROR(err)));
+};
 
-const fetchGoods = (appServiceData, dispatch) => () => {
+const fetchGoods = (appServiceData, dispatch) => {
   dispatch(GOODS_REQUESTED());
   appServiceData
     .getProducts()
@@ -336,6 +357,7 @@ const UPDATE_ORDER = (id, newStatus, userId, profile, orderTotal, scene, dispatc
 };
 
 export {
+  fetchProductInfo,
   fetchFullInfo,
   fetchGoods,
   fetchOrders,

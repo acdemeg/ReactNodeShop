@@ -11,7 +11,7 @@ const Name = ({ name }) => (
       }}
       icon="user"
     />{' '}
-    &nbsp; Name: &emsp;&emsp; {name}
+    &nbsp; Имя: &emsp;&emsp; {name}
   </div>
 );
 

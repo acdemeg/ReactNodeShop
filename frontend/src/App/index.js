@@ -8,6 +8,7 @@ import ProfilePage from '../scenes/Profile';
 import CartGoods from '../scenes/CartGoods';
 import AdminPanelUsersInfo from '../scenes/AdminPanelUsersInfo';
 import Navigation from './Navbar';
+import ProductInfo from '../scenes/ProductInfo'
 import './App.scss';
 
 const App = () => (
@@ -21,6 +22,7 @@ const App = () => (
       <Route path="/profilePage" component={ProfilePage} />
       <Route path="/cartPage" component={CartGoods} />
       <Route path="/adminPanel" component={AdminPanelUsersInfo}/>
+      <Route path="/productInfo/:id" component={ProductInfo}/>
       <Route path="/addProduct" component={null}/>
       <Redirect from="/" to="/" />
     </Switch>

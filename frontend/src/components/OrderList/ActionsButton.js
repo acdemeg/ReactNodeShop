@@ -18,7 +18,7 @@ const ActionsButton = ({ orderId, updateOrder, userId, profile, orderTotal }) =>
           nameClass === 'dropdown' ? setNameClass('dropdown is-active') : setNameClass('dropdown');
         }}
       >
-        <span style={{ marginLeft: '50px' }}>ACTIONS</span>
+        <span style={{ marginLeft: '40px' }}>ДЕЙСТВИЯ</span>
         <div
           className="dropdown-menu"
           id="dropdown-menu"
@@ -37,7 +37,7 @@ const ActionsButton = ({ orderId, updateOrder, userId, profile, orderTotal }) =>
                 orderTotal,
                 scenesEnum.ORDER_LIST
                 )}>
-              Cancel
+              Отменить заказ
             </a>
             <a
               href="#"
@@ -51,7 +51,7 @@ const ActionsButton = ({ orderId, updateOrder, userId, profile, orderTotal }) =>
                 scenesEnum.ORDER_LIST
                 )}
             >
-              Accomplish
+              Подтвердить получение
             </a>
           </div>
         </div>

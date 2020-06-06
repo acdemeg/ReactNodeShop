@@ -11,7 +11,7 @@ const Phone = ({ phone }) => (
       }}
       icon="phone-square-alt"
     />{' '}
-    &nbsp; Phone: &emsp;&nbsp;&nbsp;&nbsp; {phone}
+    &nbsp; Телефон: &emsp;&nbsp;&nbsp;&nbsp; {phone}
   </div>
 );
 

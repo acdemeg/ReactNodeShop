@@ -5,7 +5,7 @@ import '../Profile.css';
 const RedactFields = ({ openModal }) => (
   <div style={{ float: 'right' }}>
     <div
-      onClick={() => openModal({ type: typeModalEnum.NAME, title: 'Enter your new Name' })}
+      onClick={() => openModal({ type: typeModalEnum.NAME, title: 'Введите ваше новое имя' })}
       className="redact"
       style={{ fontSize: '20pt' }}
     >
@@ -14,7 +14,7 @@ const RedactFields = ({ openModal }) => (
     </div>
 
     <div
-      onClick={() => openModal({ type: typeModalEnum.PHONE, title: 'Enter your new Phone' })}
+      onClick={() => openModal({ type: typeModalEnum.PHONE, title: 'Введите ваш новый телефон' })}
       className="redact"
       style={{ fontSize: '20pt' }}
     >
@@ -23,7 +23,7 @@ const RedactFields = ({ openModal }) => (
     </div>
 
     <div
-      onClick={() => openModal({ type: typeModalEnum.EMAIL, title: 'Enter your new Email' })}
+      onClick={() => openModal({ type: typeModalEnum.EMAIL, title: 'Введите ваш новый Email' })}
       className="redact"
       style={{ fontSize: '20pt' }}
     >
@@ -32,11 +32,11 @@ const RedactFields = ({ openModal }) => (
     </div>
 
     <div
-      onClick={() => openModal({ type: typeModalEnum.FILL_UP, title: 'Fill up your balance' })}
+      onClick={() => openModal({ type: typeModalEnum.FILL_UP, title: 'Пополнить ваш баланс' })}
       className="redact"
       style={{ fontSize: '15pt' }}
     >
-      fill up
+      Пополнить
     </div>
   </div>
 );

@@ -19,7 +19,7 @@ function ProductInCart({ item, onIncrease, onDecrease, onDelete }) {
         <img src={`/upload/products/${pathImage}`} width="80px" height="80px" />
       </div>
       <div className="cart-goods-title"> {nameProduct} </div>
-      <div className="cart-goods-price"> {`${total}$`} </div>
+      <div className="cart-goods-price"> {`${total}`}&#8381; </div>
     </div>
   );
 }

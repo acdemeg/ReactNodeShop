@@ -47,7 +47,7 @@ function Profile({
       <>
         <div className="profile">
           <div className="profile-header">
-            <b>My profile</b>
+            <b>Мой профиль</b>
           </div>
           <div className="profile-container">
             <div className="image_container">

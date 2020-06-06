@@ -6,7 +6,7 @@ const CartFooter = ({ orderTotal, makeOrder, items }) => (
   <div className="cart-footer">
     <div className="left">
       <span style={{ fontSize: '15pt' }}>
-        &emsp;Order &nbsp; summary &emsp; {`${orderTotal}$`}
+        &emsp;Сумма &nbsp; заказа &emsp; {`${orderTotal}`}&#8381;
         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;
       </span>
     </div>

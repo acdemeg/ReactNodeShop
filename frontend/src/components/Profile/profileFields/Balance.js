@@ -2,8 +2,6 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../Profile.css';
 
-// Please check your all code for CopyPaste and fix it.
-// --mrurenko 2020-01-14
 const Balance = ({ balance }) => (
   <div className="profile-field">
     <FontAwesomeIcon
@@ -13,7 +11,7 @@ const Balance = ({ balance }) => (
       }}
       icon="wallet"
     />{' '}
-    &nbsp; Balance: &emsp; {`${balance}$`}
+    &nbsp; Баланс счета: &emsp; {`${balance}`}&#8381;
   </div>
 );
 

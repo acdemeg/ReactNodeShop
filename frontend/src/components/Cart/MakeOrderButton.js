@@ -16,7 +16,7 @@ const MakeOrderButton = ({ makeOrder, items, orderTotal, userId, profile }) => {
       onClick={() => makeOrder(orderTotal, items, messages.MAKE_ORDER, userId, profile)}
       className={getClassStyle(items)}
     >
-      MAKE ORDER
+      ЗАКАЗАТЬ
     </div>
   );
 };

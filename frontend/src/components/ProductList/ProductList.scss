@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Sigmar+One&display=swap');
+
+.googleFont {
+  font-size: 70px;
+  font-family: 'Sigmar One', cursive;
+  text-align: center;
+  margin-top: 10%;
+  margin-left: 20%;
+  position: absolute;
+}
+
 .productListWrapper{
   display: flex;
   flex-direction: row;
@@ -13,9 +24,9 @@
 }
 
 .sideBar{
-  width: 15%;
-  height: 100%;
-  min-height: 700px;
+  width: 16%;
+  min-height: 750px;
+  min-width: 200px;
   background-color: lightsteelblue;
   position: absolute;
   border-radius: 10px;
@@ -25,4 +36,22 @@
 
 .searchGoods {
   padding: 5% 1% 1% 1%;
+}
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  height: 750px;
+  padding-left: 3%;
+}
+
+.titleCategory {
+  font-family: monospace;
+  font-size: large;
+  &:hover{
+    color: orange;
+    cursor: pointer;
+  }
 }

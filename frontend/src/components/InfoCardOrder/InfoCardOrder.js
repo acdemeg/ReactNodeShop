@@ -16,7 +16,7 @@ function InfoCardOrder({ item, status, count }) {
         </div>
 
         <div style={{ marginBottom: '6px' }}>
-          <p style={{ float: 'left' }}>Count &emsp; </p>
+          <p style={{ float: 'left' }}>Количество &emsp; </p>
           <div className="info-order-form-field">
             {' '}
             &nbsp;&nbsp;&nbsp; {count}{' '}
@@ -24,15 +24,15 @@ function InfoCardOrder({ item, status, count }) {
         </div>
 
         <div style={{ marginBottom: '6px' }}>
-          <p style={{ float: 'left' }}>Total &emsp; </p>
+          <p style={{ float: 'left' }}>Стоимость &emsp; </p>
           <div className="info-order-form-field">
             {' '}
-            &nbsp;&nbsp;&nbsp; {`${price * count}$`}{' '}
+            &nbsp;&nbsp;&nbsp; {`${price * count}`}&#8381;{' '}
           </div>
         </div>
 
         <div>
-          <p style={{ float: 'left' }}>Status &emsp; </p>
+          <p style={{ float: 'left' }}>Статус заказа &emsp; </p>
           <div
             className="info-order-form-field"
             style={{ float: 'left', color: status == 'Done' ? 'MediumSeaGreen' 

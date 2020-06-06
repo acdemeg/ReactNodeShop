@@ -18,7 +18,18 @@ import {
   faExclamation,
   faUser,
   faSearch,
-  faPhone
+  faPhone,
+  faDesktop,
+  faMemory,
+  faPlug,
+  faServer,
+  faMicrochip,
+  faFan,
+  faBox,
+  faSave,
+  faShieldAlt,
+  faSatelliteDish,
+  faLaptop
 } from '@fortawesome/free-solid-svg-icons';
 
 import compose from './compose';
@@ -44,7 +55,18 @@ function initFontAwesomeLibrary() {
     faCheck,
     faLock,
     faExclamation,
-    faPhone
+    faPhone,
+    faDesktop,
+    faMemory,
+    faPlug,
+    faServer,
+    faMicrochip,
+    faFan,
+    faBox,
+    faSave,
+    faShieldAlt,
+    faSatelliteDish,
+    faLaptop
   );
 }
 

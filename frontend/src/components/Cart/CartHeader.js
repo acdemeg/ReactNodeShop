@@ -4,9 +4,9 @@ import './Cart.css';
 const CartHeader = () => (
   <div className="cart-header">
     <span style={{ fontSize: '15pt' }}>
-      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Count &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Title
-      &emsp;&emsp;&emsp;&emsp;&emsp;Total&nbsp;price
+      &emsp;&emsp;&emsp;&emsp;&emsp;Количество
+      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Название
+      &emsp;&emsp;&emsp;&emsp;&emsp;Стоимость&nbsp;
     </span>
   </div>
 );

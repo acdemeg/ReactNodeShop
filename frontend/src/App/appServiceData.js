@@ -13,6 +13,11 @@ class AppServiceData {
     return res;
   }
 
+  async getProductById(id) {
+    const res = await this.getResourse(`/api/products/${id}`);
+    return res;
+  }
+
   async getUsers() {
     const res = await this.getResourse(`/api/Users`);
     return res;

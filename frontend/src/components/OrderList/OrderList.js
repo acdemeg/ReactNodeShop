@@ -12,11 +12,11 @@ import ShowNotification from '../ShowNotification';
 
 const OrderList = ({ orders, updateOrder, notifications, profile }) => (
   <div>
-    <div className="order-status-title">current orders</div>
+    <div className="order-status-title">текущие заказы</div>
     {orders.map(order => (order.status === 'Delivering') ? (
       <Order key={order.id} order={order} updateOrder={updateOrder} profile={profile}/>
     ) : null )}
-    <div className="order-status-title">orders history</div>
+    <div className="order-status-title">история заказов</div>
     {orders.map(order => (order.status !== 'Delivering') ? (
       <Order key={order.id} order={order} updateOrder={"disable"} profile={profile}/>
     ) : null )}

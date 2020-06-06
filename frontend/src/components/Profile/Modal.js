@@ -56,14 +56,14 @@ const Modal = ({ title, typeModal, isOpenModal, onCancel, onSubmit, profile }) =
                   className="button is-rounded is-small cancel"
                 >
                   {' '}
-                  Cancel{' '}
+                Отменить{' '}
               </button>
               <button
                 type="submit"
                 className="button is-rounded is-small submit"
               >
                 {' '}
-                Submit{' '}
+                Подтвердить{' '}
               </button>
             </div>
           </div>

@@ -7,6 +7,11 @@
   height: 40px;
 }
 
+.add-disabled{
+  pointer-events: none;
+  opacity: 0.4;
+}
+
 .add-to-card:hover  {
   background-color: DodgerBlue;
 };
