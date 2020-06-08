@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
 import { useParams, Redirect } from 'react-router-dom';
 import { googleFont, wrapper, wrapperProductInfo, border } from './ProductInfo.scss'
-import { fetchProductInfo, GOODS_ADDED_TO_CART, SHOW_ALERT } from '../../store/actions';
+import { 
+  fetchProductInfo, 
+  GOODS_ADDED_TO_CART, 
+  SHOW_ALERT,
+  PRODUCT_REMOVE
+ } from '../../store/actions';
 import { connect } from 'react-redux';
 import { scenesEnum } from '../../constants';
 import Spinner from '../../components/Spinner';
@@ -16,7 +21,9 @@ const ProductInfo = ({
   loading, 
   error,
   onAddedToCart,
-  fetchProduct
+  removeProduct,
+  fetchProduct,
+  profile
 }) => {
 
   const params = useParams();
@@ -46,7 +53,13 @@ const ProductInfo = ({
 
   return (
     <div className={wrapper}>
-      <ProductInfoCard product={product} onAddedToCart={onAddedToCart} isLoggedIn={isLoggedIn}/>
+      <ProductInfoCard 
+        product={product} 
+        onAddedToCart={onAddedToCart}
+        removeProduct={removeProduct} 
+        isLoggedIn={isLoggedIn} 
+        profile={profile}
+      />
       <hr className={border}></hr>
       <div className={wrapperProductInfo}>
         <div
@@ -72,13 +85,15 @@ const ProductInfo = ({
 const mapStateToProps = ({
   notifications,
   authorization: { isLoggedIn },
-  productInfo: { product, loading, error }
+  productInfo: { product, loading, error },
+  profile
 }) => ({
   notifications,
   isLoggedIn,
   product, 
   loading, 
   error,
+  profile
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -87,6 +102,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(GOODS_ADDED_TO_CART(id));
     dispatch(SHOW_ALERT(scenesEnum.PRODUCT_INFO, nameProduct));
   },
+  removeProduct: (productId) => PRODUCT_REMOVE(productId, dispatch)
 });
 
 export default connect(

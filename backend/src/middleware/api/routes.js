@@ -12,7 +12,7 @@ router
   .get('/api/products', async ctx => {
     ctx.body = await products.getAll();
   })
-  .post('/api/products', koaBody(), async ctx => {
+  .post('/api/products', koaBody({formLimit: '5mb', jsonLimit: '5mb'}), async ctx => {
     ctx.body = await products.addProduct(ctx.request.body);
   })
   .get('/api/products/:id', async ctx => {

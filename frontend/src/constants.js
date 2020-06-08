@@ -38,7 +38,8 @@ const scenesEnum = Object.freeze({
   LOG_IN: 'Log-In',
   REG: 'Reg',
   ADMIN_USERS_INFO: 'ADMIN_USERS_INFO',
-  PRODUCT_INFO: 'PRODUCT_INFO'
+  PRODUCT_INFO: 'PRODUCT_INFO',
+  ADD_PRODUCT: 'ADD_PRODUCT'
 });
 
 const usersRoleEnum = Object.freeze({
@@ -76,6 +77,10 @@ const messages = Object.freeze({
   PASSWORD_DISPARITY: 'Введенные пароли не совпадают',
   MAKE_ORDER_ERROR: 'Не достаточно средств для совершения заказа',
   MAKE_ORDER_FAILED: 'Невозможно создать заказ',
+  ADD_PRODUCT: 'Продукт успешно добавлен',
+  ADD_PRODUCT_ERROR: 'Произошла обшибка',
+  PRODUCT_REMOVE: 'Товар удален из базы данных',
+  PRODUCT_REMOVE_ERROR: 'Произошла ошибка при удалении'
 });
 
 export { 

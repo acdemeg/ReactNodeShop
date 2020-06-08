@@ -9,6 +9,7 @@ import CartGoods from '../scenes/CartGoods';
 import AdminPanelUsersInfo from '../scenes/AdminPanelUsersInfo';
 import Navigation from './Navbar';
 import ProductInfo from '../scenes/ProductInfo'
+import AddGoods from '../scenes/AddGoods';
 import './App.scss';
 
 const App = () => (
@@ -23,7 +24,7 @@ const App = () => (
       <Route path="/cartPage" component={CartGoods} />
       <Route path="/adminPanel" component={AdminPanelUsersInfo}/>
       <Route path="/productInfo/:id" component={ProductInfo}/>
-      <Route path="/addProduct" component={null}/>
+      <Route path="/addProduct" component={AddGoods}/>
       <Redirect from="/" to="/" />
     </Switch>
   </Fragment>

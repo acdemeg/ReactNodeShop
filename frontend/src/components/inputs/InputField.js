@@ -17,6 +17,14 @@ function InputField({
     colorPhone: 'grey',
     iconPasswRepeat: 'exclamation',
     colorPasswRepeat: 'grey',
+    iconProductTitle: 'exclamation',
+    colorProductTitle: 'grey',
+    iconDesc: 'exclamation',
+    colorDesc: 'grey',
+    iconCountProduct: 'exclamation',
+    colorCountProduct: 'grey',
+    iconPrice: 'exclamation',
+    colorPrice: 'grey',
   });
 
   const changeInput = e => {
@@ -43,6 +51,14 @@ function InputField({
         return changeState('iconPassw', 'colorPassw');
       case 'password_repeat':
         return changeState('iconPasswRepeat', 'colorPasswRepeat');
+      case 'productTitle':
+        return changeState('iconProductTitle', 'colorProductTitle');
+      case 'desc':
+        return changeState('iconDesc', 'colorDesc');
+      case 'countProduct':
+        return changeState('iconCountProduct', 'colorCountProduct');
+      case 'price':
+        return changeState('iconPrice', 'colorPrice');
       default:
         return null;
     }

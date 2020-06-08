@@ -1,4 +1,5 @@
 import React from 'react';
+import { usersRoleEnum } from '../../constants';
 import { 
   wrapperProductInfo,
   productInfo,
@@ -6,7 +7,7 @@ import {
   addToCartDisabled
 } from './ProductInfo.scss'
 
-const ProductInfoCard = ({ product, onAddedToCart, isLoggedIn }) => {
+const ProductInfoCard = ({ product, onAddedToCart, removeProduct, isLoggedIn, profile }) => {
   const { id, nameProduct, count, description, price, pathImage } = product;
 
   return (
@@ -47,6 +48,27 @@ const ProductInfoCard = ({ product, onAddedToCart, isLoggedIn }) => {
           >
             Добавить в корзину
           </button>
+          {
+            (usersRoleEnum.ADMIN === "ADMIN")
+            ? <>
+                  <button
+                    style={{ background: "burlywood", marginLeft: "5%"}}
+                    onClick={() => removeProduct(id)}
+                    className={`button is-rounded is-small add-to-card `}
+                  >
+                    Модифицировать
+                  </button>
+                  <button
+                    style={{ background: "crimson", marginLeft: "5%"}}
+                    onClick={() => removeProduct(id)}
+                    className={`button is-rounded is-small add-to-card`}
+                  >
+                    Удалить товар
+                  </button>
+            </>
+            : null
+          }
+
       </div>
       </div>
     </div>

@@ -31,7 +31,11 @@ import {
   faSatelliteDish,
   faLaptop,
   faGamepad,
-  faAtom
+  faAtom,
+  faRubleSign,
+  faCalculator,
+  faPencilAlt,
+  faAd,
 } from '@fortawesome/free-solid-svg-icons';
 
 import compose from './compose';
@@ -70,7 +74,11 @@ function initFontAwesomeLibrary() {
     faSatelliteDish,
     faLaptop,
     faGamepad,
-    faAtom
+    faAtom,
+    faRubleSign,
+    faCalculator,
+    faPencilAlt,
+    faAd
   );
 }
 

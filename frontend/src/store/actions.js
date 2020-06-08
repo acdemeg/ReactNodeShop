@@ -356,6 +356,38 @@ const UPDATE_ORDER = (id, newStatus, userId, profile, orderTotal, scene, dispatc
   });
 };
 
+const ADD_GOODS = (event, dispatch, picture) => {
+  event.preventDefault();
+
+  const formDate = new FormData(AddProductForm);
+  const product = {
+    nameProduct: formDate.get("productTitle"),
+    description: formDate.get("desc"),
+    count: formDate.get("countProduct"),
+    price: formDate.get("price"),
+    category: formDate.get("category"),
+    detailInfo: formDate.get("detail"),
+    pathImage: picture.fileName
+  }
+
+  appServiceData.addProduct(product).then((res) => {
+    if(res){
+      dispatch(SHOW_ALERT(scenesEnum.ADD_PRODUCT, messages.ADD_PRODUCT));
+    }
+    else dispatch(SHOW_ALERT(scenesEnum.ADD_PRODUCT, messages.ADD_PRODUCT_ERROR, "error"));
+  });
+};
+
+const PRODUCT_REMOVE = (productId, dispatch) => {
+  appServiceData.deletProduct(productId).then(res => {
+    if (res) {
+      dispatch(SHOW_ALERT(scenesEnum.PRODUCT_INFO, messages.PRODUCT_REMOVE));
+    } else {
+      dispatch(SHOW_ALERT(scenesEnum.PRODUCT_INFO, messages.PRODUCT_REMOVE, "error"));
+    }
+  });
+};
+
 export {
   fetchProductInfo,
   fetchFullInfo,
@@ -376,5 +408,7 @@ export {
   LOG_OUT,
   REGISTER,
   LOGIN,
-  UPDATE_PROFILE
+  UPDATE_PROFILE,
+  ADD_GOODS,
+  PRODUCT_REMOVE
 };

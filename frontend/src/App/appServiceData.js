@@ -62,6 +62,17 @@ class AppServiceData {
     return res.data === 'succses';
   }
 
+  async addProduct(product) {
+    const res = await axios.post(`/api/products`, product)
+      .catch(err => `${err}`);
+    return res.data === 'succses add product';
+  }
+
+  async deletProduct(id) {
+    const res = await axios.delete(`/api/products/${id}`);
+    return res;
+  }
+
   async regUser(user) {
     const res = await axios.post(`/api/users/register`, user)
       .catch(err => `${err}`);
