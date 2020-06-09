@@ -79,6 +79,8 @@ const messages = Object.freeze({
   MAKE_ORDER_FAILED: 'Невозможно создать заказ',
   ADD_PRODUCT: 'Продукт успешно добавлен',
   ADD_PRODUCT_ERROR: 'Произошла обшибка',
+  UPDATE_PRODUCT: 'Продукт успешно обновлен',
+  UPDATE_PRODUCT_ERROR: 'Произошла обшибка обновления',
   PRODUCT_REMOVE: 'Товар удален из базы данных',
   PRODUCT_REMOVE_ERROR: 'Произошла ошибка при удалении'
 });

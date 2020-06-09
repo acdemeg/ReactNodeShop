@@ -15,13 +15,16 @@ class ImageUpload extends React.Component {
 
     reader.onloadend = () => {
       this.setState({
-        file: file,
+        fileName: file.name,
         imagePreviewUrl: reader.result
       });
 
-      this.props.setPicture({
-        fileName: file.name,
-      })
+      if(file){
+        this.props.setPicture({
+          fileName: file.name,
+          imagePreviewUrl: reader.result
+        })
+      }
     }
 
     reader.readAsDataURL(file);
@@ -33,7 +36,20 @@ class ImageUpload extends React.Component {
     if (imagePreviewUrl) {
       $imagePreview = (<img src={imagePreviewUrl} />);
     } else {
-      $imagePreview = (<div className="previewText">Пожалуйста выбирете изображение для превью</div>);
+      if(this.props.product){
+        $imagePreview = (this.props.product.pathImage) 
+          ? <img 
+              src={(this.props.product.pathImage.startsWith("data:image/")) 
+              ? this.props.product.pathImage : `/upload/products/${this.props.product.pathImage}` }
+           />
+          : <img src={`/upload/products/notImage.png`}/>
+        
+      }
+      else {
+        $imagePreview = (
+          <div className="previewText">Пожалуйста выбирете изображение для превью</div>
+          );
+      }
     }
 
     return (

@@ -12,13 +12,19 @@ router
   .get('/api/products', async ctx => {
     ctx.body = await products.getAll();
   })
-  .post('/api/products', koaBody({formLimit: '5mb', jsonLimit: '5mb'}), async ctx => {
+  .post('/api/products', koaBody({
+    textLimit: 52428800, formLimit: 52428800, 
+    jsonLimit: 52428800, maxFieldsSize: 102428800
+  }), async ctx => {
     ctx.body = await products.addProduct(ctx.request.body);
   })
   .get('/api/products/:id', async ctx => {
     ctx.body = await products.getProductInfo(ctx.params.id);
   })
-  .put('/api/products/:id', koaBody(), async ctx => {
+  .put('/api/products/:id', koaBody({
+    textLimit: 52428800, formLimit: 52428800, 
+    jsonLimit: 52428800, maxFieldsSize: 102428800
+  }), async ctx => {
     ctx.body = await products.updateProduct(ctx.params.id, ctx.request.body);
   })
   .delete('/api/products/:id', async ctx => {

@@ -87,7 +87,7 @@ const mapDispatchToProps = dispatch => ({
   fetchGoods: () => fetchGoods(appServiceData, dispatch),
   onAddedToCart: (id, nameProduct) => {
     dispatch(GOODS_ADDED_TO_CART(id));
-    dispatch(SHOW_ALERT(scenesEnum.PRODUCT_LIST, nameProduct));
+    dispatch(SHOW_ALERT(scenesEnum.PRODUCT_LIST, `Продукт ${nameProduct} добавлен в корзину`));
   },
 });
 

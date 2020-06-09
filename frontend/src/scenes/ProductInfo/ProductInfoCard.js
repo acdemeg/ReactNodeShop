@@ -13,7 +13,12 @@ const ProductInfoCard = ({ product, onAddedToCart, removeProduct, isLoggedIn, pr
   return (
     <div className={wrapperProductInfo}>
       <div className={photoWrapper}>
-      <img src={`/upload/products/${pathImage}`} alt="productPhoto" width="400px" height="400px"/>
+        {
+          (pathImage) 
+          ? <img src={(pathImage.startsWith("data:image/")) ? pathImage : `/upload/products/${pathImage}` }
+              alt="productPhoto" width="400px" height="400px"/>
+          : <img src={`/upload/products/notImage.png`} width="400px" height="400px" />
+        }
       </div>
       <div className={productInfo}>
         <div>
@@ -49,15 +54,16 @@ const ProductInfoCard = ({ product, onAddedToCart, removeProduct, isLoggedIn, pr
             Добавить в корзину
           </button>
           {
-            (usersRoleEnum.ADMIN === "ADMIN")
+            (usersRoleEnum.ADMIN === profile.role)
             ? <>
-                  <button
-                    style={{ background: "burlywood", marginLeft: "5%"}}
-                    onClick={() => removeProduct(id)}
-                    className={`button is-rounded is-small add-to-card `}
-                  >
-                    Модифицировать
-                  </button>
+                  <a href="#modify">
+                    <button
+                      style={{ background: "burlywood", marginLeft: "5%"}}
+                      className={`button is-rounded is-small add-to-card `}
+                    >
+                      Модифицировать
+                    </button>
+                  </a>
                   <button
                     style={{ background: "crimson", marginLeft: "5%"}}
                     onClick={() => removeProduct(id)}

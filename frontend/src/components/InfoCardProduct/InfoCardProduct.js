@@ -9,7 +9,14 @@ function InfoCardProduct({ item, onAddedToCart, isLoggedIn }) {
   return (
     <div style={style.infoCardForm}>
       <div style={style.imagePlace}>
-        <img src={`/upload/products/${pathImage}`} width="180px" height="180px" />
+        {
+          (pathImage) 
+          ? <img 
+              src={(pathImage.startsWith("data:image/")) ? pathImage : `/upload/products/${pathImage}` }
+              width="180px" height="180px" />
+          : <img src={`/upload/products/notImage.png`} width="180px" height="180px" />
+        }
+        
       </div>
       <div style={style.titleProduct}>
         <div style={{ marginLeft: '10px' }}>

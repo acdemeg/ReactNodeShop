@@ -27,14 +27,14 @@ const products = {
       .catch(err => `can't find product with id = ${productId} ${err}`);
   },
 
-  updateProduct: async (productId, obj) => {
+  updateProduct: async (productId, product) => {
     const [res] = await Product.update(
       { 
-        nameProduct: obj.nameProduct,
-        description: obj.description,
-        count: obj.count,
-        price: obj.price,
-        pathImage: obj.pathImage,
+        nameProduct: product.nameProduct,
+        description: product.description,
+        count: product.count,
+        price: product.price,
+        pathImage: product.pathImage,
         category: product.category,
         detailInfo: product.detailInfo
       },

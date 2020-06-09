@@ -3,7 +3,19 @@ import InputField from '../../components/inputs/InputField'
 import SelectInput from '../../components/inputs/SelectInput'
 import { mainProductInfo } from './AddGoods.scss'
 
-function MainProductInfo(){
+function MainProductInfo({ product }){
+
+  let titleProduct = "";
+  let descProduct = "";
+  let countProduct = "";
+  let priceProduct = "";
+
+  if(product){
+    titleProduct = product.nameProduct;
+    descProduct = product.description;
+    countProduct = product.count;
+    priceProduct = product.price;
+  }
 
   return (
     <div className={mainProductInfo}>
@@ -16,6 +28,7 @@ function MainProductInfo(){
         iconRight="iconProductTitle"
         minLength="1"
         inputTitle="Введите название товара"
+        value={titleProduct}
       />
       <InputField
         inputColor="colorDesc"
@@ -26,6 +39,7 @@ function MainProductInfo(){
         iconRight="iconDesc"
         minLength="1"
         inputTitle="Введите краткое описание"
+        value={descProduct}
       /> 
       
       <SelectInput nameForm="category"/>
@@ -39,6 +53,7 @@ function MainProductInfo(){
         minLength="1"
         iconRight="iconCountProduct"
         inputTitle="Введите количество"
+        value={countProduct}
       /> 
       <InputField
         inputColor="colorPrice"
@@ -49,6 +64,7 @@ function MainProductInfo(){
         iconRight="iconPrice"
         minLength="1"
         inputTitle="Введите цену Руб." 
+        value={priceProduct}
       />  
     </div>
   );

@@ -9,7 +9,12 @@ function InfoCardOrder({ item, status, count }) {
   return (
     <div className="info-order-form">
       <div className="image-place-order">
-        <img src={`/upload/products/${pathImage}`} width="160px" height="160px" />
+        {
+          (pathImage) 
+          ? <img src={(pathImage.startsWith("data:image/")) ? pathImage : `/upload/products/${pathImage}` }
+            width="160px" height="160px" />
+          : <img src={`/upload/products/notImage.png`} width="160px" height="160px" />
+        }
       </div>
 
       <div className="order-place">

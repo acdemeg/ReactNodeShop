@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ProductList.scss';
 import SearchInput from '../../components/inputs/SearchInput';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,6 +26,8 @@ const Category = ({ title, iconName, setCategory }) => {
 }
 
 const SideBar = ({ goods, setGoodsList }) => {
+
+  const [priceBound, setPriceBound] = useState(100000);
   
   const sortGoodsList = e => {
     const title = e.target.value.toLowerCase();
@@ -34,18 +36,44 @@ const SideBar = ({ goods, setGoodsList }) => {
   };
 
   const getGoodsByCategory = category => {
-    if(category === "Все товары")
+    if(category === "Все товары"){
+      setPriceBound(1000000)
       return setGoodsList(goods);
+    }
     const filterGoods = goods.filter(v => v.category === category);
+    return setGoodsList(filterGoods);
+  }
+
+  const getGoodsByPrice = price => {
+    setPriceBound(price)
+    const filterGoods = goods.filter(v => v.price <= price);
     return setGoodsList(filterGoods);
   }
 
   return (
   <div className={styles.sideBar}>
     <div className={styles.searchGoods}>
-      <SearchInput sortList={sortGoodsList} placeholder="Enter product title"/>
+      <SearchInput sortList={sortGoodsList} placeholder="Введите название продукта"/>
+
     </div>
     <div className={styles.categories}>
+      <b>Укажите границу цены:&emsp;</b>
+      <input
+        type="number" 
+        value={priceBound}
+        onChange={(e) => getGoodsByPrice(e.target.value)}
+      >
+      </input>
+      <input
+        className="slider is-fullwidth is-success" 
+        step="100" 
+        min="0" 
+        max="100000" 
+        value={priceBound}
+        type="range"
+        onChange={(e) => getGoodsByPrice(e.target.value)}
+        >
+      </input>
       <Category title="Все товары" iconName="atom" setCategory={getGoodsByCategory}/>
       <Category title="Мониторы" iconName="desktop" setCategory={getGoodsByCategory}/>
       <Category title="Ноутбуки" iconName="laptop" setCategory={getGoodsByCategory}/>

@@ -70,7 +70,7 @@ module.exports = {
       },
       {
         nameProduct: 'NVIDIA Quadro RTX 8000',
-        count: 123000,
+        count: 12,
         description: 'GP100 16Gb',
         price: 12500,
         pathImage: 'nvidia_quadro_gp100_16gb_1015275_1.jpg',

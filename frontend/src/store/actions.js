@@ -356,7 +356,7 @@ const UPDATE_ORDER = (id, newStatus, userId, profile, orderTotal, scene, dispatc
   });
 };
 
-const ADD_GOODS = (event, dispatch, picture) => {
+const ADD_GOODS = (event, dispatch, productInfo) => {
   event.preventDefault();
 
   const formDate = new FormData(AddProductForm);
@@ -367,7 +367,7 @@ const ADD_GOODS = (event, dispatch, picture) => {
     price: formDate.get("price"),
     category: formDate.get("category"),
     detailInfo: formDate.get("detail"),
-    pathImage: picture.fileName
+    pathImage: (productInfo.picture) ? productInfo.picture.imagePreviewUrl : null
   }
 
   appServiceData.addProduct(product).then((res) => {
@@ -375,6 +375,36 @@ const ADD_GOODS = (event, dispatch, picture) => {
       dispatch(SHOW_ALERT(scenesEnum.ADD_PRODUCT, messages.ADD_PRODUCT));
     }
     else dispatch(SHOW_ALERT(scenesEnum.ADD_PRODUCT, messages.ADD_PRODUCT_ERROR, "error"));
+  });
+};
+
+const UPDATE_GOODS = (event, dispatch, productInfo) => {
+  event.preventDefault();
+
+  let pathImage;
+
+  if(productInfo.picture){
+    pathImage = productInfo.picture.imagePreviewUrl;
+  }
+  else pathImage = productInfo.product.pathImage;
+
+  const formDate = new FormData(AddProductForm);
+  const product = {
+    id: productInfo.product.id,
+    nameProduct: formDate.get("productTitle"),
+    description: formDate.get("desc"),
+    count: formDate.get("countProduct"),
+    price: formDate.get("price"),
+    category: formDate.get("category"),
+    detailInfo: formDate.get("detail"),
+    pathImage: pathImage
+  }
+
+  appServiceData.updateProduct(product.id, product).then((res) => {
+    if(res){
+      dispatch(SHOW_ALERT(scenesEnum.PRODUCT_INFO, messages.UPDATE_PRODUCT));
+    }
+    else dispatch(SHOW_ALERT(scenesEnum.PRODUCT_INFO, messages.UPDATE_PRODUCT_ERROR, "error"));
   });
 };
 
@@ -410,5 +440,6 @@ export {
   LOGIN,
   UPDATE_PROFILE,
   ADD_GOODS,
+  UPDATE_GOODS,
   PRODUCT_REMOVE
 };

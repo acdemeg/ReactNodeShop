@@ -3,7 +3,7 @@ import InputIcon from './InputIcon';
 import styles from '../../scenes/Registration/Registration.scss'
 
 function InputField({ 
-  inputColor, type, name, placeholder,
+  inputColor, type, name, placeholder, value,
   minLength, iconLeft, iconRight, inputTitle 
 }) {
   const [input, setInput] = useState({
@@ -78,6 +78,7 @@ function InputField({
               type={type}
               name={name}
               placeholder={placeholder}
+              defaultValue={value}
               autoComplete="on"
               minLength={minLength}
               required

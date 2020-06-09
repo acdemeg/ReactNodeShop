@@ -25,7 +25,7 @@ module.exports = {
         type: Sequelize.FLOAT
       },
       pathImage: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: true,
       },
       category: {

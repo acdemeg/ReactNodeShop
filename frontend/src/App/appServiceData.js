@@ -1,5 +1,4 @@
 import axios from 'axios';
-import qs from 'qs';
 
 class AppServiceData {
   async getResourse(url) {
@@ -19,7 +18,7 @@ class AppServiceData {
   }
 
   async getUsers() {
-    const res = await this.getResourse(`/api/Users`);
+    const res = await this.getResourse(`/api/users`);
     return res;
   }
 
@@ -60,6 +59,17 @@ class AppServiceData {
     const res = await axios.patch(`/api/orders/${id}`, { status: newStatus })
       .catch(err => `${err}`);
     return res.data === 'succses';
+  }
+
+  async updateProduct(id, product) {
+    const res = await axios.put(`/api/products/${id}`, product)
+      .catch(err => `${err}`);
+      
+      if(res === "Error: Request failed with status code 500"
+      || res === "Error: Request failed with status code 413"){
+        return false;
+      }
+      return res;
   }
 
   async addProduct(product) {

@@ -1,6 +1,12 @@
 import React, { useEffect } from 'react';
 import { useParams, Redirect } from 'react-router-dom';
-import { googleFont, wrapper, wrapperProductInfo, border } from './ProductInfo.scss'
+import { 
+  googleFont,
+  wrapper, 
+  wrapperProductInfo,
+  updateProduct,
+  border 
+} from './ProductInfo.scss'
 import { 
   fetchProductInfo, 
   GOODS_ADDED_TO_CART, 
@@ -13,6 +19,7 @@ import Spinner from '../../components/Spinner';
 import ErrorIndicator from '../../components/Error-boundry/Error-indicator'; 
 import ShowNotification from '../../components/ShowNotification';
 import ProductInfoCard from './ProductInfoCard';
+import AddGoods from "../AddGoods/";
 
 const ProductInfo = ({ 
   isLoggedIn, 
@@ -52,32 +59,37 @@ const ProductInfo = ({
   }
 
   return (
-    <div className={wrapper}>
-      <ProductInfoCard 
-        product={product} 
-        onAddedToCart={onAddedToCart}
-        removeProduct={removeProduct} 
-        isLoggedIn={isLoggedIn} 
-        profile={profile}
-      />
-      <hr className={border}></hr>
-      <div className={wrapperProductInfo}>
-        <div
-          className={googleFont} 
-          style={{ margin: "1% 1% 1% 0" , textAlign: "left"}} >
-          <font size="30px"><b>Подробная информация о </b></font>
-          <font color="crimson">
-            {`${product.nameProduct}`}
-          </font>
+    <div>
+      <div className={wrapper}>
+        <ProductInfoCard 
+          product={product} 
+          onAddedToCart={onAddedToCart}
+          removeProduct={removeProduct} 
+          isLoggedIn={isLoggedIn} 
+          profile={profile}
+        />
+        <hr className={border}></hr>
+        <div className={wrapperProductInfo}>
+          <div
+            className={googleFont} 
+            style={{ margin: "1% 1% 1% 0" , textAlign: "left"}} >
+            <font size="30px"><b>Подробная информация о </b></font>
+            <font color="crimson">
+              {`${product.nameProduct}`}
+            </font>
+          </div>
+          <big>
+            {product.detailInfo}
+          </big>
         </div>
-        <big>
-          {product.detailInfo}
-        </big>
+        <ShowNotification 
+          notifications={notifications} 
+          currentScene={scenesEnum.PRODUCT_INFO} 
+        />
       </div>
-       <ShowNotification 
-        notifications={notifications} 
-        currentScene={scenesEnum.PRODUCT_INFO} 
-       />
+      <div className={updateProduct}>
+        <AddGoods product={product}/>
+      </div>
     </div>
   );
 }
@@ -100,7 +112,7 @@ const mapDispatchToProps = dispatch => ({
   fetchProduct: (id) => fetchProductInfo(id, dispatch),
   onAddedToCart: (id, nameProduct) => {
     dispatch(GOODS_ADDED_TO_CART(id));
-    dispatch(SHOW_ALERT(scenesEnum.PRODUCT_INFO, nameProduct));
+    dispatch(SHOW_ALERT(scenesEnum.PRODUCT_INFO, `Продукт ${nameProduct} добавлен в корзину`));
   },
   removeProduct: (productId) => PRODUCT_REMOVE(productId, dispatch)
 });
