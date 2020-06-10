@@ -27,6 +27,10 @@ module.exports = {
         defaultValue: 'В обработке',
         allowNull: false,
       },
+      orderCode: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {

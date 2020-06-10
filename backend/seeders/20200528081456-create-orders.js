@@ -6,7 +6,8 @@ module.exports = {
       {
         userId: 2,
         total: 21100,
-        status: 'Выполнен'
+        status: 'В обработке',
+        orderCode: '1957861207'
       },
     ]);
   },

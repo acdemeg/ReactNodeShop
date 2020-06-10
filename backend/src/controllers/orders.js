@@ -2,6 +2,12 @@ const debug = require('debug')('app:orders');
 const { Order, ProductInOrder, Product } = require('../../models');
 const sequelize = require('../database');
 
+function getOrderCode(){
+  let codeStr = Date.now().toString().slice(-7);
+  let salt = (Math.random() * 899 + 100).toString().slice(0,3);
+  return codeStr + salt;
+}
+
 const orders = {
   getAll: async () => {
     const orders = await Order.findAll()
@@ -28,6 +34,7 @@ const orders = {
             userId: order.userId,
             total: order.total,
             status: order.status,
+            orderCode: order.orderCode,
             productsInOrder: allProductsAllOrders.filter(v => v.orderId === order.id),
             products: products.filter(
               v => allProductsAllOrders.filter(v => v.orderId === order.id)
@@ -96,6 +103,7 @@ const orders = {
     return await Order.create({
       userId: order.userId,
       total: order.total,
+      orderCode: getOrderCode(),
     })
       .then(orderRecord => {
         order.products.forEach(v => {

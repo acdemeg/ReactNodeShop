@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.STRING,
     total: DataTypes.FLOAT,
     status: DataTypes.STRING,
+    orderCode: DataTypes.STRING
   }, {});
   Order.associate = function(models) {
   };

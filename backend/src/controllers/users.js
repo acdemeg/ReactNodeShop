@@ -76,6 +76,7 @@ const users = {
           userId: order.userId,
           total: order.total,
           status: order.status,
+          orderCode: order.orderCode,
           productsInOrder: productsInOrder.filter(v => v.orderId === order.id),
           products: products.filter(
             v => productsInOrder.filter(v => v.orderId === order.id)

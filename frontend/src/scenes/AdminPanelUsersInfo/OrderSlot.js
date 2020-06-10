@@ -10,7 +10,7 @@ const OrderSlot = ({ order,user, updateOrder, scene }) => {
 
   return (
     <div className={style.orderSlotWrapper}>
-      <OrderHeader />
+      <OrderHeader orderCode={order.orderCode}/>
       <div className={style.orderSlot}>
         <ProductsImages products={products}/>
         <div className={style.orderInfo}>

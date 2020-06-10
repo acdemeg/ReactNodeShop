@@ -9,7 +9,7 @@ const Order = ({ order, updateOrder, profile}) => {
 
   return (
     <div className="order">
-      <OrderHeader />
+      <OrderHeader orderCode={order.orderCode}/>
       <div className={container}>
         {order.products.map(item => (
           <InfoCardOrder 
