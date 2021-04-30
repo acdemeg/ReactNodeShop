@@ -1,5 +1,5 @@
 const debug = require('debug')('app:orders');
-const { Order, ProductInOrder, Product } = require('../../models');
+const { Order, ProductInOrder, Product } = require('../models');
 const sequelize = require('../database');
 
 function getOrderCode(){

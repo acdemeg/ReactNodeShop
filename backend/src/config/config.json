@@ -1,22 +1,25 @@
 {
   "development": {
+    "url": "postgres://postgres:lineate@db:5432/lntsunday",
     "username": "postgres",
-    "password": "lineate4@Sun",
+    "password": "lineate",
     "database": "lntsunday",
     "host": "127.0.0.1",
-    "port": "5433",
+    "port": "5440",
     "dialect": "postgres"
   },
   "test": {
-    "username": "root",
-    "password": null,
+    "url": "postgres://test:test@db:5432/database_test",
+    "username": "test",
+    "password": "test",
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
+    "url": "postgres://postgres:root@db:5432/database_production",
     "username": "root",
-    "password": null,
+    "password": "root",
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql"
