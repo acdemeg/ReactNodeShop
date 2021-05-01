@@ -1,4 +1,3 @@
-require('dotenv').config();
 const path = require('path');
 const Koa = require('koa');
 const serve = require('koa-static');

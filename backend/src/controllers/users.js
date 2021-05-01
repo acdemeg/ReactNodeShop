@@ -1,5 +1,5 @@
 const debug = require('debug')('app:users');
-const { User, Order, Product, ProductInOrder } = require('../models');
+const { User, Order, Product, ProductInOrder } = require('../../models');
 
 const users = {
   getAll: async () => {

@@ -1,11 +1,11 @@
 const debug = require('debug')('app:products');
-const { Product } = require('../models');
+const { Product } = require('../../models');
 const fs = require('fs');
 
 const products = {
   getAll: async () => {
     return await Product.findAll()
-      .catch(err => `can't get products ${err}`);
+      .catch(err => `can't get orders ${err}`);
   },
 
   addProduct: async product => {
