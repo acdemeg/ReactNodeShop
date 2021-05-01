@@ -1,10 +1,11 @@
 {
   "development": {
+    "url": "postgres://postgres:lineate@db:5432/lntsunday",
     "username": "postgres",
-    "password": "lineate4@Sun",
+    "password": "lineate",
     "database": "lntsunday",
     "host": "127.0.0.1",
-    "port": "5433",
+    "port": "5440",
     "dialect": "postgres"
   },
   "test": {

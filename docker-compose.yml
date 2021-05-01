@@ -13,26 +13,20 @@ services:
     volumes:
       - ./backend:/home/node/app
       - ./frontend/public:/home/node/public
-    environment:
-      SEQ_DB: lntsunday
-      SEQ_USER: postgres
-      SEQ_PW: lineate4@Sun
-      PORT: 3001
-      DATABASE_URL: postgres://postgres:lineate4@Sun@localhost:5432/lntsunday
     ports:
-      - 80:3001
+      - 8001:3001
 
   db:
     image: postgres:11
     restart: always
     environment:
       POSTGRES_DB: lntsunday
-      POSTGRES_PASSWORD: lineate4@Sun
+      POSTGRES_PASSWORD: lineate
     volumes:
       - database-data:/var/lib/postgresql/data
       - ./ops/db-backups:/backup
     ports:
-      - 5433:5432
+      - 5440:5432
 
   adminer:
     image: adminer

@@ -1,15 +1,22 @@
+'use strict';
+
 const Sequelize = require('sequelize');
 const debug = require('debug')('app:db');
+const config = require('../config/config.json');
 
-const sequelize = new Sequelize('lntsunday', 'postgres', 'lineate4@Sun', {
-  dialect: 'postgres',
-  host: '172.17.0.1',
-  port: '5433',
-  define: { timestamps: false },
+const db = new Sequelize(config[process.env.NODE_ENV].url, {
+  define: {
+    timestamps: false,
+  },
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
+  },
 });
 
-sequelize
-  .authenticate()
+db.authenticate()
   .then(() => {
     debug('Connection has been established successfully.');
   })
@@ -17,4 +24,4 @@ sequelize
     debug(`Unable to connect to the database:,  ${err}`);
   });
 
-module.exports = sequelize;
+module.exports = db;

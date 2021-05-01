@@ -2,6 +2,8 @@
 
 This repo contains  project for VKR.
 
+For migration: npx sequelize-cli db:migrate --url 'postgres://postgres:lineate@localhost:5440/lntsunday'
+
 ## Requirements:
 1. Node v12.x (you could try v10)
 2. NPM v6.x
