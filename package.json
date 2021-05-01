@@ -1,0 +1,27 @@
+{
+  "name": "project-template",
+  "version": "1.0.1",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "lint:backend": "cd backend && npm run style:check",
+    "lint:frontend": "cd frontend && npm run style:check",
+    "pretty:backend": "cd backend && npm run style:pretty",
+    "pretty:frontend": "cd frontend && npm run style:pretty"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "",
+  "dependencies": {},
+  "devDependencies": {
+    "file-loader": "^5.0.2",
+    "lint-staged": "^9.4.2"
+  },
+  "lint-staged": {
+    "*.{js,scss,sass}": [
+      "npm run pretty:backend",
+      "npm run pretty:frontend",
+      "git add"
+    ]
+  }
+}
