@@ -3,6 +3,14 @@
 This repo contains project of online-shop based on next 
 tech stack: ReactJs, Redux, Scss, NodeJs, Sequelize, Koa2Js, Postgresql.
 
+## Test credentials for App
+For ADMIN:
+* login: admin@google.com 
+* password: admin_passw
+
+For USER:
+* login: joo@google.com
+* password: john_passw
 
 ## Requirements:
 1. Node v12.x (you could try v10)
