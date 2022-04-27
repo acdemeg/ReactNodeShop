@@ -1,5 +1,7 @@
 # Online Shop Demo
 
+Live: https://react-node-online-shop.herokuapp.com/
+
 This repo contains project of online-shop based on next 
 tech stack: ReactJs, Redux, Scss, NodeJs, Sequelize, Koa2Js, Postgresql.
 
