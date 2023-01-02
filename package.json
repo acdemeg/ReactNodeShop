@@ -14,7 +14,7 @@
   "homepage": "",
   "dependencies": {},
   "devDependencies": {
-    "file-loader": "^5.0.2",
+    "file-loader": "^6.2.0",
     "lint-staged": "^9.4.2"
   },
   "lint-staged": {
